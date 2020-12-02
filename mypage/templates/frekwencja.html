@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="{% static 'start.css' %}" type="text/css" />
+  <link rel="stylesheet" media="min-width: 768px" href="{% static 'start.css' %}" />
+  <script src="{% static 'start.js' %}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="{% static 'img/27146352.png' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+  <title>Wulkanowy | Aplikacja ucznia i rodzica</title>
+</head>
+<body>
+   <div data-v-cd2b8d62 data-v-09be56d6 id="container">
+     <div id="menu">
+      <h1 data-v-cd2b8d62="" class="logo">
+        <img data-v-cd2b8d62 src="{% static 'img/wulkanowy-full-flat.4ff8222a.svg' %}" alt="Wulkanowy">
+        <a href="/uwagi/"><div id="uwagi" class="option">Uwagi</div></a>
+        <a href="/wiadomosci/"><div id="wiadomosci" class="option">Wiadomości</div></a>
+        <a href="/frekwencja/"><div id="frekwencja" class="option">Frekwencja</div></a>
+        <a href="/zadania/"><div id="zadania" class="option">Zadania Domowe</div></a>
+        <a href="/sprawdziany/"><div id="sprawdziany" class="option">Sprawdziany</div></a>
+        <a href="/plan/"><div id="plan" class="option">Plan Lekcji</div></a>
+        <a href="/oceny/"><div id="oceny" class="option">Oceny</div></a>
+      </h1>
+     </div>
+    <div class="content">
+      {{ json_data }}
+      {{ json_data2 }}
+    </div>
+    </div>
+</body>
+</html>
