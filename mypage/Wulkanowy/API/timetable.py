@@ -59,15 +59,94 @@ def prepare_timetable_for_display():
             break
         a += 1
 
+    #while True:
+        #print(hour[i])
+        #print(monday[i])
+        #print(tuesday[i])
+        #print(wednesday[i])
+        #print(thrusday[i])
+        #print(friday[i])
+        #print('-------------------------------------')
+        #if hour[i] == hour[-1]:
+            #i = 0
+            #break
+        #i += 1
+
     while True:
-        print(hour[i])
-        print(monday[i])
-        print(tuesday[i])
-        print(wednesday[i])
-        print(thrusday[i])
-        print(friday[i])
-        print('-------------------------------------')
+        #<--------------HOURS-------------->
+        bs = BeautifulSoup(hour[i], 'html.parser')
+        hour[i] = [str.strip(x) for x in bs.strings if str.strip(x) != '']
+        unwanted_text = [str.strip(x.text) for x in bs.find_all()]
+        set(hour[i]).difference(unwanted_text)
+        
+        #<--------------MONDAY-------------->
+        bs = BeautifulSoup(monday[i], 'html.parser')
+        for lesson in bs.find_all('span'):
+            monday[i] = lesson.text
+            break
+
+        #<--------------TUESDAY-------------->
+        bs = BeautifulSoup(tuesday[i], 'html.parser')
+        for lesson in bs.find_all('span'):
+            tuesday[i] = lesson.text
+            break
+
+        #<--------------WEDNESDAY-------------->
+        bs = BeautifulSoup(wednesday[i], 'html.parser')
+        for lesson in bs.find_all('span'):
+            wednesday[i] = lesson.text
+            break
+
+        #<--------------THRUSDAY-------------->
+        bs = BeautifulSoup(thrusday[i], 'html.parser')
+        for lesson in bs.find_all('span'):
+            thrusday[i] = lesson.text
+            break
+
+        #<--------------FRIDAY-------------->
+        bs = BeautifulSoup(friday[i], 'html.parser')
+        for lesson in bs.find_all('span'):
+            friday[i] = lesson.text
+            break
+
         if hour[i] == hour[-1]:
             i = 0
             break
+        i += 1
+    
+    print('<--------------MONDAY-------------->')
+    while True:
+        print(hour[i][1]+'-'+hour[i][2]+': '+monday[i])
+        if hour[i] == hour[-1]:
+           i = 0
+           break
+        i += 1
+    print('<--------------TUESDAY-------------->')
+    while True:
+        print(hour[i][1]+'-'+hour[i][2]+': '+tuesday[i])
+        if hour[i] == hour[-1]:
+           i = 0
+           break
+        i += 1
+        
+    print('<--------------WEDNESDAY-------------->')
+    while True:
+        print(hour[i][1]+'-'+hour[i][2]+': '+wednesday[i])
+        if hour[i] == hour[-1]:
+           i = 0
+           break
+        i += 1
+    print('<--------------THRUSDAY-------------->')
+    while True:
+        print(hour[i][1]+'-'+hour[i][2]+': '+thrusday[i])
+        if hour[i] == hour[-1]:
+           i = 0
+           break
+        i += 1
+    print('<--------------FRIDAY-------------->')
+    while True:
+        print(hour[i][1]+'-'+hour[i][2]+': '+friday[i])
+        if hour[i] == hour[-1]:
+           i = 0
+           break
         i += 1

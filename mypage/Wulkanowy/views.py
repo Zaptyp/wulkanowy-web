@@ -10,7 +10,9 @@ from .API.grades import prepare_grades_for_display
 from .API.homework import prepare_homework_for_display
 from .API.exams import prepare_exams_for_display
 from .API.timetable import prepare_timetable_for_display
+from .API.notes import prepare_notes_for_display
 
+# Create your views here.
 def default_view(request, *args, **kwargs):
     new_form = loginForm()
     if request.method == "POST":
@@ -88,9 +90,8 @@ def attendance_view(request, *args, **kwargs):
     return render(request, 'frekwencja.html', content)
 
 def notes_view(request, *args, **kwargs):
-    with open('json/notes.json') as f:
-        notes_load = json.load(f)
-    content = {'json_data': notes_load}
+    prepare_notes_for_display()
+    content = {'json_data': None}
     return render(request, 'uwagi.html', content)
 
 def exams_view(request, *args, **kwargs):
