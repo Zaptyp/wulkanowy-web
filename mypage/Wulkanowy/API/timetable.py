@@ -58,20 +58,7 @@ def prepare_timetable_for_display():
             a = 0
             break
         a += 1
-
-    #while True:
-        #print(hour[i])
-        #print(monday[i])
-        #print(tuesday[i])
-        #print(wednesday[i])
-        #print(thrusday[i])
-        #print(friday[i])
-        #print('-------------------------------------')
-        #if hour[i] == hour[-1]:
-            #i = 0
-            #break
-        #i += 1
-
+        
     while True:
         #<--------------HOURS-------------->
         bs = BeautifulSoup(hour[i], 'html.parser')
