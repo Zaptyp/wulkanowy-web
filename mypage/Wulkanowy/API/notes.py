@@ -29,8 +29,6 @@ def prepare_notes_for_display():
     with open('json/notes.json') as f:
         notes = json.load(f)
 
-    print(notes)
-
     i = 0
     
     print('------------------UWAGI------------------')

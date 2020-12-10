@@ -11,8 +11,8 @@ from .API.homework import prepare_homework_for_display
 from .API.exams import prepare_exams_for_display
 from .API.timetable import prepare_timetable_for_display
 from .API.notes import prepare_notes_for_display
+from .API.attendance import prepare_attendance_for_display
 
-# Create your views here.
 def default_view(request, *args, **kwargs):
     new_form = loginForm()
     if request.method == "POST":
@@ -67,8 +67,19 @@ def error_view(request, *args, **kwargs):
         return render(request, 'form_error.html', context)
 
 def grades_view(request, *args, **kwargs):
-    prepare_grades_for_display()
-    content = {'json_data': None}
+    grades = prepare_grades_for_display()
+    
+    grade = {}
+    description = {}
+
+    for i in grades[1]:
+        grade.update({i: []})
+        description.update({i: []})
+        for items in grades[0][i]:
+            grade[i].append(items['Ocena'])
+            description[i].append(items['Opis'])
+
+    content = {'gc': grade, 'dc': description, 'lesson': grades[1]}
     return render(request, 'oceny.html', content)
 
 def homework_view(request, *args, **kwargs):
@@ -82,11 +93,8 @@ def timetable_view(request, *args, **kwargs):
     return render(request, 'plan.html', content)
 
 def attendance_view(request, *args, **kwargs):
-    with open('json/attendance_lessons.json') as f:
-        timetable_lessons_load = json.load(f)
-    with open('json/attendance.json') as f:
-        timetable_load = json.load(f)
-    content = {'json_data': timetable_lessons_load, 'json_data2': timetable_load}
+    prepare_attendance_for_display()
+    content = {'json_data': None}
     return render(request, 'frekwencja.html', content)
 
 def notes_view(request, *args, **kwargs):

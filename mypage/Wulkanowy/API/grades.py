@@ -32,28 +32,27 @@ def prepare_grades_for_display():
     i = 0
     a = 0
 
+    json_grades = {}
+
     lesson_name = []
 
     while True:
         #lessons = grades.json()['data']['Oceny'][i]['Pozycja']
         lesson_name.append(grades['data']['Oceny'][i]['Przedmiot'])
-        print('------------------------------------------------')
-        print(lesson_name[i])
-        print('------------------------------------------------')
+        json_grades.update({grades['data']['Oceny'][i]['Przedmiot']: []})
         if grades['data']['Oceny'][i]['OcenyCzastkowe'] != []:
             while True:
-                print('<----------------------------------------------------------->')
-                print('Ocena: '+grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Wpis'])
-                print('Nauczyciel: '+grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Nauczyciel'])
-                print('Opis: '+grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['NazwaKolumny'])
-                print('Data: '+grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['DataOceny'])
-                print('Waga Oceny: '+str(grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Waga']))
+                json_grades[lesson_name[i]].append({'Ocena': grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Wpis'],
+                'Nauczyciel': grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Nauczyciel'],
+                'Opis': grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['NazwaKolumny'],
+                'Data': grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['DataOceny'],
+                'Waga Oceny': grades['data']['Oceny'][i]['OcenyCzastkowe'][a]['Waga']})
                 if grades['data']['Oceny'][i]['OcenyCzastkowe'][a] == grades['data']['Oceny'][i]['OcenyCzastkowe'][-1]:
                     a = 0
                     break
                 a += 1
-        else:
-            print('Brak Ocen!')
         if grades['data']['Oceny'][i]['Pozycja'] == grades['data']['Oceny'][-1]['Pozycja']:
             break
         i += 1
+
+    return [json_grades, lesson_name]

@@ -59,3 +59,78 @@ body {
     font-family: 'Lora', serif;
     font-size: 200%;
 }
+.lesson{
+    background-color: #fefefe;
+    border-radius: 24px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    z-index: 2;
+    text-align: center;
+    font-size: 150%;
+    width: 100%;
+    cursor: pointer;
+    padding-top: 3vh;
+    padding-bottom: 0.5vh;
+}
+ul{
+    list-style-type: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+li > ul > li{
+    display: none;
+}
+
+li:active > ul > li{
+    display: block;
+}
+
+#grades{
+    float: left;
+}
+
+.description{
+    text-align: center;
+    margin-right: 7vw;
+}
+
+.description::before{
+    position: absolute;
+}
+
+.grade{
+    display: absolute;
+    height: 39.75px;
+    width: 39.75px;
+    margin-left: 3vw;
+    font-size: 99%;
+    border-radius: 10px;
+}
+
+.grade::before{
+    position: absolute;
+    border-bottom: 2px solid #cdcdcd;
+    height: 8%;
+    content: '';
+    width: 80%;
+}
+
+.grade-else{
+    display: absolute;
+    height: 39.75px;
+    width: block;
+    margin-left: 3vw;
+    font-size: 99%;
+    border-radius: 10px;
+}
+
+.grade-else::before{
+    position: absolute;
+    border-bottom: 2px solid #cdcdcd;
+    height: 8%;
+    content: '';
+    width: 80%;
+}
