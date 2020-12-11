@@ -41,58 +41,9 @@
                         <div id='grades'>
                           {% for grade in gc|return_item:i %}
                             {% if grade != 'Brak Ocen' %}
-                              {% if grade == '6' %}
-                                <div class='grade' style='background-color: #3dbbf5;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '6-' %}
-                                <div class='grade' style='background-color: #3dbbf5;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '5' %}
-                                <div class='grade' style='background-color: #4caf50;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '5-' %}
-                                <div class='grade' style='background-color: #4caf50;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '5+' %}
-                                <div class='grade' style='background-color: #4caf50;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '4' %}
-                                <div class='grade' style='background-color: #a0c431;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '4-' %}
-                                <div class='grade' style='background-color: #a0c431;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '4+' %}
-                                <div class='grade' style='background-color: #a0c431;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '3' %}
-                                <div class='grade' style='background-color: #ffb940;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '3-' %}
-                                <div class='grade' style='background-color: #ffb940;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '3+' %}
-                                <div class='grade' style='background-color: #ffb940;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '2' %}
-                                <div class='grade' style='background-color: #ff774d;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '2-' %}
-                                <div class='grade' style='background-color: #ff774d;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '2+' %}
-                                <div class='grade' style='background-color: #ff774d;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '1' %}
-                                <div class='grade' style='background-color: #d43f3f;'>{{ grade }}</div>
-                                <br />
-                              {% elif grade == '1+' %}
-                                <div class='grade' style='background-color: #d43f3f;'>{{ grade }}</div>
-                                <br />
-                              {% else %}
-                                <div class='grade-else' style='background-color: #607d8b;'>{{ grade }}</div>
-                                <br />
-                              {% endif %}
+                              {{grade|set_color:grade}}
+                              {{ content }}
+                              <br />
                             {% endif %}
                           {% endfor %}
                         </div>
