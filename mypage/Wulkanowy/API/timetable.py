@@ -28,6 +28,8 @@ def get_timetable(register_id, register_r, oun, s, date):
 def prepare_timetable_for_display():
     with open('json/timetable.json') as f:
         timetable = json.load(f)
+
+    json_timetable = {'hour': [], 'monday': [], 'tuesday': [], 'wednesday': [], 'thrusday': [], 'friday': [],}
     
     hour = []
     monday = []
@@ -100,40 +102,12 @@ def prepare_timetable_for_display():
             i = 0
             break
         i += 1
-    
-    print('<--------------MONDAY-------------->')
-    while True:
-        print(hour[i][1]+'-'+hour[i][2]+': '+monday[i])
-        if hour[i] == hour[-1]:
-           i = 0
-           break
-        i += 1
-    print('<--------------TUESDAY-------------->')
-    while True:
-        print(hour[i][1]+'-'+hour[i][2]+': '+tuesday[i])
-        if hour[i] == hour[-1]:
-           i = 0
-           break
-        i += 1
-        
-    print('<--------------WEDNESDAY-------------->')
-    while True:
-        print(hour[i][1]+'-'+hour[i][2]+': '+wednesday[i])
-        if hour[i] == hour[-1]:
-           i = 0
-           break
-        i += 1
-    print('<--------------THRUSDAY-------------->')
-    while True:
-        print(hour[i][1]+'-'+hour[i][2]+': '+thrusday[i])
-        if hour[i] == hour[-1]:
-           i = 0
-           break
-        i += 1
-    print('<--------------FRIDAY-------------->')
-    while True:
-        print(hour[i][1]+'-'+hour[i][2]+': '+friday[i])
-        if hour[i] == hour[-1]:
-           i = 0
-           break
-        i += 1
+
+    json_timetable['hour'] = hour
+    json_timetable['monday'] = monday
+    json_timetable['tuesday'] = tuesday
+    json_timetable['wednesday'] = wednesday
+    json_timetable['thrusday'] = thrusday
+    json_timetable['friday'] = friday
+
+    return json_timetable

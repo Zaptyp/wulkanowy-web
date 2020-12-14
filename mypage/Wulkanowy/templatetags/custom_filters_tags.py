@@ -24,7 +24,7 @@ def set_color(grade, value):
     elif value == '3' or value == '3-' or value == '3+':
         return mark_safe(f"<div class='grade' style='background-color: #ffb940;'>{grade}</div>")
     elif value == '2' or value == '2-' or value == '2+':
-        return mark_safe(f"<div class='grade' style='background-color: #ff774d;'>{grade }</div>")
+        return mark_safe(f"<div class='grade' style='background-color: #ff774d;'>{grade}</div>")
     elif value == '1' or value == '1+':
         return mark_safe(f"<div class='grade' style='background-color: #d43f3f;'>{grade}</div>")
     else:

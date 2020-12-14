@@ -80,14 +80,6 @@ li{
     list-style-type: none;
 }
 
-li > ul > li{
-    display: none;
-}
-
-li:active > ul > li{
-    display: block;
-}
-
 #grades{
     float: left;
 }
@@ -133,4 +125,30 @@ li:active > ul > li{
     height: 8%;
     content: '';
     width: 80%;
+}
+
+.item{
+    border-top: 2px solid black;
+    width: 90%;
+    padding: 5%;
+    border-radius: 10px;
+}
+
+.header{
+    border-top: 2px solid black;
+    border-radius: 10px;
+    width: 90%;
+    padding: 5%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.column{
+    display: absolute;
+    height: 100%;
+    width: 16.66666666666667%;
+    float: left;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
 }

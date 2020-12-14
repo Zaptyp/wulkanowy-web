@@ -32,9 +32,9 @@
     <div class="content">
       {% for l in lesson %}
           <div class="lesson">
-            <li>{{ l }}
+            <li id='id-{{l}}' onclick='grade_action(this.id)'>{{ l }}
               <ul>
-                <li>
+                <li style='display: none;'>
                   {% for i in gc %}
                     {% if i == l %}
                       <div id='grades_content'>

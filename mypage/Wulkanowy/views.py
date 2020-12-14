@@ -88,8 +88,23 @@ def homework_view(request, *args, **kwargs):
     return render(request, 'zadania.html', content)
 
 def timetable_view(request, *args, **kwargs):
-    prepare_timetable_for_display()
-    content = {'json_data': None}
+    timetable = prepare_timetable_for_display()
+
+    hour = {}
+
+    for i in timetable['hour']:
+        hour.update({i[0]: []})
+        hour[i[0]].append(i[1])
+        hour[i[0]].append(i[2])
+
+    content = {
+        'hour': hour,
+        'monday': timetable['monday'],
+        'tuesday': timetable['tuesday'],
+        'wednesday': timetable['wednesday'],
+        'thrusday': timetable['thrusday'],
+        'friday': timetable['friday']
+        }
     return render(request, 'plan.html', content)
 
 def attendance_view(request, *args, **kwargs):

@@ -29,7 +29,42 @@
       </h1>
      </div>
     <div class="content">
-      {{ json_data }}
+      <div class='column'>
+        <div class='header'>GODZINA</div>
+          {% for hours in hour.items %}
+            <div class='item' style='height: 10%;'>{{ hours.1.0 }} - {{ hours.1.1 }}</div>
+          {% endfor %}
+        </div>
+        <div class='column' style='background-color: #bcbcbc;'>
+          <div class='header'>PONIEDZIAŁEK</div>
+          {% for lessons in monday %}
+            <div class='item' style='background-color: #bcbcbc; height: 10%;'>{{ lessons }}</div>
+          {% endfor %}
+        </div>
+        <div class='column'>
+          <div class='header'>WTOREK</div>
+          {% for lessons in tuesday %}
+            <div class='item' style='height: 10%;'>{{ lessons }}</div>
+          {% endfor %}
+        </div>
+        <div class='column'>
+          <div class='header' style='background-color: #bcbcbc;'>ŚRODA</div>
+          {% for lessons in wednesday %}
+            <div class='item' style='background-color: #bcbcbc; height: 10%;'>{{ lessons }}</div>
+          {% endfor %}
+        </div>
+        <div class='column'>
+          <div class='header'>CZWARTEK</div>
+          {% for lessons in thrusday %}
+            <div class='item' style='height: 10%;'>{{ lessons }}</div>
+          {% endfor %}
+        </div>
+        <div class='column'>
+          <div class='header' style='background-color: #bcbcbc;'>PIĄTEK</div>
+          {% for lessons in friday %}
+            <div class='item' style='background-color: #bcbcbc; height: 10%;'>{{ lessons }}</div>
+          {% endfor %}
+        </div>
     </div>
     </div>
 </body>
