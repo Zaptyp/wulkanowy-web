@@ -29,3 +29,26 @@ def set_color(grade, value):
         return mark_safe(f"<div class='grade' style='background-color: #d43f3f;'>{grade}</div>")
     else:
         return mark_safe(f"<div class='grade-else' style='background-color: #607d8b;'>{grade}</div>")
+
+@register.filter
+def simple_data(exam):
+
+    return_html = ''
+
+    if exam != {}:
+        for exams in exam:
+            lesson = exam[exams]['Przedmiot']
+            if exam[exams]['Opis'] == '':
+                description = '<span style="color: #d11204;"><i>Brak Opisu</i></span>'
+            else:
+                description = exam[exams]['Opis']
+            date = exam[exams]['Data']
+            if return_html == '':
+                return_html += f'{lesson}<br /><span style="color: green;"><i>{description}</i></span><br />{date}<br />'
+            else:
+                return_html += f'<div class="line"></div>{lesson}<br /><span style="color: green;"><i>{description}</i></span><br />{date}<br />'
+
+        return mark_safe(return_html)
+    else:
+        print('Brak sprawdzianów')
+        return mark_safe('Brak Sprawdzianów')

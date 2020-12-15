@@ -118,8 +118,17 @@ def notes_view(request, *args, **kwargs):
     return render(request, 'uwagi.html', content)
 
 def exams_view(request, *args, **kwargs):
-    prepare_exams_for_display()
-    content = {'json_data': None}
+    exams = prepare_exams_for_display()
+
+    content = {
+        'T_0': exams[0],
+        'T_1': exams[1],
+        'T_2': exams[2],
+        'T_3': exams[3]
+    }
+
+    print(content)
+
     return render(request, 'sprawdziany.html', content)
 
 def messeges_view(request, *args, **kwargs):

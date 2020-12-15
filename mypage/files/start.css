@@ -132,6 +132,15 @@ li{
     width: 90%;
     padding: 5%;
     border-radius: 10px;
+    height: 17%;
+    overflow: auto;
+    color: black;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.item::-webkit-scrollbar {
+    display: none;
 }
 
 .header{
@@ -139,6 +148,7 @@ li{
     border-radius: 10px;
     width: 90%;
     padding: 5%;
+    color: black;
     font-family: 'Open Sans Condensed', sans-serif;
     font-family: 'Quicksand', sans-serif;
 }
@@ -150,5 +160,12 @@ li{
     float: left;
     font-family: 'Open Sans Condensed', sans-serif;
     font-family: 'Quicksand', sans-serif;
+    font-size: 90%;
     color: black;
+}
+
+.line{
+    border-top: 1px solid black;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }

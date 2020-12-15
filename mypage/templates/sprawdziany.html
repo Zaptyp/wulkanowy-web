@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -15,8 +16,8 @@
   <title>Wulkanowy | Aplikacja ucznia i rodzica</title>
 </head>
 <body>
-   <div data-v-cd2b8d62 data-v-09be56d6 id="container">
-     <div id="menu">
+  <div data-v-cd2b8d62 data-v-09be56d6 id="container">
+    <div id="menu">
       <h1 data-v-cd2b8d62="" class="logo">
         <img data-v-cd2b8d62 src="{% static 'img/wulkanowy-full-flat.4ff8222a.svg' %}" alt="Wulkanowy">
         <a href="/uwagi/"><div id="uwagi" class="option">Uwagi</div></a>
@@ -29,8 +30,42 @@
       </h1>
      </div>
     <div class="content">
-      {{ json_data }}
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>PONIEDZIAŁEK</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_0.0|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_1.0|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_2.0|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_3.0|simple_data }}</div>
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header'>WTOREK</div>
+        <div class='item'>{{ T_0.1|simple_data }}</div>
+        <div class='item'>{{ T_1.1|simple_data }}</div>
+        <div class='item'>{{ T_2.1|simple_data }}</div>
+        <div class='item'>{{ T_3.1|simple_data }}</div>
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>ŚRODA</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_0.2|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_1.2|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_2.2|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_3.2|simple_data }}</div>
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header'>CZWARTEK</div>
+        <div class='item'>{{ T_0.3|simple_data }}</div>
+        <div class='item'>{{ T_1.3|simple_data }}</div>
+        <div class='item'>{{ T_2.3|simple_data }}</div>
+        <div class='item'>{{ T_3.3|simple_data }}</div>
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>PIĄTEK</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_0.4|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_1.4|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_2.4|simple_data }}</div>
+        <div class='item' style='background-color: #bcbcbc;'>{{ T_3.4|simple_data }}</div>
+      </div>
     </div>
-    </div>
+  </div>
 </body>
 </html>
