@@ -32,23 +32,20 @@ def set_color(grade, value):
 
 @register.filter
 def simple_data(exam):
-
-    return_html = ''
-
+    return_html = []
     if exam != {}:
         for exams in exam:
             lesson = exam[exams]['Przedmiot']
             if exam[exams]['Opis'] == '':
-                description = '<span style="color: #d11204;"><i>Brak Opisu</i></span>'
+                description = 'Brak Opisu'
             else:
                 description = exam[exams]['Opis']
             date = exam[exams]['Data']
-            if return_html == '':
-                return_html += f'{lesson}<br /><span style="color: green;"><i>{description}</i></span><br />{date}<br />'
+            if return_html == []:
+                return_html.append([lesson, description, date])
             else:
-                return_html += f'<div class="line"></div>{lesson}<br /><span style="color: green;"><i>{description}</i></span><br />{date}<br />'
-
-        return mark_safe(return_html)
+                return_html.append([lesson, description, date])
+        print(return_html)
+        return return_html
     else:
-        print('Brak sprawdzianów')
         return mark_safe('Brak Sprawdzianów')

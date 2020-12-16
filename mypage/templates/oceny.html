@@ -42,7 +42,7 @@
                           {% for grade in gc|return_item:i %}
                             {% if grade != 'Brak Ocen' %}
                               {{grade|set_color:grade}}
-                              {{ content }}
+                              {{ content|force_escape }}
                               <br />
                             {% endif %}
                           {% endfor %}
@@ -56,7 +56,7 @@
                               <div class='description'>Brak Opisu</div>
                               <br />
                             {% else %}
-                              <div class='description'>{{ description }}</div>
+                              <div class='description'>{{ description|force_escape }}</div>
                               <br />
                             {% endif %}
                           {% endfor%}

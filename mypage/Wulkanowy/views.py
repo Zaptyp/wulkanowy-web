@@ -120,14 +120,12 @@ def notes_view(request, *args, **kwargs):
 def exams_view(request, *args, **kwargs):
     exams = prepare_exams_for_display()
 
-    content = {
-        'T_0': exams[0],
-        'T_1': exams[1],
-        'T_2': exams[2],
-        'T_3': exams[3]
-    }
+    positions = []
 
-    print(content)
+    for x in range(4):
+        positions.append(exams[x])
+
+    content = {'content': positions}
 
     return render(request, 'sprawdziany.html', content)
 
