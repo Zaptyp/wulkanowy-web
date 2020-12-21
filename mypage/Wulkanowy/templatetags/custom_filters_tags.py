@@ -51,15 +51,17 @@ def simple_data(exam):
     else:
         return mark_safe('Brak Sprawdzianów')
 
+homework_all = None
+
 @register.filter
 def week_homework(no):
+    global homework_all
     cookie = get_cookies()
-    homework_all = prepare_homework_for_display(cookie[0], cookie[1], cookie[2], cookie[3], cookie[5])
+    if homework_all == None:
+        homework_all = prepare_homework_for_display(cookie[0], cookie[1], cookie[2], cookie[3], cookie[5])
     homework = []
 
     for i in range(4):
         homework.append(homework_all[i][no])
-
-    print(homework)
-
+        
     return homework
