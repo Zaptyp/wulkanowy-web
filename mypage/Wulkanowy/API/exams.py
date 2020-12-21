@@ -18,18 +18,12 @@ def get_exams(register_id, register_r, oun, s, date, school_year):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    print(date)
+    exams = s.post(oun+'/Sprawdziany.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'data': date, 'rokSzkolny': school_year})
 
-    exams = s.post(oun+'/Sprawdziany.mvc/Get', cookies=cookies, json={'data': date, 'rokSzkolny': school_year})
+    return exams.json()
 
-    exams_json = exams.json()
-
-    with open('json/exams.json', 'w') as f:
-        json.dump(exams_json, f)
-
-def prepare_exams_for_display():
-    with open('json/exams.json') as f:
-        exams = json.loads(f.read())
+def prepare_exams_for_display(register_id, register_r, oun, s, date, school_year):
+    exams = get_exams(register_id, register_r, oun, s, date, school_year)
 
     json_exams = {}
 

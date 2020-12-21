@@ -18,16 +18,13 @@ def get_timetable(register_id, register_r, oun, s, date):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    timetable = s.post(oun+'/PlanZajec.mvc/Get', cookies=cookies, json={'data': date})
+    timetable = s.post(oun+'/PlanZajec.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'data': date})
 
-    timetable_json = timetable.json()
-    with open('json/timetable.json', 'w') as f:
-        json.dump(timetable_json, f)
+    return timetable.json()
 
 
-def prepare_timetable_for_display():
-    with open('json/timetable.json') as f:
-        timetable = json.load(f)
+def prepare_timetable_for_display(register_id, register_r, oun, s, date):
+    timetable = get_timetable(register_id, register_r, oun, s, date)
 
     json_timetable = {'hour': [], 'monday': [], 'tuesday': [], 'wednesday': [], 'thrusday': [], 'friday': [],}
     

@@ -7,6 +7,7 @@ from django.shortcuts import render
 import json
 import requests
 from django.shortcuts import redirect
+from django.contrib.sessions.models import Session
 from bs4 import BeautifulSoup
 
 def get_grades(register_id, register_r, oun, s):
@@ -18,16 +19,12 @@ def get_grades(register_id, register_r, oun, s):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    grades = s.post(oun+'/Oceny.mvc/Get', cookies=cookies, json={'okres': register_id})
+    grades = s.post(oun+'/Oceny.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'okres': register_id})
+    
+    return grades.json()
 
-    grades_json = grades.json()
-
-    with open('json/grades.json', 'w') as f:
-        json.dump(grades_json, f)
-
-def prepare_grades_for_display():
-    with open('json/grades.json') as f:
-        grades = json.loads(f.read())
+def prepare_grades_for_display(register_id, register_r, oun, s):
+    grades = get_grades(register_id, register_r, oun, s)
 
     i = 0
     a = 0
@@ -37,7 +34,6 @@ def prepare_grades_for_display():
     lesson_name = []
 
     while True:
-        #lessons = grades.json()['data']['Oceny'][i]['Pozycja']
         lesson_name.append(grades['data']['Oceny'][i]['Przedmiot'])
         json_grades.update({grades['data']['Oceny'][i]['Przedmiot']: []})
         if grades['data']['Oceny'][i]['OcenyCzastkowe'] != []:

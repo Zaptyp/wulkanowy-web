@@ -41,7 +41,7 @@
                         <div id='grades'>
                           {% for grade in gc|return_item:i %}
                             {% if grade != 'Brak Ocen' %}
-                              {{grade|set_color:grade}}
+                              <div class='grade' style='background-color: {{grade|set_color}};'>{{ grade }}</div>
                               {{ content|force_escape }}
                               <br />
                             {% endif %}

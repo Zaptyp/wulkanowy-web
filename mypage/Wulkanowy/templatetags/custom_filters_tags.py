@@ -1,5 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
+from Wulkanowy.login import get_cookies
+from Wulkanowy.API.homework import prepare_homework_for_display
 
 register = template.Library()
 
@@ -14,21 +16,21 @@ def return_item(l, i):
         return None
 
 @register.filter
-def set_color(grade, value):
-    if value == '6' or value == '6-':
-        return mark_safe(f"<div class='grade' style='background-color: #3dbbf5;'>{grade}</div>")
-    elif value == '5' or value == '5-' or value == '5+':
-        return mark_safe(f"<div class='grade' style='background-color: #4caf50;'>{grade}</div>")
-    elif value == '4' or value == '4-' or value == '4+':
-        return mark_safe(f"<div class='grade' style='background-color: #a0c431;'>{grade}</div>")
-    elif value == '3' or value == '3-' or value == '3+':
-        return mark_safe(f"<div class='grade' style='background-color: #ffb940;'>{grade}</div>")
-    elif value == '2' or value == '2-' or value == '2+':
-        return mark_safe(f"<div class='grade' style='background-color: #ff774d;'>{grade}</div>")
-    elif value == '1' or value == '1+':
-        return mark_safe(f"<div class='grade' style='background-color: #d43f3f;'>{grade}</div>")
+def set_color(grade):
+    if grade == '6' or grade == '6-':
+        return '#3dbbf5'
+    elif grade == '5' or grade == '5-' or grade == '5+':
+        return '#4caf50'
+    elif grade == '4' or grade == '4-' or grade == '4+':
+        return '#a0c431'
+    elif grade == '3' or grade == '3-' or grade == '3+':
+        return '#ffb940'
+    elif grade == '2' or grade == '2-' or grade == '2+':
+        return '#ff774d'
+    elif grade == '1' or grade == '1+':
+        return '#d43f3f'
     else:
-        return mark_safe(f"<div class='grade-else' style='background-color: #607d8b;'>{grade}</div>")
+        return '#607d8b'
 
 @register.filter
 def simple_data(exam):
@@ -45,7 +47,19 @@ def simple_data(exam):
                 return_html.append([lesson, description, date])
             else:
                 return_html.append([lesson, description, date])
-        print(return_html)
         return return_html
     else:
         return mark_safe('Brak Sprawdzianów')
+
+@register.filter
+def week_homework(no):
+    cookie = get_cookies()
+    homework_all = prepare_homework_for_display(cookie[0], cookie[1], cookie[2], cookie[3], cookie[5])
+    homework = []
+
+    for i in range(4):
+        homework.append(homework_all[i][no])
+
+    print(homework)
+
+    return homework

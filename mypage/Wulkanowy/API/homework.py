@@ -1,15 +1,9 @@
-import os
-import sys
 import requests
 from django import template
-from django.utils.safestring import mark_safe
-from django.shortcuts import render
 import json
-import requests
-from django.shortcuts import redirect
-from bs4 import BeautifulSoup
+import datetime
 
-def get_homework(register_id, register_r, oun, s, date, school_year):
+def get_homework(register_id, register_r, oun, s, school_year):
     cookies = {
         "biezacyRokSzkolny": f"{register_r.json()['data'][0]['DziennikRokSzkolny']}",
         "idBiezacyDziennik": f"{register_r.json()['data'][0]['IdDziennik']}",
@@ -18,42 +12,68 @@ def get_homework(register_id, register_r, oun, s, date, school_year):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    homework = s.post(oun+'/Homework.mvc/Get', cookies=cookies, json={'schoolYear': school_year, 'date': date, 'statusFilter': '-1'})
+    now = datetime.datetime.now()
+    weekday = now.weekday()
 
-    homework_json = homework.json()
+    for x in range(7):
+        if weekday == x:
+            now1 = now - datetime.timedelta(days=x)
+            now2 = now - datetime.timedelta(days=x) + datetime.timedelta(days=7)
+            now3 = now - datetime.timedelta(days=x) + datetime.timedelta(days=14)
+            now4 = now - datetime.timedelta(days=x) + datetime.timedelta(days=21)
 
-    with open('json/homework.json', 'w') as f:
-        json.dump(homework_json, f)
+    day1 = str(now1.day)
+    month1 = str(now1.month)
+    year1 = str(now1.year)
+    date1 = year1+'-'+month1+'-'+day1
 
-def prepare_homework_for_display():
-    with open('json/homework.json') as f:
-        homework = json.loads(f.read())
+    day2 = str(now2.day)
+    month2 = str(now2.month)
+    year2 = str(now2.year)
+    date2 = year2+'-'+month2+'-'+day2
 
+    day3 = str(now3.day)
+    month3 = str(now3.month)
+    year3 = str(now3.year)
+    date3 = year3+'-'+month3+'-'+day3
+
+    day4 = str(now4.day)
+    month4 = str(now4.month)
+    year4 = str(now4.year)
+    date4 = year4+'-'+month4+'-'+day4
+
+    homework1 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date1, 'statusFilter': '-1'}) #'2020-09-28'
+    homework2 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date2, 'statusFilter': '-1'})
+    homework3 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date3, 'statusFilter': '-1'})
+    homework4 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date4, 'statusFilter': '-1'})
+
+    return homework1.json(), homework2.json(), homework3.json(), homework4.json()
+
+def prepare_homework_for_display(register_id, register_r, oun, s, school_year):
+    homework = get_homework(register_id, register_r, oun, s, school_year)
+
+    json_homework = {}
     i = 0
     a = 0
+    x = 0
 
-    for i in range(5):
-        print('------------------------------------------------')
-        if i == 0:
-            print('PONIEDZIAŁEK')
-        elif i == 1:
-            print('WTOREK')
-        elif i == 2:
-            print('ŚRODA')
-        elif i == 3:
-            print('CZWARTEK')
-        elif i == 4:
-            print('PIĄTEK')
-        print('------------------------------------------------')
-        if homework['data'][i]['Homework'] != []:
-            print('Przedmiot: '+homework['data'][i]['Homework'][a]['Subject'])
-            print('Nauczyciel: '+homework['data'][i]['Homework'][a]['Teacher'])
-            print('Opis: '+homework['data'][i]['Homework'][a]['Description'])
-            print('Data: '+homework['data'][i]['Homework'][a]['Date'])
-            print('------------------------------------------------')
-            if homework['data'][i]['Homework'][a] == homework['data'][i]['Homework'][-1]:
-                a = 0
+    for j in homework:
+        json_homework.update({x: {}})
+        for i in range(5):
+            json_homework[x].update({i: []})
+            if j['data'][i]['Homework'] != []:
+                while True:
+                    json_homework[x][i].append({'Przedmiot': j['data'][i]['Homework'][a]['Subject'],
+                    'Nauczyciel': j['data'][i]['Homework'][a]['Teacher'],
+                    'Opis': j['data'][i]['Homework'][a]['Description'],
+                    'Data': j['data'][i]['Homework'][a]['Date']})
+                    if j['data'][i]['Homework'][a] == j['data'][i]['Homework'][-1]:
+                        a = 0
+                        break
+                    else:
+                        a += 1
             else:
-                a += 1
-        else:
-            print('Brak zadań domowych na ten dzień')
+                json_homework[x][i].append('Brak zadań domowych na ten dzień')
+        x += 1
+
+    return json_homework

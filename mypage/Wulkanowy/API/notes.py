@@ -18,16 +18,12 @@ def get_notes(register_id, register_r, oun, s):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    notes = s.post(oun+'/UwagiIOsiagniecia.mvc/Get', cookies=cookies)
+    notes = s.post(oun+'/UwagiIOsiagniecia.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies)
 
-    notes_json = notes.json()
+    return notes.json()
 
-    with open('json/notes.json', 'w') as f:
-        json.dump(notes_json, f)
-
-def prepare_notes_for_display():
-    with open('json/notes.json') as f:
-        notes = json.load(f)
+def prepare_notes_for_display(register_id, register_r, oun, s):
+    notes = get_notes(register_id, register_r, oun, s)
 
     i = 0
     

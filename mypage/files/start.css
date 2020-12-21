@@ -21,6 +21,7 @@ body {
     -webkit-filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
     filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
 }
+
 #container{
     width: 100%;
 }
@@ -168,4 +169,8 @@ li{
     border-top: 1px solid black;
     margin-top: 1vh;
     margin-bottom: 1vh;
+}
+
+.day-name{
+    background-color: #bcbcbc;
 }

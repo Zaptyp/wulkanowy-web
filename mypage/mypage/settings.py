@@ -58,6 +58,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 1200
+
 ROOT_URLCONF = 'mypage.urls'
 
 TEMPLATES = [
@@ -129,6 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [(
-
     os.path.join(BASE_DIR, 'files')
 )]

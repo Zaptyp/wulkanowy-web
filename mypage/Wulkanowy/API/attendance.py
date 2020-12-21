@@ -19,46 +19,35 @@ def get_attendance(register_id, register_r, oun, s, date):
         "idBiezacyUczen": f"{register_r.json()['data'][0]['IdUczen']}"
     }
 
-    attendance_lessons = s.post(oun+'/FrekwencjaStatystykiPrzedmioty.mvc/Get', cookies=cookies)
-
-    attendance_lessons_json = attendance_lessons.json()
-
+    attendance_lessons = s.post(oun+'/FrekwencjaStatystykiPrzedmioty.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies)
     attendance_json_id = attendance_lessons.json()['data'][0]['Id']
+    attendance = s.post(oun+'/Frekwencja.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'idTypWpisuFrekwencji': attendance_json_id, 'data': date})
 
-    attendance = s.post(oun+'/Frekwencja.mvc/Get', cookies=cookies, json={'idTypWpisuFrekwencji': attendance_json_id, 'data': date})
+    return [attendance.json(), attendance_lessons.json()]
 
-    attendance_json = attendance.json()
 
-    with open('json/attendance_lessons.json', 'w') as f:
-        json.dump(attendance_lessons_json, f)
-
-    with open('json/attendance.json', 'w') as f:
-        json.dump(attendance_json, f)
-
-def prepare_attendance_for_display():
-    #with open('json/attendance_lessons.json') as f:
-        #timetable_lessons = json.load(f)
-    with open('json/attendance.json') as f:
-        timetable = json.load(f)
-
+def prepare_attendance_for_display(register_id, register_r, oun, s, date):
+    json = get_attendance(register_id, register_r, oun, s, date)
+    attendance = json[0]
+    #attendance_lessons = json[1]
     i = 0
 
     print('<--------------------FREKWENCJA-------------------->')
     print('--------------------PONIEDZIAŁEK--------------------')
     while True:
-        print('Treść: '+timetable['data']['Frekwencje'][i]['Symbol'])
-        print('Przedmiot: '+timetable['data']['Frekwencje'][i]['PrzedmiotNazwa'])
+        print('Treść: '+attendance['data']['Frekwencje'][i]['Symbol'])
+        print('Przedmiot: '+attendance['data']['Frekwencje'][i]['PrzedmiotNazwa'])
         print('-----------------------------------------------------')
-        if timetable['data']['Frekwencje'][i] == timetable['data']['Frekwencje'][-1]:
+        if attendance['data']['Frekwencje'][i] == attendance['data']['Frekwencje'][-1]:
             i = 0
             break
-        if timetable['data']['Frekwencje'][i]['NrDnia'] != timetable['data']['Frekwencje'][i+1]['NrDnia']:
-            if timetable['data']['Frekwencje'][i+1]['NrDnia'] == 2:
+        if attendance['data']['Frekwencje'][i]['NrDnia'] != attendance['data']['Frekwencje'][i+1]['NrDnia']:
+            if attendance['data']['Frekwencje'][i+1]['NrDnia'] == 2:
                 print('--------------------WTOREK--------------------')
-            elif timetable['data']['Frekwencje'][i+1]['NrDnia'] == 3:
+            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 3:
                 print('--------------------ŚRODA--------------------')
-            elif timetable['data']['Frekwencje'][i+1]['NrDnia'] == 4:
+            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 4:
                 print('--------------------CZWARTEK--------------------')
-            elif timetable['data']['Frekwencje'][i+1]['NrDnia'] == 5:
+            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 5:
                 print('--------------------PIĄTEK--------------------')
         i += 1
