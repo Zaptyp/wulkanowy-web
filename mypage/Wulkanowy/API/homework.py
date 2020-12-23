@@ -1,5 +1,4 @@
 import requests
-from django import template
 import json
 import datetime
 

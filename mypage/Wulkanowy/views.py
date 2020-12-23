@@ -100,9 +100,9 @@ def timetable_view(request, *args, **kwargs):
 def attendance_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         cookies = get_cookies()
-        prepare_attendance_for_display(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4])
+        attendance = prepare_attendance_for_display(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4])
+        content = {'attendance': attendance}        
 
-        content = {'json_data': None}
         return render(request, 'frekwencja.html', content)
     else:
         return redirect(default_view)

@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -29,8 +30,56 @@
       </h1>
      </div>
     <div class="content">
-      {{ json_data }}
-      {{ json_data2 }}
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>PONIEDZIAŁEK</div>
+        {% if 0 in attendance %}
+          {% for i in attendance.0 %}
+              <div class='item' style='background-color: #bcbcbc;'>{{ i.Content|force_escape }}<br />{{ i.Lesson|force_escape }}</div>
+          {% endfor %}
+        {% else %}
+          <div class='item' style='background-color: #bcbcbc;'>Brak danych o frekwencji</div>
+        {% endif %}
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header'>WTOREK</div>
+        {% if 1 in attendance %}
+          {% for i in attendance.1 %}
+            <div class='item'>{{ i.Content|force_escape }}<br /> {{ i.Lesson|force_escape }}</div>
+          {% endfor %}
+        {% else %}
+          <div class='item'>Brak danych o frekwencji</div>
+        {% endif %}
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>ŚRODA</div>
+        {% if 2 in attendance %}
+          {% for i in attendance.2 %}
+            <div class='item' style='background-color: #bcbcbc;'>{{ i.Content|force_escape }}<br />{{ i.Lesson|force_escape }}</div>
+          {% endfor %}
+        {% else %}
+          <div class='item' style='background-color: #bcbcbc;'>Brak danych o frekwencji</div>
+        {% endif %}
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header'>CZWARTEK</div>
+        {% if 3 in attendance %}
+          {% for i in attendance.3 %}
+            <div class='item'>{{ i.Content|force_escape }}<br />{{ i.Lesson|force_escape }}</div>
+          {% endfor %}
+        {% else %}
+          <div class='item'>Brak danych o frekwencji</div>
+        {% endif %}
+      </div>
+      <div class='column' style='width: 20%;'>
+        <div class='header' style='background-color: #bcbcbc;'>PIĄTEK</div>
+        {% if 4 in attendance %}
+          {% for i in attendance.4 %}
+            <div class='item' style='background-color: #bcbcbc;'>{{ i.Content|force_escape }}<br />{{ i.Lesson|force_escape }}</div>
+          {% endfor %}
+        {% else %}
+          <div class='item' style='background-color: #bcbcbc;'>Brak danych o frekwencji</div>
+        {% endif %}
+      </div>
     </div>
     </div>
 </body>

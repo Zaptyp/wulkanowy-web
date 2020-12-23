@@ -1,14 +1,5 @@
-import os
-import sys
-import requests
-from django import template
-from django.utils.safestring import mark_safe
-from django.shortcuts import render
 import json
 import requests
-from django.shortcuts import redirect
-from django.contrib.sessions.models import Session
-from bs4 import BeautifulSoup
 
 def get_grades(register_id, register_r, oun, s):
     cookies = {

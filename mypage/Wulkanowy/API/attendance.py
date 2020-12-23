@@ -1,14 +1,5 @@
-import os
-import sys
 import requests
-from django import template
-from django.utils.safestring import mark_safe
-from django.shortcuts import render
 import json
-import requests
-from django.shortcuts import redirect
-from bs4 import BeautifulSoup
-import datetime
 
 def get_attendance(register_id, register_r, oun, s, date):
     cookies = {
@@ -31,23 +22,19 @@ def prepare_attendance_for_display(register_id, register_r, oun, s, date):
     attendance = json[0]
     #attendance_lessons = json[1]
     i = 0
+    a = 0
 
-    print('<--------------------FREKWENCJA-------------------->')
-    print('--------------------PONIEDZIAŁEK--------------------')
+    json_attendance = {0: []}
+
     while True:
-        print('Treść: '+attendance['data']['Frekwencje'][i]['Symbol'])
-        print('Przedmiot: '+attendance['data']['Frekwencje'][i]['PrzedmiotNazwa'])
-        print('-----------------------------------------------------')
+        json_attendance[a].append({'Content': attendance['data']['Frekwencje'][i]['Symbol'],
+        'Lesson': attendance['data']['Frekwencje'][i]['PrzedmiotNazwa']})
         if attendance['data']['Frekwencje'][i] == attendance['data']['Frekwencje'][-1]:
             i = 0
             break
         if attendance['data']['Frekwencje'][i]['NrDnia'] != attendance['data']['Frekwencje'][i+1]['NrDnia']:
-            if attendance['data']['Frekwencje'][i+1]['NrDnia'] == 2:
-                print('--------------------WTOREK--------------------')
-            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 3:
-                print('--------------------ŚRODA--------------------')
-            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 4:
-                print('--------------------CZWARTEK--------------------')
-            elif attendance['data']['Frekwencje'][i+1]['NrDnia'] == 5:
-                print('--------------------PIĄTEK--------------------')
+            a += 1
+            json_attendance.update({a: []})
         i += 1
+
+    return json_attendance
