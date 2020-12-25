@@ -65,3 +65,21 @@ def week_homework(no):
         homework.append(homework_all[i][no])
         
     return homework
+
+@register.filter
+def points_color(points):
+    if int(points) < 0:
+        return 'red;'
+    elif int(points) > 0:
+        return 'green;'
+    else:
+        return 'black;'
+
+@register.filter
+def suffix(points):
+    if int(points) == 0 or int(points) >= 5 or int(points) <= -5:
+        return points+' punktów'
+    elif int(points) == -1 or int(points) == 1:
+        return points+' punkt'
+    elif int(points) > -5 and int(points) <= -2:
+        return points+' punkty'

@@ -1,4 +1,5 @@
 {% load static %}
+{%load custom_filters_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,26 @@
       </h1>
      </div>
     <div class="content">
-      {{ json_data }}
+      <div class='column' style='width: 50%;'>
+        <div class='header' style='background-color: #bcbcbc;'>UWAGI</div>
+        {% if notes.0.content == 'Brak uwag!' %}
+          <div class='item'>Brak uwag!</div>
+        {% else %}
+          {% for i in notes %}
+            <div class='item'>{{ i.content|force_escape }}<br /><i>{{ i.category|force_escape }}</i><br /><div class='line'></div>{{ i.date|force_escape }}<br />{{ i.teacher|force_escape }}<br /><span style='color: {{ i.points|points_color }}'>{{ i.points|suffix|force_escape }}</span><br /></div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class='column' style='width: 50%;'>
+        <div class='header' style='background-color: #bcbcbc;'>OSIĄGNIĘCIA</div>
+        {% if achievements.0.content == 'Brak osiągnięć!' %}
+          <div class='item'>Brak osiągnięć!</div>
+        {% else %}
+          {% for i in achievements %}
+            <div class='item'>{{ i.content|force_escape }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
     </div>
 </body>

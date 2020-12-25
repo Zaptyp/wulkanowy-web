@@ -110,8 +110,14 @@ def attendance_view(request, *args, **kwargs):
 def notes_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         cookies = get_cookies()
-        prepare_notes_for_display(cookies[0], cookies[1], cookies[2], cookies[3])
-        content = {'json_data': None}
+        notes = prepare_notes_for_display(cookies[0], cookies[1], cookies[2], cookies[3])
+
+        content = {
+            'notes': notes[0],
+            'achievements': notes[1]
+            }
+
+        print(content)
         return render(request, 'uwagi.html', content)
     else:
         return redirect(default_view)
