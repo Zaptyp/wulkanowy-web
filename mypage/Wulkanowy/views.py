@@ -9,6 +9,7 @@ from .API.exams import prepare_exams_for_display
 from .API.timetable import prepare_timetable_for_display
 from .API.notes import prepare_notes_for_display
 from .API.attendance import prepare_attendance_for_display
+from .API.messages import get_messages
 
 def default_view(request, *args, **kwargs):
     sender_return = None
@@ -117,7 +118,6 @@ def notes_view(request, *args, **kwargs):
             'achievements': notes[1]
             }
 
-        print(content)
         return render(request, 'uwagi.html', content)
     else:
         return redirect(default_view)
@@ -125,6 +125,7 @@ def notes_view(request, *args, **kwargs):
 def exams_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         cookies = get_cookies()
+        print(cookies)
         exams = prepare_exams_for_display(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4], cookies[5])
 
         positions = []
@@ -138,8 +139,11 @@ def exams_view(request, *args, **kwargs):
     else:
         return redirect(default_view)
 
-def messeges_view(request, *args, **kwargs):
+def messages_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
-        return render(request, 'wiadomosci.html')
+        cookies = get_cookies()
+        messages = get_messages(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4], cookies[5], cookies[6])
+        content = {'json_data': messages}
+        return render(request, 'wiadomosci.html', content)
     else:
         return redirect(default_view)

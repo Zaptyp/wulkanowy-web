@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from Wulkanowy.views import default_view, error_view, grades_view, timetable_view, exams_view, homework_view, attendance_view, messeges_view, notes_view
+from Wulkanowy.views import default_view, error_view, grades_view, timetable_view, exams_view, homework_view, attendance_view, messages_view, notes_view
 
 urlpatterns = [
     path('', default_view, name='home'),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('sprawdziany/', exams_view, name='exams'),
     path('zadania/', homework_view, name='homework'),
     path('frekwencja/', attendance_view, name='attendance'),
-    path('wiadomosci/', messeges_view, name='messeges'),
+    path('wiadomosci/', messages_view, name='messeges'),
     path('uwagi/', notes_view, name='notes'),
     path('admin/', admin.site.urls),
 ]

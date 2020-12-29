@@ -53,6 +53,7 @@ def send(url, data, fail):
         return True 
 
 def get_cookies():
+    global symbol
     register_r = s.post(oun+'/UczenDziennik.mvc/Get')
     register_id = register_r.json()['data'][0]['Okresy'][0]['Id']
             
@@ -71,4 +72,4 @@ def get_cookies():
 
     school_year = register_r.json()['data'][0]['DziennikRokSzkolny']
 
-    return [register_id, register_r, oun, s, date, school_year]
+    return [register_id, register_r, oun, s, date, school_year, symbol]

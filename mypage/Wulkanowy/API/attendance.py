@@ -26,15 +26,20 @@ def prepare_attendance_for_display(register_id, register_r, oun, s, date):
 
     json_attendance = {0: []}
 
-    while True:
-        json_attendance[a].append({'Content': attendance['data']['Frekwencje'][i]['Symbol'],
-        'Lesson': attendance['data']['Frekwencje'][i]['PrzedmiotNazwa']})
-        if attendance['data']['Frekwencje'][i] == attendance['data']['Frekwencje'][-1]:
-            i = 0
-            break
-        if attendance['data']['Frekwencje'][i]['NrDnia'] != attendance['data']['Frekwencje'][i+1]['NrDnia']:
-            a += 1
-            json_attendance.update({a: []})
-        i += 1
+    print(attendance)
+
+    if attendance['data']['Frekwencje'] != []:
+        while True:
+            json_attendance[a].append({'Content': attendance['data']['Frekwencje'][i]['Symbol'],
+            'Lesson': attendance['data']['Frekwencje'][i]['PrzedmiotNazwa']})
+            if attendance['data']['Frekwencje'][i] == attendance['data']['Frekwencje'][-1]:
+                i = 0
+                break
+            if attendance['data']['Frekwencje'][i]['NrDnia'] != attendance['data']['Frekwencje'][i+1]['NrDnia']:
+                a += 1
+                json_attendance.update({a: []})
+            i += 1
+    else:
+        json_attendance[a].append({'Content': 'Brak danych o frekwencji', 'Lesson': ''})
 
     return json_attendance

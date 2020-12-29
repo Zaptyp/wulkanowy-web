@@ -41,10 +41,14 @@ def get_homework(register_id, register_r, oun, s, school_year):
     year4 = str(now4.year)
     date4 = year4+'-'+month4+'-'+day4
 
-    homework1 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date1, 'statusFilter': '-1'})
-    homework2 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date2, 'statusFilter': '-1'})
-    homework3 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date3, 'statusFilter': '-1'})
-    homework4 = s.post(oun+'/Homework.mvc/Get', headers={"User-Agent": "Wulkanowy-web :)"}, cookies=cookies, json={'schoolYear': school_year, 'date': date4, 'statusFilter': '-1'})
+    headres = {
+        'User-Agent': 'Wulkanowy-web :)'
+    }
+
+    homework1 = s.post(oun+'/Homework.mvc/Get', headers=headres, cookies=cookies, json={'schoolYear': school_year, 'date': date1, 'statusFilter': '-1'})
+    homework2 = s.post(oun+'/Homework.mvc/Get', headers=headres, cookies=cookies, json={'schoolYear': school_year, 'date': date2, 'statusFilter': '-1'})
+    homework3 = s.post(oun+'/Homework.mvc/Get', headers=headres, cookies=cookies, json={'schoolYear': school_year, 'date': date3, 'statusFilter': '-1'})
+    homework4 = s.post(oun+'/Homework.mvc/Get', headers=headres, cookies=cookies, json={'schoolYear': school_year, 'date': date4, 'statusFilter': '-1'})
 
     return homework1.json(), homework2.json(), homework3.json(), homework4.json()
 
