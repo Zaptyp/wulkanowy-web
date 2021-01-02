@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{% static 'start.css' %}" type="text/css" />
   <link rel="stylesheet" media="min-width: 768px" href="{% static 'start.css' %}" />
   <script src="{% static 'start.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <link rel="shortcut icon" href="{% static 'img/27146352.png' %}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
@@ -29,8 +30,17 @@
         <a href="/oceny/"><div id="oceny" class="option">Oceny</div></a>
       </h1>
      </div>
-    <div class="content">
-      {{ json_data }}
+    <div class="content" style='padding-top: 0;'>
+      <div id='buttons'>
+        <div id='received' onclick='change_message_content(this.id)' class='button'>ODEBRANE</div>
+        <div id='sent' onclick='change_message_content(this.id)' class='button'>WYSŁANE</div>
+        <div id='deleted' onclick='change_message_content(this.id)' class='button'>USUNIĘTE</div>
+      </div>
+      <div id='messages_content'>
+        {% for i in messages %}
+          <div class='message-item'><div class='message-block-left'>Temat: {{ i.Subject|force_escape }}<br />Nadawca: {{ i.Sender|force_escape }}</div><div class='message-block-right'>Data: {{ i.Date|force_escape }}</div></div>
+        {% endfor %}
+      </div>
     </div>
     </div>
 </body>

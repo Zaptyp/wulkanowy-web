@@ -1,0 +1,11 @@
+{% for i in messages %}
+    {% if 'Sender' in i %}
+        <div class='message-item'><div class='message-block-left'>Temat: {{ i.Subject|force_escape }}<br />Nadawca: {{ i.Sender|force_escape }}</div><div class='message-block-right'>Data: {{ i.Date|force_escape }}</div></div>
+    {% else %}
+        <div class='message-item'><div class='message-block-left'>Temat: {{ i.Subject|force_escape }}<br />Obiorca: 
+            {% for j in i.Recipients %}
+                {{ j.Name|force_escape }}
+            {% endfor %}
+        </div><div class='message-block-right'>Data: {{ i.Date|force_escape }}</div></div>
+    {% endif %}
+{% endfor %}

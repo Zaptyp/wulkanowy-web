@@ -13,7 +13,7 @@ def get_messages(register_id, register_r, oun, s, date, school_year, symbol):
     sent_messages = []
     deleted_messages = []
 
-    messages = s.get('https://uonetplus-uzytkownik.vulcan.net.pl/nowysacz/Wiadomosc.mvc/GetInboxMessages?_dc='+str(now)+'&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers)
+    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers)
     for j in messages.json()['data']:
         received_messages.append({
             'Subject': j['Temat'],
@@ -23,7 +23,7 @@ def get_messages(register_id, register_r, oun, s, date, school_year, symbol):
             'Id': j['Id']
         })
 
-    messages = s.get('https://uonetplus-uzytkownik.vulcan.net.pl/nowysacz/Wiadomosc.mvc/GetOutboxMessages?_dc='+str(now)+'&dataOd=&dataDo=&page=1&start=0&limit=25')
+    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25')
     for j in messages.json()['data']:
         sent_messages.append({
             'Subject': j['Temat'],
@@ -35,7 +35,7 @@ def get_messages(register_id, register_r, oun, s, date, school_year, symbol):
         })
 
 
-    messages = s.get('https://uonetplus-uzytkownik.vulcan.net.pl/nowysacz/Wiadomosc.mvc/GetTrashboxMessages?_dc='+str(now)+'&dataOd=&dataDo=&page=1&start=0&limit=25')
+    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetTrashboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25')
     for j in messages.json()['data']:
         deleted_messages.append({
             'Subject': j['Temat'],
@@ -45,14 +45,9 @@ def get_messages(register_id, register_r, oun, s, date, school_year, symbol):
             'Id': j['Id']
         })
 
-    print(received_messages)
-    print('-------------------------------------------------------------------------')
     print(sent_messages)
-    print('-------------------------------------------------------------------------')
-    print(deleted_messages)
-    print('-------------------------------------------------------------------------')
 
-    return 'Bla'
+    return received_messages, sent_messages, deleted_messages
 
 def get_recipients(j):
     Recipients = []

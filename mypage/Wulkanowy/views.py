@@ -1,4 +1,5 @@
 from requests import get
+from django.http import HttpResponse
 from django.shortcuts import render
 from .login import sender, get_cookies
 from .forms import loginForm
@@ -143,7 +144,23 @@ def messages_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         cookies = get_cookies()
         messages = get_messages(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4], cookies[5], cookies[6])
-        content = {'json_data': messages}
+        content = {'messages': messages[0]}
         return render(request, 'wiadomosci.html', content)
+    else:
+        return redirect(default_view)
+
+def change_messages_content(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        cookies = get_cookies()
+        messages = get_messages(cookies[0], cookies[1], cookies[2], cookies[3], cookies[4], cookies[5], cookies[6])
+        id = request.GET.get('id')
+        
+        if id == 'received':
+            content = {'messages': messages[0]}
+        elif id == 'sent':
+            content = {'messages': messages[1]}
+        elif id == 'deleted':
+            content = {'messages': messages[2]}
+        return render(request, 'messages_content.html', content)
     else:
         return redirect(default_view)

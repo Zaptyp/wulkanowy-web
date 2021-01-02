@@ -8,3 +8,15 @@ function grade_action(id) {
         element.style.display = 'none';
     }
 }
+
+function change_message_content(id) {
+    $.ajax({
+        url: '/change_messages_content/',
+        data: {
+          'id': id
+        },
+        success: function(data) {
+            document.querySelector('#messages_content').innerHTML = data;
+        }
+    });
+}
