@@ -31,7 +31,7 @@ const login = () => {
             body: JSON.stringify(data)
         }).then(response => response.json()).then(data => {
             if(data['success']){
-                window.location.href = "/oceny/"
+                window.location.href = "/content/"
             }
             else{
                 document.querySelector('#error').innerHTML = 'Nieprawidłowy login, hasło lub symbol'

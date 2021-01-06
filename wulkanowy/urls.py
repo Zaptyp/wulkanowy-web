@@ -16,20 +16,13 @@ Including another URLconf
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from app.views import default_view, grades_view, timetable_view, exams_view, homework_view, attendance_view, messages_view, notes_view, change_messages_content
+from app.views import default_view, content_view
 from app.views import login
 
 urlpatterns = [
     #views
     path('', default_view, name='home'),
-    path('oceny/', grades_view, name='grades'),
-    path('plan/', timetable_view, name='timetable'),
-    path('sprawdziany/', exams_view, name='exams'),
-    path('zadania/', homework_view, name='homework'),
-    path('frekwencja/', attendance_view, name='attendance'),
-    path('wiadomosci/', messages_view, name='messages'),
-    path('uwagi/', notes_view, name='notes'),
-    path('change_messages_content/', change_messages_content, name='cmc'),
+    path('content/', content_view, name='content'),
     #api
     path('api/login', login, name='login')
 ]
