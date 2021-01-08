@@ -102,6 +102,10 @@ label {
   margin: 0px;
   font-size: 0px;
 }
+select {
+  display: inline !important;
+  font-size: 1.5em;
+}
 #button {
   margin-left: 35rem;
 }
