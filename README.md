@@ -9,7 +9,7 @@
 ```shell
 pip install -r requirments.txt
 ```
-## 2. Create database and .env
+## 2. Make migrations and .env
 ```shell
 python manage.py makemigrations
 python manage.py migrate
