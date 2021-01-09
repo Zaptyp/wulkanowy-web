@@ -17,7 +17,7 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from app.views import default_view, content_view
-from app.views import login, grades, timetable
+from app.views import login, grades, timetable, exams
 
 urlpatterns = [
     #views
@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/login', login, name='login'),
     path('api/grades', grades, name='grades'),
     path('api/timetable', timetable, name='timetable'),
+    path('api/exams', exams, name='exams')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

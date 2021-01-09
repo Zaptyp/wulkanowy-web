@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.contrib.sessions.models import Session
 from .login import sender
 from .API.grades import get_grades
-from .API.exams import prepare_exams_for_display
+from .API.exams import get_exams
 from .API.timetable import get_timetable
 from .API.notes import prepare_notes_for_display
 from .API.attendance import prepare_attendance_for_display
@@ -54,7 +54,7 @@ def grades(request, *args, **kwargs):
         oun = data['data']['oun']
         s = data['data']['s']
         grades = get_grades(register_id, register_r, oun, s)
-        return JsonResponse(grades, safe=False)
+        return JsonResponse(grades)
     else:
         return render(request, 'index.html')
 
@@ -68,5 +68,19 @@ def timetable(request, *args, **kwargs):
         date = data['data']['date']
         timetable = get_timetable(register_id, register_r, oun, s, date)
         return JsonResponse(timetable)
+    else:
+        return render(request, 'index.html')
+
+def exams(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        exams = get_exams(register_id, register_r, oun, s, date, school_year)
+        return JsonResponse(exams)
     else:
         return render(request, 'index.html')
