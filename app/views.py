@@ -13,6 +13,7 @@ from .API.timetable import get_timetable
 from .API.notes import prepare_notes_for_display
 from .API.attendance import prepare_attendance_for_display
 from .API.messages import get_messages
+from .API.homeworks import get_homeworks
 
 #views
 def default_view(request, *args, **kwargs):
@@ -82,5 +83,19 @@ def exams(request, *args, **kwargs):
         school_year = data['data']['school_year']
         exams = get_exams(register_id, register_r, oun, s, date, school_year)
         return JsonResponse(exams)
+    else:
+        return render(request, 'index.html')
+
+def homeworks(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        homeworks = get_homeworks(register_id, register_r, oun, s, date, school_year)
+        return JsonResponse(homeworks)
     else:
         return render(request, 'index.html')
