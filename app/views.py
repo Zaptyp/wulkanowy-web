@@ -10,7 +10,7 @@ from .login import sender
 from .API.grades import get_grades
 from .API.exams import get_exams
 from .API.timetable import get_timetable
-from .API.notes import prepare_notes_for_display
+from .API.notes import get_notes
 from .API.attendance import get_attendance
 from .API.messages import get_messages
 from .API.homeworks import get_homeworks
@@ -110,5 +110,17 @@ def attendance(request, *args, **kwargs):
         date = data['data']['date']
         attendance = get_attendance(register_id, register_r, oun, s, date)
         return JsonResponse(attendance, safe=False)
+    else:
+        return render(request, 'index.html')
+
+def notes(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        notes = get_notes(register_id, register_r, oun, s)
+        return JsonResponse(notes)
     else:
         return render(request, 'index.html')
