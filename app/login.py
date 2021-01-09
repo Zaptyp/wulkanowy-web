@@ -1,6 +1,7 @@
 import os
 import sys
 import requests
+from django.contrib.sessions.models import Session
 from django.http import JsonResponse
 from django import template
 from django.utils.safestring import mark_safe
@@ -11,18 +12,16 @@ from django.shortcuts import redirect
 from bs4 import BeautifulSoup
 import datetime
 
-def sender(url, loginName, Password, params_names, fail_phrase, symbol, diary_url):
+def sender(url, loginName, Password, params_names, fail_phrase, symbol, diary_url, s):
     data = [params_names[0], loginName, params_names[1], Password]
 
-    sender_return = send(url, data, fail_phrase, diary_url, symbol)
-    print(sender_return)
+    sender_return = send(url, data, fail_phrase, diary_url, symbol, s)
     if sender_return == {'success': False}:
         return {'success': False}
     else:
         return sender_return
 
-def send(url, data, fail, diary_url, symbol):
-    s = requests.Session()
+def send(url, data, fail, diary_url, symbol, s):
     ready_data = {data[0]: data[1], data[2]: data[3]}
     page = s.post(url=url, data=ready_data)
     if fail in page.text:
@@ -36,7 +35,7 @@ def send(url, data, fail, diary_url, symbol):
         wctx = bs.find('input', {'name': 'wctx'})['value']
 
         crtr = s.post(url=wctx, headers={"User-Agent": "Wulkanowy-web :)"}, data={"wa": wa, "wresult": cert, "wctx": wctx})
-            
+
         bs = BeautifulSoup(crtr.content, 'html.parser')
         for a in bs.find_all('a', title='Uczeń'):
             oun = a['href']
@@ -75,6 +74,7 @@ def get_cookies(symbol, oun, s):
         'date': date,
         'school_year': school_year,
         'symbol': symbol,
+        's': s.cookies.get_dict()
     }
 
     return data

@@ -17,14 +17,15 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from app.views import default_view, content_view
-from app.views import login
+from app.views import login, grades
 
 urlpatterns = [
     #views
     path('', default_view, name='home'),
     path('content/', content_view, name='content'),
     #api
-    path('api/login', login, name='login')
+    path('api/login', login, name='login'),
+    path('api/grades', grades, name='grades'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

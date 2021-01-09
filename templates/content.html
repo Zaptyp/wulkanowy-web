@@ -5,9 +5,15 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="{% static 'start.css' %}" type="text/css" />
-  <link rel="stylesheet" media="min-width: 768px" href="{% static 'start.css' %}" />
-  <script src="{% static 'js/start.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/start.css' %}" type="text/css" />
+  <script src="{% static 'js/start.js' %}" type="text/javascript" ></script>
+  <script src="{% static 'js/grades.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/timetable.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/exams.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/notes.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/attendance.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/homeworks.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/messages.js' %}" type="text/javascript" defer></script>
   <link rel="shortcut icon" href="{% static 'images/27146352.png' %}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
@@ -20,17 +26,17 @@
      <div id="menu">
       <h1 data-v-cd2b8d62="" class="logo">
         <img data-v-cd2b8d62 src="{% static 'images/wulkanowy-full-flat.4ff8222a.svg' %}" alt="Wulkanowy">
-        <a href="#"><div id="uwagi" class="option">Uwagi</div></a>
-        <a href="#"><div id="wiadomosci" class="option">Wiadomości</div></a>
-        <a href="#"><div id="frekwencja" class="option">Frekwencja</div></a>
-        <a href="#"><div id="zadania" class="option">Zadania Domowe</div></a>
-        <a href="#"><div id="sprawdziany" class="option">Sprawdziany</div></a>
-        <a href="#"><div id="plan" class="option">Plan Lekcji</div></a>
-        <a href="#"><div id="oceny" class="option">Oceny</div></a>
+        <div id="notes_" class="option">Uwagi</div>
+        <div id="messages_" class="option">Wiadomości</div>
+        <div id="attendance_" class="option">Frekwencja</div>
+        <div id="homeworks_" class="option">Zadania Domowe</div>
+        <div id="exams_" class="option">Sprawdziany</div>
+        <div id="timetable_" class="option">Plan Lekcji</div>
+        <div id="grades_" class="option">Oceny</div>
       </h1>
     </div>
-    <div class="content">
-      
+    <div id="content">
+      Tutaj będzie jakiś dashboard bla bla bla ;)
     </div>
   </body>
 </html>

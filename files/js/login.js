@@ -31,10 +31,13 @@ const login = () => {
             body: JSON.stringify(data)
         }).then(response => response.json()).then(data => {
             if(data['success']){
-                window.location.href = "/content/"
+                myStorage = window.sessionStorage;
+                sessionStorage.setItem('cookies_data', JSON.stringify(data));
+                sessionStorage.setItem('csrfcookie', csrfcookie())
+                window.location.href = "/content/";
             }
             else{
-                document.querySelector('#error').innerHTML = 'Nieprawidłowy login, hasło lub symbol'
+                document.querySelector('#error').innerHTML = 'Nieprawidłowy login, hasło lub symbol';
             }
         });
     }
