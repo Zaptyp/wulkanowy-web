@@ -23,7 +23,7 @@ def content_view(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         return render(request, 'content.html')
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 #API
 def login(request, *args, **kwargs):
@@ -57,7 +57,7 @@ def grades(request, *args, **kwargs):
         grades = get_grades(register_id, register_r, oun, s)
         return JsonResponse(grades)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 def timetable(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
@@ -70,7 +70,7 @@ def timetable(request, *args, **kwargs):
         timetable = get_timetable(register_id, register_r, oun, s, date)
         return JsonResponse(timetable)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 def exams(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
@@ -84,7 +84,7 @@ def exams(request, *args, **kwargs):
         exams = get_exams(register_id, register_r, oun, s, date, school_year)
         return JsonResponse(exams)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 def homeworks(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
@@ -98,7 +98,7 @@ def homeworks(request, *args, **kwargs):
         homeworks = get_homeworks(register_id, register_r, oun, s, date, school_year)
         return JsonResponse(homeworks)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 def attendance(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
@@ -111,7 +111,7 @@ def attendance(request, *args, **kwargs):
         attendance = get_attendance(register_id, register_r, oun, s, date)
         return JsonResponse(attendance, safe=False)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
 
 def notes(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
@@ -123,4 +123,4 @@ def notes(request, *args, **kwargs):
         notes = get_notes(register_id, register_r, oun, s)
         return JsonResponse(notes)
     else:
-        return render(request, 'index.html')
+        return redirect('../')
