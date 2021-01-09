@@ -59,11 +59,13 @@ def get_cookies(symbol, oun, s):
         if weekday == x:
             now = now - datetime.timedelta(days=x)
 
-    day = str(now.day)
-    month = str(now.month)
-    year = str(now.year)
+    day = now.day
+    month = now.month
+    year = now.year
 
-    date = year+'-'+month+'-'+day
+    date = datetime.date(year, month, day).isoformat()
+
+    date = f'{date}T00:00:00'
 
     school_year = register_r.json()['data'][0]['DziennikRokSzkolny']
 
@@ -71,7 +73,7 @@ def get_cookies(symbol, oun, s):
         'register_id': register_id,
         'register_r': register_r.json(),
         'oun': oun,
-        'date': date,
+        'date': str(date),
         'school_year': school_year,
         'symbol': symbol,
         's': s.cookies.get_dict()
