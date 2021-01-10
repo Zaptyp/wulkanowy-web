@@ -46,7 +46,13 @@
        <li><a id="exams_">Sprawdziany</a></li>
        <li><a id="homeworks_">Zadania Domowe</a></li>
        <li><a id="attendance_">Frekwencjaa</a></li>
-       <li><a id="messages_">Wiadomości</a></li>
+       <li><a id="messages_" class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons">email</i>Wiadomości</a></li>
+       <ul id='dropdown1' class='dropdown-content'>
+         <li><a href="#!">Odebrane</a></li>
+         <li><a href="#!">Wysłane</a></li>
+         <li><a href="#!">Napisz Wiadomość</a></li>
+         <li><a href="#!">Usunięte</a></li>
+       </ul>
        <li><a id="notes_">Uwagi</a></li>  
      </ul>
      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -71,6 +77,12 @@
        var elems = document.querySelectorAll('.modal');
        var instances = M.Modal.init(elems, options);
      });
+
+     var dropdowns = document.querySelectorAll('.dropdown-trigger')
+     for (var i = 0; i < dropdowns.length; i++){
+       M.Dropdown.init(dropdowns[i]);
+     }
+
    </script>
   </body>
 </html>

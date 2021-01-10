@@ -19,3 +19,7 @@ and modify the .envsample file.
 ```shell
 python manage.py runserver
 ```
+or if you run Windows you can run:
+```shell
+runserver.bat
+```
