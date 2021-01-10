@@ -1,11 +1,7 @@
 body {
     padding: 0 !important;
     height: 100vh;
-    background: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.3)),to(rgba(0,0,0,.3))),url(../images/wallpaper.b24bba72.jpg);
-    background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url(../images/wallpaper.jpg);
-    background-size: cover;
-    background-position: 50%;
-    background-attachment: fixed;
+    background: #fff;
     overflow: auto;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14,13 +10,13 @@ body {
     margin: 0 !important;
     color: black;
 }
-.logo img[data-v-cd2b8d62] {
+/*.logo img[data-v-cd2b8d62] {
     width: 768px;
     max-width: 30vw;
     display: inline;
     -webkit-filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
     filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
-}
+}*/
 
 #container{
     width: 100%;
@@ -42,22 +38,14 @@ body {
     float: right;
     cursor: pointer;
 }
-#content{
-    overflow: auto;
-    width: 85%;
-    height: 60%;
-    margin-top: 2%;
-    opacity: 85%;
-    padding: 40px;
-    position: absolute;
-    top: 56%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+
+.grade {
+    font-size: 20px;
+    width: 25px;
+    height: 30px;
+    background: #ff0000;
     text-align: center;
-    margin-bottom: 0px;
-    background-color: #ededed;
-    border-radius: 24px;
-    box-shadow: 10px 10px 15px;
-    font-family: 'Lora', serif;
-    font-size: 200%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
 }

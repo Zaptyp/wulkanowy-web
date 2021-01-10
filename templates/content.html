@@ -19,24 +19,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+  <script src="{% static 'js/materializecss/materialize.min.js' %}"></script>
   <title>Wulkanowy | Aplikacja ucznia i rodzica</title>
 </head>
 <body>
    <div data-v-cd2b8d62 data-v-09be56d6 id="container">
-     <div id="menu">
-      <h1 data-v-cd2b8d62="" class="logo">
-        <img data-v-cd2b8d62 src="{% static 'images/wulkanowy-full-flat.4ff8222a.svg' %}" alt="Wulkanowy">
-        <div id="notes_" class="option">Uwagi</div>
-        <div id="messages_" class="option">Wiadomości</div>
-        <div id="attendance_" class="option">Frekwencja</div>
-        <div id="homeworks_" class="option">Zadania Domowe</div>
-        <div id="exams_" class="option">Sprawdziany</div>
-        <div id="timetable_" class="option">Plan Lekcji</div>
-        <div id="grades_" class="option">Oceny</div>
-      </h1>
+
+     <nav>Wulkanowy web early access insider preview pre-alpha pre-beta alpha beta release canditate v. 0.0.1</nav>
+
+     <ul id="slide-out" class="sidenav">
+       <li><div class="user-view">
+         <div class="background">
+           <img src="{% static 'images/wallpaper.jpg' %}" width="300" height="176">
+         </div>
+         <a href="#user"><img class="circle" src="{% static 'images/27146352.png' %}"></a>
+         <a href="#name"><span class="white-text name">John Doe</span></a>
+         <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+       </div></li>
+       <li><a id="notes_">Uwagi</a></li>
+       <li><a id="messages_">Wiadomości</a></li>
+       <li><a id="attendance_">Frekwencjaa</a></li>
+       <li><a id="homeworks_">Zadania Domowe</a></li>
+       <li><a id="exams_">Sprawdziany</a></li>
+       <li><a id="timetable_">Plan Lekcji</a></li>
+       <li><a id="grades_">Oceny</a></li>
+     </ul>
+     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+     <div id="content">
+
     </div>
-    <div id="content">
-      Tutaj będzie jakiś dashboard bla bla bla ;)
-    </div>
+   </div>
+   <script>
+     var elem = document.querySelector('.tabs');
+     var options = {}
+     var instance = M.Tabs.init(elem, options);
+
+     // sidebar
+     document.addEventListener('DOMContentLoaded', function() {
+       var elems = document.querySelectorAll('.sidenav');
+       var instances = M.Sidenav.init(elems, options);
+     });
+
+     // modal
+     document.addEventListener('DOMContentLoaded', function() {
+       var elems = document.querySelectorAll('.modal');
+       var instances = M.Modal.init(elems, options);
+     });
+   </script>
   </body>
 </html>
