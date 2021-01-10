@@ -12,7 +12,7 @@ from .API.exams import get_exams
 from .API.timetable import get_timetable
 from .API.notes import get_notes
 from .API.attendance import get_attendance
-from .API.messages import get_messages
+from .API.messages import get_received_messages, get_sent_messages, get_deleted_messages
 from .API.homeworks import get_homeworks
 from .API.mobile_access import get_registered_devices, register_device
 
@@ -147,5 +147,50 @@ def register_device_(request, *args, **kwargs):
         s = data['data']['s']
         register_data = register_device(register_id, register_r, oun, s)
         return JsonResponse(register_data)
+    else:
+        return redirect('../')
+
+def received_messages(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        symbol = data['data']['symbol']
+        received_messages = get_received_messages(register_id, register_r, oun, s, date, school_year, symbol)
+        return JsonResponse(received_messages, safe=False)
+    else:
+        return redirect('../')
+
+def sent_messages(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        symbol = data['data']['symbol']
+        sent_messages = get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol)
+        return JsonResponse(sent_messages, safe=False)
+    else:
+        return redirect('../')
+
+def deleted_messages(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        symbol = data['data']['symbol']
+        deleted_messages = get_deleted_messages(register_id, register_r, oun, s, date, school_year, symbol)
+        return JsonResponse(deleted_messages, safe=False)
     else:
         return redirect('../')

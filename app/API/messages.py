@@ -3,54 +3,53 @@ import json
 import calendar
 import time
 
-def get_messages(register_id, register_r, oun, s, date, school_year, symbol):
+def get_received_messages(register_id, register_r, oun, s, date, school_year, symbol):
     headers = {
-        'User-Agent': 'Wulkanowy-web :)'
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
+        "User-Agent": "Wulkanowy-web :)"
     }
 
     now = calendar.timegm(time.gmtime())
-    received_messages = []
-    sent_messages = []
-    deleted_messages = []
 
-    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers)
-    for j in messages.json()['data']:
-        received_messages.append({
-            'Subject': j['Temat'],
-            'Sender': j['Nadawca']['Name'],
-            'Date': j['Data'],
-            'Read': j['Nieprzeczytana'] == False,
-            'Id': j['Id']
-        })
+    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
+        received_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    else:
+        received_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
 
-    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25')
-    for j in messages.json()['data']:
-        sent_messages.append({
-            'Subject': j['Temat'],
-            'Recipients': get_recipients(j),
-            'Date': j['Data'],
-            'Read': j['Przeczytane'],
-            'Unread': j['Nieprzeczytane'],
-            'Id': j['Id']
-        })
+    return received_messages.json()
 
-    messages = s.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetTrashboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25')
-    for j in messages.json()['data']:
-        deleted_messages.append({
-            'Subject': j['Temat'],
-            'Sender': j['Nadawca']['Name'],
-            'Date': j['Data'],
-            'Read': j['Nieprzeczytana'] == False,
-            'Id': j['Id']
-        })
+def get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol):
+    headers = {
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
+        "User-Agent": "Wulkanowy-web :)"
+    }
 
-    return received_messages, sent_messages, deleted_messages
+    now = calendar.timegm(time.gmtime())
 
-def get_recipients(j):
-    Recipients = []
-    for x in j['Adresaci']:
-        Recipients.append({
-            'Name': x['Name'],
-            'Read': x['Unreaded'] == False
-        })
-    return Recipients
+    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
+        sent_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    else:
+        sent_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+
+    return sent_messages.json()
+
+def get_deleted_messages(register_id, register_r, oun, s, date, school_year, symbol):
+    headers = {
+        'Accept-Encoding': 'gzip, deflate, br7',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
+        "User-Agent": "Wulkanowy-web :)"
+    }
+
+    now = calendar.timegm(time.gmtime())
+   
+    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
+        deleted_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    else:
+        deleted_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+
+    return deleted_messages.json()

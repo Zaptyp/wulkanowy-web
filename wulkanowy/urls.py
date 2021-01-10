@@ -17,7 +17,7 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from app.views import default_view, content_view
-from app.views import login, grades, timetable, exams, homeworks, attendance, notes, registered_devices, register_device_
+from app.views import login, grades, timetable, exams, homeworks, attendance, notes, registered_devices, register_device_, received_messages, sent_messages, deleted_messages
 
 urlpatterns = [
     #views
@@ -31,8 +31,13 @@ urlpatterns = [
     path('api/homeworks', homeworks, name='homeworks'),
     path('api/attendance', attendance, name='attendance'),
     path('api/notes', notes, name='notes'),
+    #MOBILE ACCESS
     path('api/mobile/registered', registered_devices, name='registered_devices'),
     path('api/mobile/register', register_device_, name='register_device'),
+    #MESSAGES
+    path('api/messages/received', received_messages, name='received_messages'),
+    path('api/messages/sent', sent_messages, name='sent_messages'),
+    path('api/messages/deleted', deleted_messages, name='deleted_messages'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
