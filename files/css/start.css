@@ -31,11 +31,6 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 .option{
-    display: inline;
-    color: white;
-    margin-top: 3.650431902835478167382628592617195404756384%;
-    margin-right: 2.2%;
-    float: right;
     cursor: pointer;
 }
 
