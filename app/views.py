@@ -14,6 +14,7 @@ from .API.notes import get_notes
 from .API.attendance import get_attendance
 from .API.messages import get_messages
 from .API.homeworks import get_homeworks
+from .API.mobile_access import get_registered_devices, register_device
 
 #views
 def default_view(request, *args, **kwargs):
@@ -122,5 +123,29 @@ def notes(request, *args, **kwargs):
         s = data['data']['s']
         notes = get_notes(register_id, register_r, oun, s)
         return JsonResponse(notes)
+    else:
+        return redirect('../')
+
+def registered_devices(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        registered = get_registered_devices(register_id, register_r, oun, s)
+        return JsonResponse(registered)
+    else:
+        return redirect('../')
+
+def register_device_(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        register_data = register_device(register_id, register_r, oun, s)
+        return JsonResponse(register_data)
     else:
         return redirect('../')
