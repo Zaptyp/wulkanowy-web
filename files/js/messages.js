@@ -3,7 +3,6 @@ const sent_ = document.querySelector('#sent_');
 const deleted_ = document.querySelector('#deleted_');
 
 const getReceivedMessages = () => {
-    document.querySelector('#content').innerHTML = 'Here is received messages (in my imagination)';
     cookies_data = sessionStorage.getItem('cookies_data');
     csrfcookie_ = sessionStorage.getItem('csrfcookie');
     fetch(url = '../api/messages/received', {
@@ -15,7 +14,45 @@ const getReceivedMessages = () => {
           },
         body: cookies_data
     }).then(response => response.json()).then(data => {
-        console.log(data);
+        content = document.getElementById("content")
+        console.log(data)
+        wiadomosci = data.data
+
+        table = document.createElement("table")
+        table.className = "striped"
+        table.innerHTML = "<thead>\n" +
+            "          <tr>\n" +
+            "              <th>Temat</th>\n" +
+            "              <th>Nadawca</th>\n" +
+            "              <th>Data</th>\n" +
+            "          </tr>\n" +
+            "        </thead>" +
+            "        <tbody>" +
+            "                " +
+            "        </tbody>"
+
+        content.append(table)
+
+        wiadomosci.forEach((wiadomosc) => {
+            const tbody = document.getElementsByTagName("tbody")[0]
+
+            console.log(tbody)
+
+            wiadomoscRow = tbody.insertRow()
+
+            temat = wiadomoscRow.insertCell()
+            temat.innerText = wiadomosc.Temat
+            wiadomoscRow.appendChild(temat)
+
+            nadawca = wiadomoscRow.insertCell()
+            nadawca.innerText = wiadomosc.Nadawca.Name
+            wiadomoscRow.appendChild(nadawca)
+
+
+            dataWyslania = wiadomoscRow.insertCell()
+            dataWyslania.innerText = wiadomosc.Data
+            wiadomoscRow.appendChild(dataWyslania)
+        })
     })
 }
 

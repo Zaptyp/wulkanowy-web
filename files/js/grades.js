@@ -1,3 +1,5 @@
+// TODO: do Marcina z przyszłości od Marcina z przeszłości: MARCIN SKOŃCZ OCENY!!!
+
 const grades_ = document.querySelector('#grades_');
 
 myStorage = window.sessionStorage;
