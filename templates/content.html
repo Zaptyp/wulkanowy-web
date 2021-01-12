@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="{% static 'css/start.css' %}" type="text/css" />
-  <script src="{% static 'js/start.js' %}" type="text/javascript" ></script>
+  <script src="{% static 'js/start.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/grades.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/timetable.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/exams.js' %}" type="text/javascript" defer></script>
@@ -40,8 +40,8 @@
            <img src="{% static 'images/wallpaper.jpg' %}" width="300" height="176">
          </div>
          <a href="#user"><img class="circle" src="{% static 'images/27146352.png' %}"></a>
-         <a href="#name"><span class="white-text name">John Doe</span></a>
-         <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+         <a href="#name"><span class="white-text name" id='name'>John Doe</span></a>
+         <a href="#email"><span class="white-text email" id='email'>jdandturk@gmail.com</span></a>
         </div></li>
         <li><a id="grades_" class='option'><i class="material-icons">filter_6</i>Oceny</a></li>
         <li><a id="timetable_" class='option'><i class="material-icons">event_note</i>Plan Lekcji</a></li>

@@ -33,7 +33,8 @@ const login = () => {
             if(data['success']){
                 myStorage = window.sessionStorage;
                 sessionStorage.setItem('cookies_data', JSON.stringify(data));
-                sessionStorage.setItem('csrfcookie', csrfcookie())
+                sessionStorage.setItem('csrfcookie', csrfcookie());
+                sessionStorage.setItem('email', document.querySelector('#id_loginName').value);
                 window.location.href = "/content/";
             }
             else{
