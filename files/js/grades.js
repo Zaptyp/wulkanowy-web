@@ -1,4 +1,3 @@
-// TODO: do Marcina z przyszłości od Marcina z przeszłości: MARCIN SKOŃCZ OCENY!!!
 var hash = require('object-hash');
 
 const grades_ = document.querySelector('#grades_');
