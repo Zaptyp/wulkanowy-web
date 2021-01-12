@@ -67,7 +67,7 @@ const getGrades = () => {
                                             <h4>${grade.Przedmiot}</h4>
                                             <h5>${czastkowa.KodKolumny} - ${czastkowa.NazwaKolumny}</h5>
                                             
-                                            <div style="float: right; background: ${czastkowa.Kolor}; width: 50px; height: 70px; text-align: center;"><h1>${czastkowa.Wpis}</h1></div>
+                                            <div style="float: right; background: ${czastkowa.Kolor}; width: 60px;  height: 70px; text-align: center;"><h1>${czastkowa.Wpis}</h1></div>
                                             
                                             <span class="teacher" style="font-size: 16px;">Nauczyciel</span>
                                             <p>${czastkowa.Nauczyciel}</p>
@@ -79,7 +79,7 @@ const getGrades = () => {
                                             <p>${czastkowa.DataOceny}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="#!" class="modal-close${hash.MD5(czastkowa)} waves-effect waves-green btn-flat">Ok</a>
+                                            <a href="#!" class="modal-close${hash.MD5(czastkowa)} waves-effect waves-white btn materialize-red">Zamknij</a>
                                         </div>`
                 gradeDiv.addEventListener('click', () => {
                     console.log(czastkowa)
