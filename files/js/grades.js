@@ -18,6 +18,7 @@ const getGrades = () => {
     }).then(response => response.json()).then(data => {
         const allGrades = data.data.Oceny
         const content = document.getElementById("content")
+        content.innerHTML = ""
         const container = document.getElementsByClassName("gradeModals")[0]
 
         allGrades.forEach((grade) => {
