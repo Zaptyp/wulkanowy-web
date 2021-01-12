@@ -1,8 +1,10 @@
 const received_ = document.querySelector('#received_');
 const sent_ = document.querySelector('#sent_');
 const deleted_ = document.querySelector('#deleted_');
+const content = document.getElementById("content")
 
 const getReceivedMessages = () => {
+    content.innerHTML = ""
     cookies_data = sessionStorage.getItem('cookies_data');
     csrfcookie_ = sessionStorage.getItem('csrfcookie');
     fetch(url = '../api/messages/received', {
@@ -14,8 +16,7 @@ const getReceivedMessages = () => {
           },
         body: cookies_data
     }).then(response => response.json()).then(data => {
-        content = document.getElementById("content")
-        wiadomosci = data.data
+        const wiadomosci = data.data
 
         table = document.createElement("table")
         table.className = "striped"
@@ -38,7 +39,7 @@ const getReceivedMessages = () => {
             wiadomoscRow = tbody.insertRow()
 
             temat = wiadomoscRow.insertCell()
-            temat.innerHTML = `<span id="${wiadomosc.id}">${wiadomosc.Temat}</span>`
+            temat.innerHTML = `<span id="${wiadomosc.Id}">${wiadomosc.Temat}</span>`
             wiadomoscRow.appendChild(temat)
 
             nadawca = wiadomoscRow.insertCell()
@@ -54,7 +55,7 @@ const getReceivedMessages = () => {
 }
 
 const getSentMessages = () => {
-    document.querySelector('#content').innerHTML = 'Here is sent messages (in my imagination)';
+    content.innerHTML = ""
     cookies_data = sessionStorage.getItem('cookies_data');
     csrfcookie_ = sessionStorage.getItem('csrfcookie');
     fetch(url = '../api/messages/sent', {
@@ -66,12 +67,46 @@ const getSentMessages = () => {
           },
         body: cookies_data
     }).then(response => response.json()).then(data => {
-        console.log(data);
+        const wiadomosci = data.data // haha spaghetti code goes brrr
+
+        table = document.createElement("table")
+        table.className = "striped"
+        table.innerHTML = "<thead>\n" +
+            "          <tr>\n" +
+            "              <th>Temat</th>\n" +
+            "              <th>Nadawca</th>\n" +
+            "              <th>Data</th>\n" +
+            "          </tr>\n" +
+            "        </thead>" +
+            "        <tbody>" +
+            "                " +
+            "        </tbody>"
+
+        content.append(table)
+
+        wiadomosci.forEach((wiadomosc) => {
+            const tbody = document.getElementsByTagName("tbody")[0]
+
+            wiadomoscRow = tbody.insertRow()
+
+            temat = wiadomoscRow.insertCell()
+            temat.innerHTML = `<span id="${wiadomosc.Id}">${wiadomosc.Temat}</span>`
+            wiadomoscRow.appendChild(temat)
+
+            nadawca = wiadomoscRow.insertCell()
+            nadawca.innerHTML = `<span>${wiadomosc.Nadawca.Name}</span>`
+            wiadomoscRow.appendChild(nadawca)
+
+
+            dataWyslania = wiadomoscRow.insertCell()
+            dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
+            wiadomoscRow.appendChild(dataWyslania)
+        })
     })
 }
 
 const getDeletedMessages = () => {
-    document.querySelector('#content').innerHTML = 'Here is deleted messages (in my imagination)';
+    content.innerHTML = ""
     cookies_data = sessionStorage.getItem('cookies_data');
     csrfcookie_ = sessionStorage.getItem('csrfcookie');
     fetch(url = '../api/messages/deleted', {
@@ -83,7 +118,41 @@ const getDeletedMessages = () => {
           },
         body: cookies_data
     }).then(response => response.json()).then(data => {
-        console.log(data);
+        const wiadomosci = data.data
+
+        table = document.createElement("table")
+        table.className = "striped"
+        table.innerHTML = "<thead>\n" +
+            "          <tr>\n" +
+            "              <th>Temat</th>\n" +
+            "              <th>Nadawca</th>\n" +
+            "              <th>Data</th>\n" +
+            "          </tr>\n" +
+            "        </thead>" +
+            "        <tbody>" +
+            "                " +
+            "        </tbody>"
+
+        content.append(table)
+
+        wiadomosci.forEach((wiadomosc) => {
+            const tbody = document.getElementsByTagName("tbody")[0]
+
+            wiadomoscRow = tbody.insertRow()
+
+            temat = wiadomoscRow.insertCell()
+            temat.innerHTML = `<span id="${wiadomosc.Id}">${wiadomosc.Temat}</span>`
+            wiadomoscRow.appendChild(temat)
+
+            nadawca = wiadomoscRow.insertCell()
+            nadawca.innerHTML = `<span>${wiadomosc.Nadawca.Name}</span>`
+            wiadomoscRow.appendChild(nadawca)
+
+
+            dataWyslania = wiadomoscRow.insertCell()
+            dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
+            wiadomoscRow.appendChild(dataWyslania)
+        })
     })
 }
 
