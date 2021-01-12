@@ -74,7 +74,7 @@ const getSentMessages = () => {
         table.innerHTML = "<thead>\n" +
             "          <tr>\n" +
             "              <th>Temat</th>\n" +
-            "              <th>Nadawca</th>\n" +
+            "              <th>Adresat</th>\n" +
             "              <th>Data</th>\n" +
             "          </tr>\n" +
             "        </thead>" +
@@ -94,7 +94,7 @@ const getSentMessages = () => {
             wiadomoscRow.appendChild(temat)
 
             nadawca = wiadomoscRow.insertCell()
-            nadawca.innerHTML = `<span>${wiadomosc.Nadawca.Name}</span>`
+            nadawca.innerHTML = `<span>${wiadomosc.Adresaci[0]}</span>`
             wiadomoscRow.appendChild(nadawca)
 
 
