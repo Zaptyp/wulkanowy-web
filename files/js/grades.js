@@ -1,4 +1,5 @@
 // TODO: do Marcina z przyszłości od Marcina z przeszłości: MARCIN SKOŃCZ OCENY!!!
+var hash = require('object-hash');
 
 const grades_ = document.querySelector('#grades_');
 
@@ -16,8 +17,9 @@ const getGrades = () => {
           },
         body: cookies_data
     }).then(response => response.json()).then(data => {
-        allGrades = data.data.Oceny
+        const allGrades = data.data.Oceny
         const content = document.getElementById("content")
+        const container = document.getElementsByClassName("gradeModals")[0]
 
         allGrades.forEach((grade) => {
             const czastkowe = grade.OcenyCzastkowe
@@ -25,7 +27,7 @@ const getGrades = () => {
             czastkowe.forEach((czastkowa) => {
                 const gradeDiv = document.createElement("div")
                 gradeDiv.classList = "grade modal-trigger"
-                gradeDiv.href = "#modal1"
+                gradeDiv.dataset.target = `${hash.MD5(czastkowa)}`
                 gradeDiv.innerHTML = `${czastkowa.Wpis}`
 
                 switch (czastkowa.Wpis) {
@@ -50,8 +52,25 @@ const getGrades = () => {
                     default:
                         gradeDiv.style.background = "#607d8b"
                 }
+                const gradeModal = document.createElement("div")
+                gradeModal.id = `${hash.MD5(czastkowa)}`
+                gradeModal.classList = "modal"
+                gradeModal.innerHTML = `<div class="modal-content">
+                                            <h4>${grade.Przedmiot}</h4>
+                                            <p>A bunch of text</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#!" class="modal-close${hash.MD5(czastkowa)} waves-effect waves-green btn-flat">Agree</a>
+                                        </div>`
                 gradeDiv.addEventListener('click', () => {
                     console.log(`Nauczyciel: ${czastkowa.Nauczyciel}, Waga: ${czastkowa.Waga}, Data: ${czastkowa.DataOceny}, Przedmiot: ${grade.Przedmiot}`)
+                    gradeModal.style.display = 'block'
+                })
+
+               container.append(gradeModal)
+
+                document.getElementsByClassName(`modal-close${hash.MD5(czastkowa)}`)[0].addEventListener('click', () => {
+                    gradeModal.style.display = 'none'
                 })
 
                content.append(gradeDiv)
