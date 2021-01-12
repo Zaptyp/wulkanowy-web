@@ -32,38 +32,57 @@ const getGrades = () => {
 
                 switch (czastkowa.Wpis) {
                     case "6" || "6-":
+                        czastkowa.Kolor = "#3dbbf5"
                         gradeDiv.style.background = "#3dbbf5"
                         break;
                     case "5" || "5-" || "5+":
+                        czastkowa.Kolor = "#4caf50"
                         gradeDiv.style.background = "#4caf50"
                         break;
                     case "4" || "4-" || "4+":
+                        czastkowa.Kolor = "#a0c431"
                         gradeDiv.style.background = "#a0c431"
                         break;
                     case "3" || "3-" || "3+":
+                        czastkowa.Kolor = "#ffb940"
                         gradeDiv.style.background = "#ffb940"
                         break;
                     case "2" || "2-" || "2+":
+                        czastkowa.Kolor = "#ff774d"
                         gradeDiv.style.background = "#ff774d"
                         break;
                     case "1" || "1+":
+                        czastkowa.Kolor = "#d43f3f"
                         gradeDiv.style.background = "#d43f3f"
                         break;
                     default:
+                        czastkowa.Kolor = "#607d8b"
                         gradeDiv.style.background = "#607d8b"
                 }
                 const gradeModal = document.createElement("div")
                 gradeModal.id = `${hash.MD5(czastkowa)}`
                 gradeModal.classList = "modal"
+                gradeModal.style.marginTop = "15rem"
                 gradeModal.innerHTML = `<div class="modal-content">
                                             <h4>${grade.Przedmiot}</h4>
-                                            <p>A bunch of text</p>
+                                            <h5>${czastkowa.KodKolumny} - ${czastkowa.NazwaKolumny}</h5>
+                                            
+                                            <div style="float: right; background: ${czastkowa.Kolor}; width: 50px; height: 70px; text-align: center;"><h1>${czastkowa.Wpis}</h1></div>
+                                            
+                                            <span class="teacher" style="font-size: 16px;">Nauczyciel</span>
+                                            <p>${czastkowa.Nauczyciel}</p>
+                                            
+                                            <span class="weight" style="font-size: 16px;">Waga</span>
+                                            <p>${czastkowa.Waga}</p>
+                                            
+                                            <span class="date" style="font-size: 16px;">Data</span>
+                                            <p>${czastkowa.DataOceny}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="#!" class="modal-close${hash.MD5(czastkowa)} waves-effect waves-green btn-flat">Agree</a>
+                                            <a href="#!" class="modal-close${hash.MD5(czastkowa)} waves-effect waves-green btn-flat">Ok</a>
                                         </div>`
                 gradeDiv.addEventListener('click', () => {
-                    console.log(`Nauczyciel: ${czastkowa.Nauczyciel}, Waga: ${czastkowa.Waga}, Data: ${czastkowa.DataOceny}, Przedmiot: ${grade.Przedmiot}`)
+                    console.log(czastkowa)
                     gradeModal.style.display = 'block'
                 })
 
