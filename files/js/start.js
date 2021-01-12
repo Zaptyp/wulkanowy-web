@@ -1,22 +1,16 @@
-function grade_action(id) {
-    var x = document.getElementById(id);
-    var element = x.getElementsByTagName('li')[0];
-    if(element.style.display == 'none'){
-        element.style.display = 'block';
-    }
-    else if(element.style.display == 'block'){
-        element.style.display = 'none';
-    }
-}
+const name_ = document.querySelector('#name');
+const email_ = document.querySelector('#email');
 
-function change_message_content(id) {
-    $.ajax({
-        url: '/change_messages_content/',
-        data: {
-          'id': id
-        },
-        success: function(data) {
-            document.querySelector('#messages_content').innerHTML = data;
-        }
-    });
-}
+myStorage = window.sessionStorage;
+
+const studentName = () => {
+    const cookies_data = JSON.parse(sessionStorage.getItem('cookies_data'))
+    name_.innerHTML = cookies_data['data']['register_r']['data'][0]['UczenImie']+' '+cookies_data['data']['register_r']['data'][0]['UczenImie2']+' '+cookies_data['data']['register_r']['data'][0]['UczenNazwisko']
+};
+
+const studentEmail = () => {
+    email_.innerHTML = sessionStorage.getItem('email') 
+};
+
+window.addEventListener('load', studentName);
+window.addEventListener('load', studentEmail);
