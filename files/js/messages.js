@@ -15,7 +15,6 @@ const getReceivedMessages = () => {
         body: cookies_data
     }).then(response => response.json()).then(data => {
         content = document.getElementById("content")
-        console.log(data)
         wiadomosci = data.data
 
         table = document.createElement("table")
@@ -36,21 +35,19 @@ const getReceivedMessages = () => {
         wiadomosci.forEach((wiadomosc) => {
             const tbody = document.getElementsByTagName("tbody")[0]
 
-            console.log(tbody)
-
             wiadomoscRow = tbody.insertRow()
 
             temat = wiadomoscRow.insertCell()
-            temat.innerText = wiadomosc.Temat
+            temat.innerHTML = `<span id="${wiadomosc.id}">${wiadomosc.Temat}</span>`
             wiadomoscRow.appendChild(temat)
 
             nadawca = wiadomoscRow.insertCell()
-            nadawca.innerText = wiadomosc.Nadawca.Name
+            nadawca.innerHTML = `<span>${wiadomosc.Nadawca.Name}</span>`
             wiadomoscRow.appendChild(nadawca)
 
 
             dataWyslania = wiadomoscRow.insertCell()
-            dataWyslania.innerText = wiadomosc.Data
+            dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
             wiadomoscRow.appendChild(dataWyslania)
         })
     })
