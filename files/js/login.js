@@ -9,10 +9,12 @@ const login = () => {
         switch(diary){
             case 'Fakelog':
                 var diaryUrl = 'http://cufs.fakelog.cf/';
+                sessionStorage.setItem('diary_url', 'http://cufs.fakelog.cf/');
                 break;
 
             case 'Vulcan UONET+':
                 var diaryUrl = 'https://cufs.vulcan.net.pl/';
+                sessionStorage.setItem('diary_url', 'https://cufs.vulcan.net.pl/');
                 break;
         }
         data = {
@@ -35,6 +37,7 @@ const login = () => {
                 sessionStorage.setItem('cookies_data', JSON.stringify(data));
                 sessionStorage.setItem('csrfcookie', csrfcookie());
                 sessionStorage.setItem('email', document.querySelector('#id_loginName').value);
+                sessionStorage.setItem('symbol', document.querySelector('#id_Symbol').value);
                 window.location.href = "/content/";
             }
             else{
