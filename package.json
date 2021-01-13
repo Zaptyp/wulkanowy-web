@@ -4,7 +4,7 @@
   "description": "🌋 Przeglądarkowy klient dzienniczka VULCAN UONET+ dla ucznia i rodzica",
   "main": "index.js",
   "browserslist": [
-     "defaults"
+    "defaults"
   ],
   "directories": {
     "test": "tests"
