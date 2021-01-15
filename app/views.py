@@ -12,7 +12,7 @@ from .API.exams import get_exams
 from .API.timetable import get_timetable
 from .API.notes import get_notes
 from .API.attendance import get_attendance
-from .API.messages import get_received_messages, get_sent_messages, get_deleted_messages
+from .API.messages import get_received_messages, get_sent_messages, get_deleted_messages, get_recipients
 from .API.homeworks import get_homeworks
 from .API.mobile_access import get_registered_devices, register_device
 from .API.school_data import get_school_data
@@ -194,6 +194,21 @@ def deleted_messages(request, *args, **kwargs):
         symbol = data['data']['symbol']
         deleted_messages = get_deleted_messages(register_id, register_r, oun, s, date, school_year, symbol)
         return JsonResponse(deleted_messages)
+    else:
+        return redirect('../')
+
+def recipients(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        register_r = data['data']['register_r']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        date = data['data']['date']
+        school_year = data['data']['school_year']
+        symbol = data['data']['symbol']
+        recipients = get_recipients(register_id, register_r, oun, s, date, school_year, symbol)
+        return JsonResponse(recipients)
     else:
         return redirect('../')
 
