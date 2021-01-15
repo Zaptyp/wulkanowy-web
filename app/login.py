@@ -44,11 +44,11 @@ def send(url, data, fail, diary_url, symbol, s):
         if diary_url == 'http://cufs.fakelog.cf/':
             oun = 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458'
 
-        cookies = get_cookies(symbol, oun, s)
+        cookies = get_cookies(symbol, oun, s, diary_url)
 
         return cookies
 
-def get_cookies(symbol, oun, s):
+def get_cookies(symbol, oun, s, diary_url):
     register_r = s.post(oun+'/UczenDziennik.mvc/Get')
     register_id = register_r.json()['data'][0]['Okresy'][0]['Id']
             
@@ -76,7 +76,8 @@ def get_cookies(symbol, oun, s):
         'date': str(date),
         'school_year': school_year,
         'symbol': symbol,
-        's': s.cookies.get_dict()
+        's': s.cookies.get_dict(),
+        'diary_url': diary_url
     }
 
     return data

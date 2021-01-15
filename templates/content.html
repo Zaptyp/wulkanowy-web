@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href="{% static 'css/start.css' %}" type="text/css" />
   <script src="{% static 'js/start.js' %}" type="text/javascript" defer></script>
+  <script src="{% static 'js/dashboard.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/dist/out-grades.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/timetable.js' %}" type="text/javascript" defer></script>
   <script src="{% static 'js/exams.js' %}" type="text/javascript" defer></script>
@@ -41,10 +42,11 @@
          <div class="background">
            <img src="{% static 'images/wallpaper.jpg' %}" width="300" height="176">
          </div>
-         <a href="#user"><img class="circle" src="{% static 'images/27146352.png' %}"></a>
-         <a href="#name"><span class="white-text name" id='name'>John Doe</span></a>
-         <a href="#email"><span class="white-text email" id='email'>jdandturk@gmail.com</span></a>
+         <a><img class="circle" src="{% static 'images/27146352.png' %}"></a>
+         <a><span class="white-text name" id='name'>Imie Imie2 Nazwisko</span></a>
+         <a><span class="white-text email" id='email'>E-mail</span></a>
         </div></li>
+        <li><a id="dashboard_" class='option'><i class="material-icons">dashboard</i>Start</a></li>
         <li><a id="grades_" class='option'><i class="material-icons">filter_6</i>Oceny</a></li>
         <li><a id="timetable_" class='option'><i class="material-icons">event_note</i>Plan Lekcji</a></li>
         <li><a id="exams_" class='option'><i class="material-icons">event</i>Sprawdziany</a></li>
@@ -53,7 +55,7 @@
         <li><a id="notes_" class='option'><i class="material-icons">emoji_events</i>Uwagi i Osiągnięcia</a></li>
         <li><a id="mobile_access_" class='option'><i class="material-icons">devices</i>Dostęp Mobilny</a></li>
         <li><a id="school_data_" class='option'><i class="material-icons">business</i>Szkoła i Nauczyciele</a></li>
-        <li><a id="messages_" class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons">email</i>Wiadomości</a></li>
+        <li><a id="messages_" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons">email</i>Wiadomości</a></li>
         <ul id='dropdown1' class='dropdown-content'>
          <li><a id='received_' class='option'>Odebrane</a></li>
          <li><a id='sent_' class='option'>Wysłane</a></li>
