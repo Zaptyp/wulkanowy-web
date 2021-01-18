@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/wulkanowy/wulkanowy-web#readme",
   "dependencies": {
-    "object-hash": "^2.1.1"
+    "object-hash": "^2.1.1",
+    "reverse-md5": "0.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
