@@ -1,4 +1,6 @@
 from requests import get
+from cryptography.fernet import Fernet
+from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import json
@@ -48,6 +50,8 @@ def login(request, *args, **kwargs):
     else:
         request.session['is_logged'] = True
         data_response = {'success': True, 'data': sender_return}
+        key = Fernet.generate_key()
+        request.session[request.session.session_key] = key.decode('utf-8')
     return JsonResponse(data_response)
 
 def grades(request, *args, **kwargs):
@@ -57,6 +61,7 @@ def grades(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        print(request.session[request.session.session_key].encode('utf-8'))
         grades = get_grades(register_id, register_r, oun, s)
         return JsonResponse(grades)
     else:
