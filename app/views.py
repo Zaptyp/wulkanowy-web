@@ -14,7 +14,7 @@ from .API.exams import get_exams
 from .API.timetable import get_timetable
 from .API.notes import get_notes
 from .API.attendance import get_attendance
-from .API.messages import get_received_messages, get_sent_messages, get_deleted_messages, get_recipients, send_message
+from .API.messages import get_received_messages, get_sent_messages, get_deleted_messages, get_recipients, send_message, get_message_content
 from .API.homeworks import get_homeworks
 from .API.mobile_access import get_registered_devices, register_device
 from .API.school_data import get_school_data
@@ -293,5 +293,24 @@ def send(request, *args, **kwargs):
         send_data = {'data': data['data'], 'subject': data['subject'], 'content': data['content']}
         send = send_message(register_id, register_r, oun, s, date, school_year, symbol, send_data)
         return JsonResponse(send, safe=False)
+    else:
+        return redirect('../')
+
+def message_content(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        cookies_data = json.loads(data['cookies_data'])
+        register_id = cookies_data['data']['register_id']
+        register_r = cookies_data['data']['register_r']
+        oun = cookies_data['data']['oun']
+        s = cookies_data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
+        date = cookies_data['data']['date']
+        school_year = cookies_data['data']['school_year']
+        symbol = cookies_data['data']['symbol']
+        message_id = data['message_id']
+        content = get_message_content(register_id, register_r, oun, s, date, school_year, symbol, message_id)
+        return JsonResponse(content, safe=False)
     else:
         return redirect('../')

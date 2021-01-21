@@ -156,3 +156,44 @@ def send_message(register_id, register_r, oun, s, date, school_year, symbol, sen
     send = sess.post(f'{link}/NowaWiadomosc.mvc/InsertWiadomosc', data=json.dumps(payload))
 
     return send.json()
+
+def get_message_content(register_id, register_r, oun, s, date, school_year, symbol, message_id):
+    headers = {
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
+        "User-Agent": "Wulkanowy-web :)"
+    }
+
+    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
+        link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
+    else:
+        link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
+
+    sess = requests.Session()
+
+    sess.cookies.update(s)
+    sess.headers.update(headers)
+
+    index = sess.get(link)
+
+    antiForgeryToken = re.search("antiForgeryToken: '(.)*'", index.text)
+    antiForgeryToken = antiForgeryToken.group()
+    antiForgeryToken = antiForgeryToken.replace('antiForgeryToken: ', '').replace("'", "")
+
+    appGuid = re.search("appGuid: '(.)*'", index.text)
+    appGuid = appGuid.group()
+    appGuid = appGuid.replace('appGuid: ', '').replace("'", "")
+
+    sess.headers.update({
+        'X-V-RequestVerificationToken': antiForgeryToken,
+        'X-V-AppGuid': appGuid
+    })
+
+    payload = {
+        'messageId': message_id
+    }
+
+    content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+
+    return content.json()
