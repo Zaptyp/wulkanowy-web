@@ -7,7 +7,7 @@
 # Development
 ## 1. Install dependencies.
 ```shell
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 ## 2. Make migrations and .env
 ```shell
