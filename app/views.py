@@ -1,4 +1,6 @@
 from requests import get
+from cryptography.fernet import Fernet
+from django.contrib.sessions.backends.db import SessionStore
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import json
@@ -17,6 +19,7 @@ from .API.homeworks import get_homeworks
 from .API.mobile_access import get_registered_devices, register_device
 from .API.school_data import get_school_data
 from .API.dashboard import get_dashboard
+from .decrypt import decrypt_cookies
 
 #views
 def default_view(request, *args, **kwargs):
@@ -46,6 +49,15 @@ def login(request, *args, **kwargs):
             'success': False
         }
     else:
+        key = Fernet.generate_key()
+        rkey = Fernet(key)
+
+        request.session[request.session.session_key] = key.decode('utf-8')
+        sender_return['s'] = json.dumps(sender_return['s'])
+        sender_return['s'] = sender_return['s'].encode()
+        sender_return['s'] = rkey.encrypt(sender_return['s'])
+        sender_return['s'] = sender_return['s'].decode('utf-8')
+
         request.session['is_logged'] = True
         data_response = {'success': True, 'data': sender_return}
     return JsonResponse(data_response)
@@ -57,6 +69,8 @@ def grades(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         grades = get_grades(register_id, register_r, oun, s)
         return JsonResponse(grades)
     else:
@@ -69,6 +83,8 @@ def timetable(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         timetable = get_timetable(register_id, register_r, oun, s, date)
         return JsonResponse(timetable)
@@ -82,6 +98,8 @@ def exams(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         exams = get_exams(register_id, register_r, oun, s, date, school_year)
@@ -96,6 +114,8 @@ def homeworks(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         homeworks = get_homeworks(register_id, register_r, oun, s, date, school_year)
@@ -110,6 +130,8 @@ def attendance(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         attendance = get_attendance(register_id, register_r, oun, s, date)
         return JsonResponse(attendance, safe=False)
@@ -123,6 +145,8 @@ def notes(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         notes = get_notes(register_id, register_r, oun, s)
         return JsonResponse(notes)
     else:
@@ -135,6 +159,8 @@ def registered_devices(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         registered = get_registered_devices(register_id, register_r, oun, s)
         return JsonResponse(registered)
     else:
@@ -147,6 +173,8 @@ def register_device_(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         register_data = register_device(register_id, register_r, oun, s)
         return JsonResponse(register_data)
     else:
@@ -159,6 +187,8 @@ def received_messages(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         symbol = data['data']['symbol']
@@ -174,6 +204,8 @@ def sent_messages(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         symbol = data['data']['symbol']
@@ -189,6 +221,8 @@ def deleted_messages(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         symbol = data['data']['symbol']
@@ -204,6 +238,8 @@ def recipients(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = data['data']['date']
         school_year = data['data']['school_year']
         symbol = data['data']['symbol']
@@ -219,6 +255,8 @@ def school_data(request, *args, **kwargs):
         register_r = data['data']['register_r']
         oun = data['data']['oun']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         school_data = get_school_data(register_id, register_r, oun, s)
         return JsonResponse(school_data)
     else:
@@ -230,6 +268,8 @@ def dashboard(request, *args, **kwargs):
         register_id = data['data']['register_id']
         register_r = data['data']['register_r']
         s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         diary_url = data['data']['diary_url']
         symbol = data['data']['symbol']
         dashboard = get_dashboard(register_id, register_r, s, diary_url, symbol)
@@ -245,6 +285,8 @@ def send(request, *args, **kwargs):
         register_r = cookies_data['data']['register_r']
         oun = cookies_data['data']['oun']
         s = cookies_data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
         date = cookies_data['data']['date']
         school_year = cookies_data['data']['school_year']
         symbol = cookies_data['data']['symbol']
