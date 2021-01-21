@@ -52,6 +52,8 @@ const getReceivedMessages = () => {
             dataWyslania = wiadomoscRow.insertCell()
             dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
             wiadomoscRow.appendChild(dataWyslania)
+
+            document.getElementById(wiadomosc.Id).addEventListener('click', getMessageContent);
         })
     })
 }
@@ -103,6 +105,8 @@ const getSentMessages = () => {
             dataWyslania = wiadomoscRow.insertCell()
             dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
             wiadomoscRow.appendChild(dataWyslania)
+
+            document.getElementById(wiadomosc.Id).addEventListener('click', getMessageContent);
         })
     })
 }
@@ -154,6 +158,8 @@ const getDeletedMessages = () => {
             dataWyslania = wiadomoscRow.insertCell()
             dataWyslania.innerHTML = `<span>${wiadomosc.Data}</span>`
             wiadomoscRow.appendChild(dataWyslania)
+
+            document.getElementById(wiadomosc.Id).addEventListener('click', getMessageContent);
         })
     })
 }
@@ -222,6 +228,24 @@ const sendMessage = () => {
         })
     }
     
+}
+
+const getMessageContent = (event) => {
+    send_data = {
+        'cookies_data': cookies_data,
+        'message_id': event.target.id
+    }
+    fetch(url = '../api/messages/content', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfcookie_
+          },
+        body: JSON.stringify(send_data)
+    }).then(response => response.json()).then(data => {
+        console.log(data)
+    })
 }
 
 
