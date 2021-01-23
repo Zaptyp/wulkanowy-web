@@ -1,0 +1,122 @@
+@media screen and (max-width: 768px) {
+  .box {
+    width: 60% !important;
+    height: 45% !important;
+  }
+  .logo img[data-v-cd2b8d62] {
+    margin: 0 !important;
+    margin-top: -55% !important;
+  }
+  #icons {
+  bottom: -36% !important;
+  size: 70% !important;
+  margin: 0 !important;
+  margin-top: 20% !important;
+  }
+}
+body {
+  height: 100vh;
+  background: -webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.3)),to(rgba(0,0,0,.3))),url(../images/wallpaper.b24bba72.jpg);
+  background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)),url(../images/wallpaper.jpg);
+  background-size: cover;
+  background-position: 50%;
+  background-attachment: fixed;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  margin: 0 !important;
+  color: black;
+}
+
+#form {
+  margin-bottom: 20px;
+}
+
+.logo img[data-v-cd2b8d62] {
+  width: 768px;
+  max-width: 90vw;
+  max-height: 200px;
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  -webkit-filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,.2)) drop-shadow(0 8px 10px rgba(0,0,0,.14)) drop-shadow(0 3px 14px rgba(0,0,0,.12));
+}
+h1 {
+  font-size: 2em !important;
+  font-weight: bold;
+}
+
+img {
+  margin-top: -25em;
+  margin-left: 0em;
+  font-size: 70%;
+}
+
+.icon {
+  width: 50px;
+  margin: 0px;
+  margin-left: 0.6%;
+  margin-right: 0.6%;
+  padding: 0px;
+}
+#icons {
+  position: relative;
+  display: block;
+  bottom: -50%;
+  margin-left: 0em;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 80%;
+}
+a {
+  font-size: 120%;
+  color: blue;
+  margin-bottom: 5%;
+}
+#help-box {
+  font-size: 200%;
+}
+p {
+  size: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 48px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+label {
+  size: 0px;
+  padding: 0px;
+  margin: 0px;
+  font-size: 0px;
+}
+select {
+  display: inline !important;
+  font-size: 1.5em;
+}
+#button {
+  margin-left: 35rem;
+}
+#con {
+  margin-bottom: 12.5%;
+}
+#imgsym {
+  margin-top: 1%;
+  max-width: 100vh;
+}
+#error {
+  color: red;
+  font-size: 130%;
+}
