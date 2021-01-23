@@ -41,8 +41,16 @@ def login(request, *args, **kwargs):
     else:
         key = Fernet.generate_key()
         rkey = Fernet(key)
-
+        x = None
         request.session[request.session.session_key] = key.decode('utf-8')
+
+        while x == None:
+            try:
+                x = request.session[request.session.session_key]
+                x = x
+            except KeyError:
+                x = None
+
         sender_return['s'] = json.dumps(sender_return['s'])
         sender_return['s'] = sender_return['s'].encode()
         sender_return['s'] = rkey.encrypt(sender_return['s'])
