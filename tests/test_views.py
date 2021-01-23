@@ -13,7 +13,7 @@ class TestViews(TestCase):
         response = self.client.get(self.list_url)
 
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'frontend/index.html')
 
         #CONTENT_VIEW
         response = self.client.get(self.detail_url)

@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from app.views import default_view, content_view
+from frontend.views import default_view, content_view
 from app.views import login, grades, timetable, exams, homeworks, attendance, notes
 
 class TestUrls(SimpleTestCase):
