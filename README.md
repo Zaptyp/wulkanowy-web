@@ -1,5 +1,5 @@
 # Wulkanowy-web
-🌋 Unofficial browser VULCAN UONET+ register client for both students and their parents
+🌋 Unofficial browser VULCAN UONET+ client for both students and their parents
 
 ![GitHub Workflow Status](https://github.com/wulkanowy/wulkanowy-web/workflows/Python%20application/badge.svg)
 [![Discord](https://img.shields.io/discord/390889354199040011.svg?color=#33CD56)](https://discord.gg/vccAQBr)
