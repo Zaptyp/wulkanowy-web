@@ -21,16 +21,6 @@ from .API.school_data import get_school_data
 from .API.dashboard import get_dashboard
 from .decrypt import decrypt_cookies
 
-#views
-def default_view(request, *args, **kwargs):
-    return render(request, 'index.html')
-
-def content_view(request, *args, **kwargs):
-    if request.session.has_key('is_logged'):
-        return render(request, 'content.html')
-    else:
-        return redirect('../')
-
 #API
 def login(request, *args, **kwargs):
     data = json.loads(request.body)

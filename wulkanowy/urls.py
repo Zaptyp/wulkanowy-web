@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from app.views import default_view, content_view
+from frontend.views import default_view, content_view
 from app.views import login, grades, timetable, exams, homeworks, attendance, notes, registered_devices, register_device_, received_messages, sent_messages, deleted_messages, school_data, dashboard, recipients, send, message_content
 
 urlpatterns = [

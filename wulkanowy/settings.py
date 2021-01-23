@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # My Apps
     'app',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,6 @@ ROOT_URLCONF = 'wulkanowy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
