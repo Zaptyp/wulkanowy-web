@@ -7,8 +7,11 @@
 # Development
 ## 1. Install dependencies.
 ```shell
-npm install
 pip install -r requirements.txt
+```
+And in frontend:
+```shell
+npm install
 ```
 ## 2. Create .env and make migrations
 In the .env file put the code:
