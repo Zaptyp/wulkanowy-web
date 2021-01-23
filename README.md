@@ -5,9 +5,9 @@
 [![Discord](https://img.shields.io/discord/390889354199040011.svg?color=#33CD56)](https://discord.gg/vccAQBr)
 
 # Development
-## 1. Install webpack and dependencies.
+## 1. Install dependencies.
 ```shell
-npm install webpack
+npm install
 pip install -r requirements.txt
 ```
 ## 2. Create .env and make migrations
