@@ -39,9 +39,14 @@ def login(request, *args, **kwargs):
             'success': False
         }
     else:
-        request.session[request.session.session_key] = Fernet.generate_key().decode('utf-8')
-        key = bytes(request.session[request.session.session_key], 'utf-8')
-        rkey = Fernet(key)
+        while True:
+            try:
+                rkey = Fernet(bytes(request.session[request.session.session_key], 'utf-8'))
+                break
+            except KeyError:
+                continue
+        
+
         sender_return['s'] = json.dumps(sender_return['s'])
         sender_return['s'] = sender_return['s'].encode()
         sender_return['s'] = rkey.encrypt(sender_return['s'])
@@ -257,7 +262,6 @@ def dashboard(request, *args, **kwargs):
         register_r = data['data']['register_r']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
-        print(key)
         s = decrypt_cookies(s, key)
         diary_url = data['data']['diary_url']
         symbol = data['data']['symbol']
