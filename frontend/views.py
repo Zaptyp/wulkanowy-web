@@ -9,3 +9,9 @@ def content_view(request, *args, **kwargs):
         return render(request, 'frontend/content.html')
     else:
         return redirect('../')
+
+def account_manager_view(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        return render(request, 'frontend/account-manager.html')
+    else:
+        return redirect('../')
