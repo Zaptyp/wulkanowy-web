@@ -49,7 +49,6 @@ def login(request, *args, **kwargs):
 
         sender_return['s'] = json.dumps(sender_return['s'])
         sender_return['s'] = sender_return['s'].encode()
-        print(bytes(request.session[request.session.session_key], 'utf-8'))
         sender_return['s'] = rkey.encrypt(sender_return['s'])
         sender_return['s'] = sender_return['s'].decode('utf-8')
         request.session['is_logged'] = True
@@ -263,7 +262,6 @@ def dashboard(request, *args, **kwargs):
         register_r = data['data']['register_r']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
-        print(key)
         s = decrypt_cookies(s, key)
         diary_url = data['data']['diary_url']
         symbol = data['data']['symbol']
