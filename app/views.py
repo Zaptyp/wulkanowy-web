@@ -43,7 +43,6 @@ def login(request, *args, **kwargs):
             try:
                 request.session[request.session.session_key] = Fernet.generate_key().decode('utf-8')
                 rkey = Fernet(bytes(request.session[request.session.session_key], 'utf-8'))
-                print(bytes(request.session[request.session.session_key], 'utf-8'))
                 break
             except KeyError:
                 continue

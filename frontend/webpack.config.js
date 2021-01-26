@@ -12,6 +12,7 @@ module.exports = {
         notes : "./static/frontend/js/notes.js",
         start : "./static/frontend/js/start.js",
         timetable : "./static/frontend/js/timetable.js",
+        account_manager : "./static/frontend/js/account-manager.js",
     },
     output: {
         filename: "out-[name].js",

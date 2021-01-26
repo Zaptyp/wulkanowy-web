@@ -38,7 +38,7 @@ const login = () => {
                 sessionStorage.setItem('csrfcookie', csrfcookie());
                 sessionStorage.setItem('email', document.querySelector('#id_loginName').value);
                 sessionStorage.setItem('symbol', document.querySelector('#id_Symbol').value);
-                window.location.href = "/content/";
+                window.location.href = "/account-manager/";
             }
             else{
                 document.querySelector('#error').innerHTML = 'Nieprawidłowy login, hasło lub symbol';
