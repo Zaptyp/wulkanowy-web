@@ -15,6 +15,7 @@ If that doesn't work, run the file:
 install.bat
 ```
 Which is in the batch folder.
+
 After this installation, just follow the 3rd step.
 ## 1. Install dependencies.
 ```shell
