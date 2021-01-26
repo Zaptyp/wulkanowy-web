@@ -14,8 +14,8 @@ If that doesn't work, run the file:
 ```shell
 install.bat
 ```
-Which is in the batch folder
-After this installation, just follow the 3rd step
+Which is in the batch folder.
+After this installation, just follow the 3rd step.
 ## 1. Install dependencies.
 ```shell
 pip install -r requirements.txt
