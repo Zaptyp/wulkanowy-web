@@ -35,9 +35,23 @@ class TestViews(TestCase):
         }
 
         response = self.client.post(reverse('login'), content_type='application/xml', data=json.dumps(data))
+        cookies_data = response.json()
         
         self.assertEquals(response.status_code, 200)
 
+        students = cookies_data['data']['register_r']['data']
         #JAN
+        jan_data = students[0]
+        cookies_data['data']['register_r']['data'] = [jan_data]
 
+        response = self.client.post(reverse('grades'), content_type='application/xml', data=json.dumps(cookies_data))
+        self.assertEquals(response.status_code, 200)
+        print(response.content)
+        
         #JOANNA
+        joanna_data = students[3]
+        cookies_data['data']['register_r']['data'] = [joanna_data]
+
+        response = self.client.post(reverse('grades'), content_type='application/xml', data=json.dumps(cookies_data))
+        self.assertEquals(response.status_code, 200)
+        print(response.content)
