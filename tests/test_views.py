@@ -43,15 +43,94 @@ class TestViews(TestCase):
         #JAN
         jan_data = students[0]
         cookies_data['data']['register_r']['data'] = [jan_data]
-
-        response = self.client.post(reverse('grades'), content_type='application/xml', data=json.dumps(cookies_data))
-        self.assertEquals(response.status_code, 200)
-        print(response.content)
-        
+        get_data_test(self.client, cookies_data, self.assertEquals)
         #JOANNA
         joanna_data = students[3]
         cookies_data['data']['register_r']['data'] = [joanna_data]
+        get_data_test(self.client, cookies_data, self.assertEquals)
 
-        response = self.client.post(reverse('grades'), content_type='application/xml', data=json.dumps(cookies_data))
-        self.assertEquals(response.status_code, 200)
-        print(response.content)
+
+def get_data_test(client, cookies_data, assertEquals):
+    #GRADES
+    response = client.post(reverse('grades'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #TIMETABLE
+    response = client.post(reverse('timetable'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #EXAMS
+    response = client.post(reverse('exams'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #HOMEWORKS
+    response = client.post(reverse('homeworks'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #ATTENDANCE
+    response = client.post(reverse('attendance'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #NOTES
+    response = client.post(reverse('notes'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #SCHOOL DATA
+    response = client.post(reverse('school_data'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #DASHBOARD
+    response = client.post(reverse('dashboard'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+    
+    #MOBILE ACCESS
+    #REGISTERED DEVICES
+    response = client.post(reverse('registered_devices'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #REGISTER DEVICE
+    response = client.post(reverse('register_device'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #MESSAGES
+    #RECEIVED MESSAGES
+    messages_ids = []
+    response = client.post(reverse('received_messages'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+    messages_ids.append([response.json()['data']])
+
+    #SENT MESSAGES
+    response = client.post(reverse('sent_messages'), content_type='appication/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+    for id in response.json()['data']:
+        messages_ids.append(id)
+
+    #DELETED MESSAGES
+    response = client.post(reverse('deleted_messages'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+    messages_ids.append([response.json()['data']])
+
+    #GET RECIPIENTS
+    response = client.post(reverse('recipients'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+    recipients = response.json()['addressee']['data']
+
+    #SEND MESSAGE
+    for recipient in recipients:
+        send_data = {
+            'cookies_data': json.dumps(cookies_data),
+            'data': recipient,
+            'subject': 'Test subject',
+            'content': 'Test content'
+        }
+        response = client.post(reverse('send_message'), content_type='application/xml', data=json.dumps(send_data))
+        assertEquals(response.status_code, 200)
+        
+    #GETTING MESSAGE CONTENT
+    for id in messages_ids:
+        send_data = {
+            'cookies_data': json.dumps(cookies_data),
+            'message_id': id
+        }
+        response = client.post(reverse('message_content'), content_type='application/xml', data=json.dumps(send_data))
+        assertEquals(response.status_code, 200)

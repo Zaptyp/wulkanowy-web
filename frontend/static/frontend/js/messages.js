@@ -215,6 +215,8 @@ const sendMessage = () => {
             'subject': subject_,
             'content': content_
         }
+        console.log(cookies_data)
+        console.log(recipient_)
         fetch(url = '../api/messages/send', {
             method: 'POST',
             mode: 'cors',

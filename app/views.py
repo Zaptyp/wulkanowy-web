@@ -47,12 +47,7 @@ def login(request, *args, **kwargs):
                 break
             except KeyError:
                 continue
-
-        while True:
-            if request.session.has_key(request.session.session_key):
-                break
-
-        print(request.session.session_key)
+            
         sender_return['s'] = json.dumps(sender_return['s'])
         sender_return['s'] = sender_return['s'].encode()
         sender_return['s'] = rkey.encrypt(sender_return['s'])
