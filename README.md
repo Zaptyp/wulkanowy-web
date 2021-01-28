@@ -25,12 +25,7 @@ And in frontend:
 ```shell
 npm install
 ```
-## 2. Create .env and make migrations
-In the .env file put the code:
-```shell
-SECRET_KEY = VULCANWEBKEY
-```
-After saving the files, we migrate with these commands:
+## 2. Make migrations
 ```shell
 python manage.py makemigrations
 python manage.py migrate
