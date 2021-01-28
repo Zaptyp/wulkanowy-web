@@ -39,6 +39,7 @@ def login(request, *args, **kwargs):
             'success': False
         }
     else:
+        request.session['is_logged'] = True
         while True:
             try:
                 request.session[request.session.session_key] = Fernet.generate_key().decode('utf-8')
@@ -46,12 +47,11 @@ def login(request, *args, **kwargs):
                 break
             except KeyError:
                 continue
-        
+            
         sender_return['s'] = json.dumps(sender_return['s'])
         sender_return['s'] = sender_return['s'].encode()
         sender_return['s'] = rkey.encrypt(sender_return['s'])
         sender_return['s'] = sender_return['s'].decode('utf-8')
-        request.session['is_logged'] = True
         data_response = {'success': True, 'data': sender_return}
     return JsonResponse(data_response)
 
