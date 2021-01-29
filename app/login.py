@@ -36,6 +36,9 @@ def send(url, data, fail, diary_url, symbol, s):
 
         crtr = s.post(url=wctx, headers={"User-Agent": "Wulkanowy-web :)"}, data={"wa": wa, "wresult": cert, "wctx": wctx})
 
+        if 'nie został zarejestrowany w bazie szkoły, do której się logujesz' in crtr.text:
+            return {'success': False}
+
         bs = BeautifulSoup(crtr.content, 'html.parser')
         for a in bs.find_all('a', title='Uczeń'):
             oun = a['href']
