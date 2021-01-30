@@ -5,6 +5,7 @@ const login = () => {
     const Password = document.querySelector('#id_Password').value;
     const symbol = document.querySelector('#id_Symbol').value;
     const diary = document.querySelector('#id_diary').value;
+    button.removeEventListener('click', login)
     if(loginName != '' && Password != '' && symbol != ''){
         switch(diary){
             case 'Fakelog':
@@ -43,6 +44,7 @@ const login = () => {
             else{
                 document.querySelector('#error').innerHTML = 'Nieprawidłowy login, hasło lub symbol';
             }
+            button.addEventListener('click', login);
         });
     }
 };
