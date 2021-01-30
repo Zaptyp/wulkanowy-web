@@ -317,3 +317,8 @@ def student_data(request, *args, **kwargs):
         return JsonResponse(data)
     else:
         return redirect('../')
+
+def log_out(request, *args, **kwargs):
+    del request.session[request.session.session_key]
+    del request.session['is_logged']
+    return JsonResponse({'logOut': True})
