@@ -3,8 +3,6 @@
     jobs:
       build:
         runs-on: ubuntu-latest
-        env:
-            SECRET_KEY: SECRET_KEY123
         services:
           postgres:
             image: postgres:10.8
