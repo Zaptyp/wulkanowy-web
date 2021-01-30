@@ -115,6 +115,10 @@ def get_data_test(client, cookies_data, assertEquals):
     assertEquals(response.status_code, 200)
     recipients = response.json()['addressee']['data']
 
+    #STUDENT DATA
+    response = client.post(reverse('student_data'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
     #SEND MESSAGE
     for recipient in recipients:
         send_data = {
