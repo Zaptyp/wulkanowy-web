@@ -5,7 +5,7 @@ myStorage = window.sessionStorage;
 
 const studentName = () => {
     const cookies_data = JSON.parse(sessionStorage.getItem('cookies_data'))
-    name_.innerHTML = cookies_data['data']['register_r']['data'][0]['UczenImie']+' '+cookies_data['data']['register_r']['data'][0]['UczenImie2']+' '+cookies_data['data']['register_r']['data'][0]['UczenNazwisko']
+    name_.innerHTML = cookies_data['data']['students']['data'][0]['UczenImie']+' '+cookies_data['data']['students']['data'][0]['UczenImie2']+' '+cookies_data['data']['students']['data'][0]['UczenNazwisko']
 };
 
 const studentEmail = () => {

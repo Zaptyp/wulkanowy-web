@@ -1,5 +1,5 @@
 var cookies_data = JSON.parse(sessionStorage.getItem('cookies_data'));
-students = cookies_data.data.register_r.data;
+students = cookies_data.data.students.data;
 
 const displayData = () => {
     var primary = '';
@@ -28,7 +28,7 @@ const logIn = () => {
             studentName = ele[i].value;
             students.forEach((student) => {
                 if (student.UczenPelnaNazwa == studentName) {
-                    cookies_data.data.register_r.data = [student];
+                    cookies_data.data.students.data = [student];
                     sessionStorage.setItem('cookies_data', JSON.stringify(cookies_data));
                     window.location.href = '/content/';
                 }

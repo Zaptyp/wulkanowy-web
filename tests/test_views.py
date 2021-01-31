@@ -39,14 +39,14 @@ class TestViews(TestCase):
         
         self.assertEquals(response.status_code, 200)
 
-        students = cookies_data['data']['register_r']['data']
+        students = cookies_data['data']['students']['data']
         #JAN
         jan_data = students[0]
-        cookies_data['data']['register_r']['data'] = [jan_data]
+        cookies_data['data']['students']['data'] = [jan_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         #JOANNA
         joanna_data = students[3]
-        cookies_data['data']['register_r']['data'] = [joanna_data]
+        cookies_data['data']['students']['data'] = [joanna_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         log_out_test(self.client, self.assertEquals)
 

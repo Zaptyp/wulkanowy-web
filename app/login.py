@@ -52,8 +52,8 @@ def send(url, data, fail, diary_url, symbol, s):
         return cookies
 
 def get_cookies(symbol, oun, s, diary_url):
-    register_r = s.post(oun+'/UczenDziennik.mvc/Get')
-    register_id = register_r.json()['data'][0]['Okresy'][0]['Id']
+    students = s.post(oun+'/UczenDziennik.mvc/Get')
+    register_id = students.json()['data'][0]['Okresy'][0]['Id']
             
     now = datetime.datetime.now()
     weekday = now.weekday()
@@ -70,11 +70,11 @@ def get_cookies(symbol, oun, s, diary_url):
 
     date = f'{date}T00:00:00'
 
-    school_year = register_r.json()['data'][0]['DziennikRokSzkolny']
+    school_year = students.json()['data'][0]['DziennikRokSzkolny']
 
     data = {
         'register_id': register_id,
-        'register_r': register_r.json(),
+        'students': students.json(),
         'oun': oun,
         'date': str(date),
         'school_year': school_year,
