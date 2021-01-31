@@ -48,6 +48,7 @@ class TestViews(TestCase):
         joanna_data = students[3]
         cookies_data['data']['register_r']['data'] = [joanna_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
+        log_out_test(self.client, self.assertEquals)
 
 
 def get_data_test(client, cookies_data, assertEquals):
@@ -115,6 +116,10 @@ def get_data_test(client, cookies_data, assertEquals):
     assertEquals(response.status_code, 200)
     recipients = response.json()['addressee']['data']
 
+    #STUDENT DATA
+    response = client.post(reverse('student_data'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
     #SEND MESSAGE
     for recipient in recipients:
         send_data = {
@@ -134,3 +139,8 @@ def get_data_test(client, cookies_data, assertEquals):
         }
         response = client.post(reverse('message_content'), content_type='application/xml', data=json.dumps(send_data))
         assertEquals(response.status_code, 200)
+    
+def log_out_test(client, assertEquals):
+    #LOG OUT
+    response = client.get(reverse('log_out'), content_type='application/xml')
+    assertEquals(response.status_code, 200)
