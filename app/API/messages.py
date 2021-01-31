@@ -4,7 +4,7 @@ import calendar
 import time
 import re
 
-def get_received_messages(register_id, register_r, oun, s, date, school_year, symbol):
+def get_received_messages(register_id, students, oun, s, date, school_year, symbol):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept': '*/*',
@@ -21,7 +21,7 @@ def get_received_messages(register_id, register_r, oun, s, date, school_year, sy
 
     return received_messages.json()
 
-def get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol):
+def get_sent_messages(register_id, students, oun, s, date, school_year, symbol):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept': '*/*',
@@ -38,7 +38,7 @@ def get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol
 
     return sent_messages.json()
 
-def get_deleted_messages(register_id, register_r, oun, s, date, school_year, symbol):
+def get_deleted_messages(register_id, students, oun, s, date, school_year, symbol):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br7',
         'Accept': '*/*',
@@ -55,7 +55,7 @@ def get_deleted_messages(register_id, register_r, oun, s, date, school_year, sym
 
     return deleted_messages.json()
 
-def get_recipients(register_id, register_r, oun, s, date, school_year, symbol):
+def get_recipients(register_id, students, oun, s, date, school_year, symbol):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept': '*/*',
@@ -77,7 +77,7 @@ def get_recipients(register_id, register_r, oun, s, date, school_year, symbol):
 
     return {'addressee': get_addressee.json(), 'unitId': id_jednostka}
 
-def send_message(register_id, register_r, oun, s, date, school_year, symbol, send_data):
+def send_message(register_id, students, oun, s, date, school_year, symbol, send_data):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accet': '*/*',
@@ -92,7 +92,7 @@ def send_message(register_id, register_r, oun, s, date, school_year, symbol, sen
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
-    student_data = register_r['data'][0]['UczenNazwisko']+' '+register_r['data'][0]['UczenImie']
+    student_data = students['data'][0]['UczenNazwisko']+' '+students['data'][0]['UczenImie']
 
     sess = requests.Session()
 
@@ -157,7 +157,7 @@ def send_message(register_id, register_r, oun, s, date, school_year, symbol, sen
 
     return send.json()
 
-def get_message_content(register_id, register_r, oun, s, date, school_year, symbol, message_id):
+def get_message_content(register_id, students, oun, s, date, school_year, symbol, message_id):
     headers = {
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept': '*/*',
