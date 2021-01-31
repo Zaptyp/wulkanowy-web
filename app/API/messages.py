@@ -196,4 +196,10 @@ def get_message_content(register_id, register_r, oun, s, date, school_year, symb
 
     content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
 
+    if content.status_code != 200:
+        while True:
+            content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+            if content.status_code == 200:
+                break
+
     return content.json()
