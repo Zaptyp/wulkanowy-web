@@ -57,7 +57,7 @@ def get_data_test(client, cookies_data, assertEquals):
     assertEquals(response.status_code, 200)
 
     #TIMETABLE
-    response = client.post(reverse('timetable'), content_type='application/xml', data=json.dumps(cookies_data))
+    response = client.post(reverse('timetable'), content_type='application/xml', data=json.dumps({'cookies': json.dumps(cookies_data), 'week': 0}))
     assertEquals(response.status_code, 200)
 
     #EXAMS
