@@ -101,13 +101,30 @@ def timetable(request, *args, **kwargs):
 def exams(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         data = json.loads(request.body)
+        week = data['week']
+        data = json.loads(data['cookies'])
         register_id = data['data']['register_id']
         students = data['data']['students']
         oun = data['data']['oun']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
         s = decrypt_cookies(s, key)
-        date = data['data']['date']
+        now = datetime.datetime.now()
+        weekday = now.weekday()
+
+        for x in range(7):
+            if weekday == x:
+                now = now - datetime.timedelta(days=x)
+
+        now = now + datetime.timedelta(days=week*7)
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        date = datetime.date(year, month, day).isoformat()
+
+        date = f'{date}T00:00:00'
         school_year = data['data']['school_year']
         exams = get_exams(register_id, students, oun, s, date, school_year)
         return JsonResponse(exams)
