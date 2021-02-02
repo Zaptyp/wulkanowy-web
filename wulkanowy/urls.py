@@ -17,14 +17,14 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from frontend.views import default_view, content_view, account_manager_view
-from app.views import login, grades, timetable, exams, homeworks, attendance, notes, registered_devices, register_device_, received_messages, sent_messages, deleted_messages, school_data, dashboard, recipients, send, message_content, student_data, log_out
+from app.views import login, grades, timetable, exams, homeworks, attendance, notes, registered_devices, register_device_, received_messages, sent_messages, deleted_messages, school_data, dashboard, recipients, send, message_content, student_data, log_out, partial, year
 
 urlpatterns = [
     #views
     path('', default_view, name='home'),
     path('content/', content_view, name='content'),
     path('account-manager/', account_manager_view, name='account_manager'),
-    #api
+    #API
     path('api/login', login, name='login'),
     path('api/grades', grades, name='grades'),
     path('api/timetable', timetable, name='timetable'),
@@ -36,6 +36,9 @@ urlpatterns = [
     path('api/dashboard', dashboard, name='dashboard'),
     path('api/student_data', student_data, name='student_data'),
     path('api/log_out', log_out, name='log_out'),
+    #STATS
+    path('api/stats/partial', partial, name='partial'),
+    path('api/stats/year', year, name='year'),
     #MOBILE ACCESS
     path('api/mobile/registered', registered_devices, name='registered_devices'),
     path('api/mobile/register', register_device_, name='register_device'),
