@@ -21,6 +21,7 @@ from .API.school_data import get_school_data
 from .API.dashboard import get_dashboard
 from .API.student_data import get_student_data
 from .decrypt import decrypt_cookies
+import datetime
 
 #API
 def login(request, *args, **kwargs):
@@ -68,13 +69,30 @@ def grades(request, *args, **kwargs):
 def timetable(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         data = json.loads(request.body)
+        week = data['week']
+        data = json.loads(data['cookies'])
         register_id = data['data']['register_id']
         students = data['data']['students']
         oun = data['data']['oun']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
         s = decrypt_cookies(s, key)
-        date = data['data']['date']
+        now = datetime.datetime.now()
+        weekday = now.weekday()
+
+        for x in range(7):
+            if weekday == x:
+                now = now - datetime.timedelta(days=x)
+
+        now = now + datetime.timedelta(days=week*7)
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        date = datetime.date(year, month, day).isoformat()
+
+        date = f'{date}T00:00:00'
         timetable = get_timetable(register_id, students, oun, s, date)
         return JsonResponse(timetable)
     else:
@@ -83,13 +101,30 @@ def timetable(request, *args, **kwargs):
 def exams(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         data = json.loads(request.body)
+        week = data['week']
+        data = json.loads(data['cookies'])
         register_id = data['data']['register_id']
         students = data['data']['students']
         oun = data['data']['oun']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
         s = decrypt_cookies(s, key)
-        date = data['data']['date']
+        now = datetime.datetime.now()
+        weekday = now.weekday()
+
+        for x in range(7):
+            if weekday == x:
+                now = now - datetime.timedelta(days=x)
+
+        now = now + datetime.timedelta(days=week*7)
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        date = datetime.date(year, month, day).isoformat()
+
+        date = f'{date}T00:00:00'
         school_year = data['data']['school_year']
         exams = get_exams(register_id, students, oun, s, date, school_year)
         return JsonResponse(exams)
@@ -99,13 +134,30 @@ def exams(request, *args, **kwargs):
 def homeworks(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         data = json.loads(request.body)
+        week = data['week']
+        data = json.loads(data['cookies'])
         register_id = data['data']['register_id']
         students = data['data']['students']
         oun = data['data']['oun']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
         s = decrypt_cookies(s, key)
-        date = data['data']['date']
+        now = datetime.datetime.now()
+        weekday = now.weekday()
+
+        for x in range(7):
+            if weekday == x:
+                now = now - datetime.timedelta(days=x)
+
+        now = now + datetime.timedelta(days=week*7)
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        date = datetime.date(year, month, day).isoformat()
+
+        date = f'{date}T00:00:00'
         school_year = data['data']['school_year']
         homeworks = get_homeworks(register_id, students, oun, s, date, school_year)
         return JsonResponse(homeworks)
@@ -115,13 +167,30 @@ def homeworks(request, *args, **kwargs):
 def attendance(request, *args, **kwargs):
     if request.session.has_key('is_logged'):
         data = json.loads(request.body)
+        week = data['week']
+        data = json.loads(data['cookies'])
         register_id = data['data']['register_id']
         students = data['data']['students']
         oun = data['data']['oun']
         s = data['data']['s']
         key = bytes(request.session[request.session.session_key], 'utf-8')
         s = decrypt_cookies(s, key)
-        date = data['data']['date']
+        now = datetime.datetime.now()
+        weekday = now.weekday()
+
+        for x in range(7):
+            if weekday == x:
+                now = now - datetime.timedelta(days=x)
+
+        now = now + datetime.timedelta(days=week*7)
+
+        day = now.day
+        month = now.month
+        year = now.year
+
+        date = datetime.date(year, month, day).isoformat()
+
+        date = f'{date}T00:00:00'
         attendance = get_attendance(register_id, students, oun, s, date)
         return JsonResponse(attendance, safe=False)
     else:
