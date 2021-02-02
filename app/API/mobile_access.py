@@ -1,5 +1,6 @@
 import json
 import requests
+from .generate_cookies import autogenerate_cookies
 
 def get_registered_devices(register_id, students, oun, s):
     
