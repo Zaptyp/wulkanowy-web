@@ -2,33 +2,18 @@ import json
 import requests
 import re
 from bs4 import BeautifulSoup
+from .generate_cookies import autogenerate_cookies
 
 def get_dashboard(register_id, students, s, diary_url, symbol):
-    cookies = s
     if diary_url != 'http://cufs.fakelog.cf/':
-        cookies.update({
-            "biezacyRokSzkolny": f"{students['data'][0]['DziennikRokSzkolny']}",
-            "idBiezacyDziennik": f"{students['data'][0]['IdDziennik']}",
-            "idBiezacyDziennikPrzedszkole": f"{students['data'][0]['IdPrzedszkoleDziennik']}",
-            "idBiezacyDziennikWychowankowie": f"{students['data'][0]['IdWychowankowieDziennik']}",
-            "idBiezacyUczen": f"{students['data'][0]['IdUczen']}"
-        })
         diary_url = 'http://uonetplus.vulcan.net.pl/'
     else:
-        cookies.update({
-            "biezacyRokSzkolny": f"{students['data'][0]['DziennikRokSzkolny']}",
-            "idBiezacyDziennik": f"{students['data'][0]['IdDziennik']}",
-            "idBiezacyDziennikPrzedszkole": f"{students['data'][0]['IdPrzedszkoleDziennik']}",
-            "idBiezacyUczen": f"{students['data'][0]['IdUczen']}"
-        })
         diary_url = 'http://uonetplus.fakelog.cf/'
 
-    headers = {
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+    cookies = autogenerate_cookies(students, s)
+
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     index = requests.get(f'{diary_url}{symbol}/Start.mvc/Index', headers=headers, cookies=cookies)
     permissions_value = re.search("permissions: '(.)*'", index.text)
