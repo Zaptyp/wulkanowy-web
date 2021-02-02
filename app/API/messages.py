@@ -89,7 +89,9 @@ def send_message(register_id, students, oun, s, date, school_year, symbol, send_
 
     sess.headers.update({
         'X-V-RequestVerificationToken': antiForgeryToken,
-        'X-V-AppGuid': appGuid
+        'X-V-AppGuid': appGuid,
+        'Content-Type': 'application/json',
+        'TE': "Trailers"
     })
 
     payload = {

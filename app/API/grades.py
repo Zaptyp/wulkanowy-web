@@ -10,6 +10,5 @@ def get_grades(register_id, students, oun, s):
         headers = json.load(f)
 
     grades = requests.post(oun+'/Oceny.mvc/Get', headers=headers, cookies=cookies, json={'okres': register_id})
-    print(grades.text)
     
     return grades.json()
