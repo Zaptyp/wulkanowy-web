@@ -20,6 +20,7 @@ from .API.mobile_access import get_registered_devices, register_device
 from .API.school_data import get_school_data
 from .API.dashboard import get_dashboard
 from .API.student_data import get_student_data
+from .API.stats import get_partial, get_year
 from .decrypt import decrypt_cookies
 import datetime
 
@@ -384,6 +385,35 @@ def student_data(request, *args, **kwargs):
         s = decrypt_cookies(s, key)
         data = get_student_data(register_id, students, oun, s)
         return JsonResponse(data)
+    else:
+        return redirect('../')
+
+#STATS
+def partial(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        students = data['data']['students']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
+        partial_stats = get_partial(register_id, students, oun, s)
+        return JsonResponse(partial_stats)
+    else:
+        return redirect('../')
+
+def year(request, *args, **kwargs):
+    if request.session.has_key('is_logged'):
+        data = json.loads(request.body)
+        register_id = data['data']['register_id']
+        students = data['data']['students']
+        oun = data['data']['oun']
+        s = data['data']['s']
+        key = bytes(request.session[request.session.session_key], 'utf-8')
+        s = decrypt_cookies(s, key)
+        year_stats = get_year(register_id, students, oun, s)
+        return JsonResponse(year_stats)
     else:
         return redirect('../')
 
