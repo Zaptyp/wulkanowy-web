@@ -13,7 +13,7 @@ class LoginForm extends Component {
         super(props);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleChangeSymbol = this.handleChangePassword.bind(this)
+        this.handleChangeSymbol = this.handleChangeSymbol.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
