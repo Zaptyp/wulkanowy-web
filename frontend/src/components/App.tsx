@@ -3,9 +3,9 @@ import { render } from "react-dom";
 import LoginForm from "./LoginForm";
 
 class App extends Component {
-    constructor(props) {
+    /*constructor(props) {
         super(props)
-    }
+    }*/
 
     render() {
         return (

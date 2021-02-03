@@ -3,20 +3,23 @@ import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 
 class LoginForm extends Component {
+    state = {
+        loginName: '',
+        Password: '',
+        Symbol: '', //'powiatwulkanowy',
+        diaryUrl: 'http://cufs.fakelog.cf/'
+    };
     constructor(props) {
         super(props);
-        this.state = {
-            loginName: '',
-            Password: '',
-            Symbol: 'powiatwulkanowy',
-            diaryUrl: 'http://cufs.fakelog.cf/'
-        };
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleChangeSymbol = this.handleChangePassword.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeEmail(event) {    this.setState({loginName: event.target.value});  }
+    handleChangePassword(event) {    this.setState({Password: event.target.value});  }
+    handleChangeSymbol(event) {     this.setState({Symbol: event.target.value});    }
     csrfcookie() {
         var cookieValue = null,
             name = 'csrftoken';
@@ -32,7 +35,6 @@ class LoginForm extends Component {
         }
         return cookieValue;
     };
-    handleChangePassword(event) {    this.setState({Password: event.target.value});  }
     handleSubmit(event) {
         fetch("http://127.0.0.1:8000/api/login", {
             method: 'POST',
@@ -63,6 +65,7 @@ class LoginForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <TextField value={this.state.loginName} onChange={this.handleChangeEmail} variant="outlined" label="E-mail"/>
                 <TextField value={this.state.Password} onChange={this.handleChangePassword} variant="outlined" label="Password" type="password"/>
+                <TextField value={this.state.Symbol} onChange={this.handleChangeSymbol} variant="outlined" label="Symbol"/>
                 <Button type="submit" variant="contained" color="primary" size="large">Wyślij</Button>
             </form>
         );

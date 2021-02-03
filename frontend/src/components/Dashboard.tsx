@@ -7,13 +7,10 @@ import ListItemText from "@material-ui/core/ListItemText"
 import Filter6Icon from '@material-ui/icons/Filter6';
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            cookies_data: sessionStorage.getItem('cookies_data'),
-            csrfcookie: sessionStorage.getItem('csrfcookie'),
-            data: {}
-        }
+    state = {
+        cookies_data: sessionStorage.getItem('cookies_data'),
+        csrfcookie: sessionStorage.getItem('csrfcookie'),
+        data: {}
     }
 
     componentDidMount() {

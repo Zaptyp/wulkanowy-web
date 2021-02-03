@@ -5,19 +5,21 @@ module.exports = {
         login : "./src/login.js",
         content : "./src/content.js"
      },
-    output: {
-      filename : "[name].js",
-        path : path.resolve(__dirname, "./static/frontend")
-    },
-    module: {
+     module: {
         rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
-            }
-        ]
-    }
-};
+          {
+            //"allowJs": true,
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+          },
+        ],
+      },
+      resolve: {
+        extensions: [ '.tsx' ,'.jsx', '.ts', '.js' ],
+      },
+      output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, "./static/frontend"),
+      },
+    };
