@@ -1,17 +1,25 @@
 @media screen and (max-width: 768px) {
+  #box-content {
+    position: relative;
+    text-align: center;
+  }
+
+  h1 {
+    width: 0 !important;
+    position: relative !important;
+    top: 30% !important;
+  }
+
   #box {
-    width: 60% !important;
-    height: 45% !important;
+    left: 27% !important;
   }
-  .logo img[data-v-cd2b8d62] {
-    margin: 0 !important;
-    margin-top: -55% !important;
+
+  img {
+    width: 0 !important;
   }
+
   #icons {
-  bottom: -36% !important;
-  size: 70% !important;
-  margin: 0 !important;
-  margin-top: 20% !important;
+    width: 0% !important;
   }
 }
 body {
@@ -44,6 +52,7 @@ body {
   position: absolute;
   top: 35%;
   left: 32%;
+  text-align: center;
 }
 
 #box-content {
