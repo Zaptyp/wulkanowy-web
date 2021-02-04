@@ -1,25 +1,34 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
+import Select from "@material-ui/core/Select"
+import MenuItem from '@material-ui/core/MenuItem';
 
 class LoginForm extends Component {
+    urls = {
+        Uonet: 'https://cufs.vulcan.net.pl/',
+        Fakelog: 'http://cufs.fakelog.cf/',
+    }
+    ;
     state = {
         loginName: '',
         Password: '',
-        Symbol: '', //'powiatwulkanowy',
-        diaryUrl: 'http://cufs.fakelog.cf/'
+        Symbol: '',
+        diaryUrl: ''
     };
     constructor(props) {
         super(props);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangeSymbol = this.handleChangeSymbol.bind(this)
+        this.handleChangeURL = this.handleChangeURL.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeEmail(event) {    this.setState({loginName: event.target.value});  }
     handleChangePassword(event) {    this.setState({Password: event.target.value});  }
     handleChangeSymbol(event) {     this.setState({Symbol: event.target.value});    }
+    handleChangeURL(event) {    this.setState({diaryUrl: event.target.value});  }
     csrfcookie() {
         var cookieValue = null,
             name = 'csrftoken';
@@ -63,9 +72,13 @@ class LoginForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <TextField value={this.state.loginName} onChange={this.handleChangeEmail} variant="outlined" label="E-mail"/>
-                <TextField value={this.state.Password} onChange={this.handleChangePassword} variant="outlined" label="Password" type="password"/>
-                <TextField value={this.state.Symbol} onChange={this.handleChangeSymbol} variant="outlined" label="Symbol"/>
+                <TextField value={this.state.loginName} onChange={this.handleChangeEmail} label="E-mail"/><br />
+                <TextField value={this.state.Password} onChange={this.handleChangePassword} label="Password" type="password"/><br />
+                <TextField value={this.state.Symbol} onChange={this.handleChangeSymbol} label="Symbol"/><br />
+                <Select onChange={this.handleChangeURL}>
+                    <MenuItem value={this.urls.Uonet} >Vulcan UONET+</MenuItem>
+                    <MenuItem value={this.urls.Fakelog}>Fakelog</MenuItem>
+                </Select><br />
                 <Button type="submit" variant="contained" color="primary" size="large">Wyślij</Button>
             </form>
         );
