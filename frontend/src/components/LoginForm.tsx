@@ -71,16 +71,20 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <TextField value={this.state.loginName} onChange={this.handleChangeEmail} label="E-mail"/><br />
-                <TextField value={this.state.Password} onChange={this.handleChangePassword} label="Password" type="password"/><br />
-                <TextField value={this.state.Symbol} onChange={this.handleChangeSymbol} label="Symbol"/><br />
-                <Select onChange={this.handleChangeURL}>
-                    <MenuItem value={this.urls.Uonet} >Vulcan UONET+</MenuItem>
-                    <MenuItem value={this.urls.Fakelog}>Fakelog</MenuItem>
-                </Select><br />
-                <Button type="submit" variant="contained" color="primary" size="large">Wyślij</Button>
-            </form>
+            <div id="box">
+                <div id="box-content">
+                    <form onSubmit={this.handleSubmit}>
+                        <TextField value={this.state.loginName} onChange={this.handleChangeEmail} label="E-mail"/><br />
+                        <TextField value={this.state.Password} onChange={this.handleChangePassword} label="Password" type="password"/><br />
+                        <TextField value={this.state.Symbol} onChange={this.handleChangeSymbol} label="Symbol"/><br />
+                        <Select id="url-select" autoWidth={true} onChange={this.handleChangeURL}>
+                            <MenuItem value={this.urls.Uonet}>Vulcan UONET+</MenuItem>
+                            <MenuItem value={this.urls.Fakelog}>Fakelog</MenuItem>
+                        </Select><br />
+                        <Button type="submit" id="button" variant="contained" size="large">Wyślij</Button>
+                    </form>
+                </div>
+            </div>
         );
     }
 }
