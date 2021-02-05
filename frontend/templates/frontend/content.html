@@ -5,96 +5,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="{% static 'frontend/css/start.css' %}" type="text/css" />
-  <link rel="shortcut icon" href="{% static 'frontend/images/27146352.png' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="{% static 'frontend/css/materialize.min.css' %}"  media="screen,projection"/>
-  <script src="{% static 'frontend/js/materializecss/materialize.min.js' %}"></script>
   <title>Wulkanowy | Aplikacja ucznia i rodzica</title>
 </head>
 <body>
-   <div data-v-cd2b8d62 data-v-09be56d6 id="container">
-
-       <div class="gradeModals"></div> <!-- please don't touch it for scraping, you have an api :D -->
-
-     <nav>Wulkanowy web early access insider preview pre-alpha pre-beta alpha beta release canditate v. 0.0.1<div id='log_out_' class='log-out'>Wyloguj</div></nav>
-
-     <ul id="slide-out" class="sidenav">
-       <li><div class="user-view">
-         <div class="background">
-           <img src="{% static 'frontend/images/wallpaper.jpg' %}" width="300" height="176">
-         </div>
-         <a><img class="circle" src="{% static 'frontend/images/27146352.png' %}"></a>
-         <a><span class="white-text name" id='name'>Imie Imie2 Nazwisko</span></a>
-         <a><span class="white-text email" id='email'>E-mail</span></a>
-        </div></li>
-        <li><a id="dashboard_" class='option'><i class="material-icons">dashboard</i>Start</a></li>
-        <li><a id="grades_" class='option'><i class="material-icons">filter_6</i>Oceny</a></li>
-        <li><a id="timetable_" class='option'><i class="material-icons">event_note</i>Plan Lekcji</a></li>
-        <li><a id="exams_" class='option'><i class="material-icons">event</i>Sprawdziany</a></li>
-        <li><a id="homeworks_" class='option'><i class="material-icons">class</i>Zadania Domowe</a></li>
-        <li><a id="attendance_" class='option'><i class="material-icons">date_range</i>Frekwencja</a></li>
-        <li><a id="stats_" class='option'><i class="material-icons">insert_chart_outlined</i>Uczeń na Tle Klasy</a></li>
-        <li><a id="notes_" class='option'><i class="material-icons">emoji_events</i>Uwagi i Osiągnięcia</a></li>
-        <li><a id="mobile_access_" class='option'><i class="material-icons">devices</i>Dostęp Mobilny</a></li>
-        <li><a id="school_data_" class='option'><i class="material-icons">business</i>Szkoła i Nauczyciele</a></li>
-        <li><a id="student_data_" class='option'><i class="material-icons">assignment_ind</i>Dane Ucznia</a></li>
-        <li><a id="messages_" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons">email</i>Wiadomości</a></li>
-        <ul id='dropdown1' class='dropdown-content'>
-         <li><a id='received_' class='option'>Odebrane</a></li>
-         <li><a id='sent_' class='option'>Wysłane</a></li>
-         <li><a id='send_' class='option'>Napisz Wiadomość</a></li>
-         <li><a id='deleted_' class='option'>Usunięte</a></li>
-       </ul>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-      <div id="content">
-    </div>
+   <div id="content">
    </div>
-   <script>
-     var elem = document.querySelector('.tabs');
-     var options = {}
-     var instance = M.Tabs.init(elem, options);
-
-     // sidebar
-     document.addEventListener('DOMContentLoaded', function() {
-       var elems = document.querySelectorAll('.sidenav');
-       var instances = M.Sidenav.init(elems, options);
-     });
-
-     // modal
-     document.addEventListener('DOMContentLoaded', function() {
-       var elems = document.querySelectorAll('.modal');
-       var instances = M.Modal.init(elems, options);
-     });
-
-     var dropdowns = document.querySelectorAll('.dropdown-trigger')
-     for (var i = 0; i < dropdowns.length; i++){
-       M.Dropdown.init(dropdowns[i]);
-     }
-
-   </script>
-    <script src="{% static 'frontend/js/start.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/dashboard.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/dist/out-grades.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/timetable.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/exams.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/notes.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/attendance.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/homeworks.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/dist/out-messages.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/mobile_access.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/school_data.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/student_data.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/stats.js' %}" type="text/javascript" defer></script>
-    <script src="{% static 'frontend/js/log-out.js' %}" type="text/javascript" defer></script>
+   <script src={% static 'frontend/content.js' %}></script>
   </body>
 </html>
