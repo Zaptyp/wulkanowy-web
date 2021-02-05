@@ -3,7 +3,8 @@ const path = require("path")
 module.exports = {
     entry: {
         login : "./src/login.js",
-        content : "./src/content.js"
+        content : "./src/content.js",
+        accountManager: "./src/AccountManager.js"
      },
      module: {
         rules: [

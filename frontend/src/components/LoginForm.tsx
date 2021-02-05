@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import TextField from "@material-ui/core/TextField"
-import Button from "@material-ui/core/Button"
-import Select from "@material-ui/core/Select"
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
 import MenuItem from '@material-ui/core/MenuItem';
 
 class LoginForm extends Component {
     urls = {
         Uonet: 'https://cufs.vulcan.net.pl/',
         Fakelog: 'http://cufs.fakelog.cf/',
-    }
-    ;
+    };
     state = {
         loginName: '',
         Password: '',
@@ -25,10 +24,10 @@ class LoginForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeEmail(event) {    this.setState({loginName: event.target.value});  }
-    handleChangePassword(event) {    this.setState({Password: event.target.value});  }
-    handleChangeSymbol(event) {     this.setState({Symbol: event.target.value});    }
-    handleChangeURL(event) {    this.setState({diaryUrl: event.target.value});  }
+    handleChangeEmail = (event) =>{    this.setState({loginName: event.target.value});  }
+    handleChangePassword = (event) => {    this.setState({Password: event.target.value});  }
+    handleChangeSymbol = (event) => {     this.setState({Symbol: event.target.value});    }
+    handleChangeURL = (event) => {    this.setState({diaryUrl: event.target.value});  }
     csrfcookie() {
         var cookieValue = null,
             name = 'csrftoken';
@@ -44,7 +43,7 @@ class LoginForm extends Component {
         }
         return cookieValue;
     };
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         fetch("http://127.0.0.1:8000/api/login", {
             method: 'POST',
             mode: 'cors',
@@ -59,11 +58,11 @@ class LoginForm extends Component {
                 sessionStorage.setItem('cookies_data', JSON.stringify(data));
                 sessionStorage.setItem('csrfcookie', this.csrfcookie());
                 sessionStorage.setItem('email', this.state.loginName);
-                window.location.href = "/content/";
+                window.location.href = "/account-manager/";
                 console.log("Success!")
             }
             else{
-                console.log("dupa")
+                document.querySelector('#error').innerHTML = 'Zła nazwa użytkownika, hasło lub symbol';
             }
         });
         event.preventDefault();
@@ -81,6 +80,7 @@ class LoginForm extends Component {
                             <MenuItem value={this.urls.Uonet}>Vulcan UONET+</MenuItem>
                             <MenuItem value={this.urls.Fakelog}>Fakelog</MenuItem>
                         </Select><br />
+                        <div id="error"></div>
                         <Button type="submit" id="button" variant="contained" size="large">Wyślij</Button>
                     </form>
                 </div>
