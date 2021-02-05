@@ -20,13 +20,13 @@ def get_dashboard(register_id, students, s, diary_url, symbol):
     permissions_value = permissions_value.group()
     permissions_value = permissions_value.replace('permissions: ', '').replace("'", "")
 
-    payload = {
+    permissions = {
         "permissions": permissions_value
     }
 
-    last_notes = requests.post(f'{diary_url}{symbol}/Start.mvc/GetLastNotes', headers=headers, cookies=cookies, json=payload)
-    free_days = requests.post(f'{diary_url}{symbol}/Start.mvc/GetFreeDays', headers=headers, cookies=cookies, json=payload)
-    lucky_number = requests.post(f'{diary_url}{symbol}/Start.mvc/GetKidsLuckyNumbers', headers=headers, cookies=cookies, json=payload)
+    last_notes = requests.post(f'{diary_url}{symbol}/Start.mvc/GetLastNotes', headers=headers, cookies=cookies, json=permissions)
+    free_days = requests.post(f'{diary_url}{symbol}/Start.mvc/GetFreeDays', headers=headers, cookies=cookies, json=permissions)
+    lucky_number = requests.post(f'{diary_url}{symbol}/Start.mvc/GetKidsLuckyNumbers', headers=headers, cookies=cookies, json=permissions)
     
     return_data = {
         "last_notes": last_notes.json(),

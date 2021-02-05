@@ -63,14 +63,8 @@ def get_recipients(register_id, students, oun, s, date, school_year, symbol):
     return {'addressee': get_addressee.json(), 'unitId': id_jednostka}
 
 def send_message(register_id, students, oun, s, date, school_year, symbol, send_data):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accet': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)",
-        'Content-Type': 'application/json',
-        'TE': "Trailers"
-    }
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
         link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
@@ -96,7 +90,9 @@ def send_message(register_id, students, oun, s, date, school_year, symbol, send_
 
     sess.headers.update({
         'X-V-RequestVerificationToken': antiForgeryToken,
-        'X-V-AppGuid': appGuid
+        'X-V-AppGuid': appGuid,
+        'Content-Type': 'application/json',
+        'TE': "Trailers"
     })
 
     payload = {
@@ -176,5 +172,11 @@ def get_message_content(register_id, students, oun, s, date, school_year, symbol
     }
 
     content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+
+    if content.status_code != 200:
+        while True:
+            content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+            if content.status_code == 200:
+                break
 
     return content.json()

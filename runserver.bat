@@ -1,5 +1,6 @@
 cd frontend
-start npm run watch
+start npm run dev
 cd ..
 cls
+cd ..
 python manage.py runserver
