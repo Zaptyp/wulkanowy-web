@@ -5,18 +5,6 @@
 [![Discord](https://img.shields.io/discord/390889354199040011.svg?color=#33CD56)](https://discord.gg/vccAQBr)
 
 # Development
-## 0. Automatic installation (WINDOWS ONLY)
-If you don't want to enter commands just run
-```shell
-install.exe
-```
-If that doesn't work, run the file:
-```shell
-install.bat
-```
-Which is in the batch folder.
-
-After this installation, just follow the 3rd step.
 ## 1. Install dependencies.
 ```shell
 pip install -r requirements.txt
@@ -32,10 +20,9 @@ python manage.py migrate
 ```
 ## 3. Start the server!
 ```shell
-npm run dev
 python manage.py runserver
 ```
-or if you run Windows you can run:
+And in frontend:
 ```shell
-runserver.bat
+npm run dev
 ```
