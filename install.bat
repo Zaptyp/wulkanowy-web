@@ -1,3 +1,3 @@
-pip install -r requirments.txt
+pip install -r requirements.txt
 cd frontend
 npm i
