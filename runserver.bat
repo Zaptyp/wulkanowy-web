@@ -1,5 +1,5 @@
 cd frontend
-start npm run watch
+start npm run dev
 cd ..
 @echo off
 cd batch
