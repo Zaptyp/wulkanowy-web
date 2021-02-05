@@ -39,14 +39,14 @@ class TestViews(TestCase):
         
         self.assertEquals(response.status_code, 200)
 
-        students = cookies_data['data']['register_r']['data']
+        students = cookies_data['data']['students']['data']
         #JAN
         jan_data = students[0]
-        cookies_data['data']['register_r']['data'] = [jan_data]
+        cookies_data['data']['students']['data'] = [jan_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         #JOANNA
         joanna_data = students[3]
-        cookies_data['data']['register_r']['data'] = [joanna_data]
+        cookies_data['data']['students']['data'] = [joanna_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         log_out_test(self.client, self.assertEquals)
 
@@ -57,19 +57,19 @@ def get_data_test(client, cookies_data, assertEquals):
     assertEquals(response.status_code, 200)
 
     #TIMETABLE
-    response = client.post(reverse('timetable'), content_type='application/xml', data=json.dumps(cookies_data))
+    response = client.post(reverse('timetable'), content_type='application/xml', data=json.dumps({'cookies': json.dumps(cookies_data), 'week': 0}))
     assertEquals(response.status_code, 200)
 
     #EXAMS
-    response = client.post(reverse('exams'), content_type='application/xml', data=json.dumps(cookies_data))
+    response = client.post(reverse('exams'), content_type='application/xml', data=json.dumps({'cookies': json.dumps(cookies_data), 'week': 0}))
     assertEquals(response.status_code, 200)
 
     #HOMEWORKS
-    response = client.post(reverse('homeworks'), content_type='application/xml', data=json.dumps(cookies_data))
+    response = client.post(reverse('homeworks'), content_type='application/xml', data=json.dumps({'cookies': json.dumps(cookies_data), 'week': 0}))
     assertEquals(response.status_code, 200)
 
     #ATTENDANCE
-    response = client.post(reverse('attendance'), content_type='application/xml', data=json.dumps(cookies_data))
+    response = client.post(reverse('attendance'), content_type='application/xml', data=json.dumps({'cookies': json.dumps(cookies_data), 'week': 0}))
     assertEquals(response.status_code, 200)
 
     #NOTES
@@ -118,6 +118,15 @@ def get_data_test(client, cookies_data, assertEquals):
 
     #STUDENT DATA
     response = client.post(reverse('student_data'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #STATS
+    #PARTIAL
+    response = client.post(reverse('partial'), content_type='application/xml', data=json.dumps(cookies_data))
+    assertEquals(response.status_code, 200)
+
+    #YEAR
+    response = client.post(reverse('year'), content_type='application/xml', data=json.dumps(cookies_data))
     assertEquals(response.status_code, 200)
 
     #SEND MESSAGE

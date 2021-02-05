@@ -4,13 +4,9 @@ import calendar
 import time
 import re
 
-def get_received_messages(register_id, register_r, oun, s, date, school_year, symbol):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+def get_received_messages(register_id, students, oun, s, date, school_year, symbol):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     now = calendar.timegm(time.gmtime())
 
@@ -21,13 +17,9 @@ def get_received_messages(register_id, register_r, oun, s, date, school_year, sy
 
     return received_messages.json()
 
-def get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+def get_sent_messages(register_id, students, oun, s, date, school_year, symbol):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     now = calendar.timegm(time.gmtime())
 
@@ -38,13 +30,9 @@ def get_sent_messages(register_id, register_r, oun, s, date, school_year, symbol
 
     return sent_messages.json()
 
-def get_deleted_messages(register_id, register_r, oun, s, date, school_year, symbol):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br7',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+def get_deleted_messages(register_id, students, oun, s, date, school_year, symbol):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     now = calendar.timegm(time.gmtime())
    
@@ -55,13 +43,9 @@ def get_deleted_messages(register_id, register_r, oun, s, date, school_year, sym
 
     return deleted_messages.json()
 
-def get_recipients(register_id, register_r, oun, s, date, school_year, symbol):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+def get_recipients(register_id, students, oun, s, date, school_year, symbol):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
         link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
@@ -77,22 +61,16 @@ def get_recipients(register_id, register_r, oun, s, date, school_year, symbol):
 
     return {'addressee': get_addressee.json(), 'unitId': id_jednostka}
 
-def send_message(register_id, register_r, oun, s, date, school_year, symbol, send_data):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accet': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)",
-        'Content-Type': 'application/json',
-        'TE': "Trailers"
-    }
+def send_message(register_id, students, oun, s, date, school_year, symbol, send_data):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
         link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
-    student_data = register_r['data'][0]['UczenNazwisko']+' '+register_r['data'][0]['UczenImie']
+    student_data = students['data'][0]['UczenNazwisko']+' '+students['data'][0]['UczenImie']
 
     sess = requests.Session()
 
@@ -111,7 +89,9 @@ def send_message(register_id, register_r, oun, s, date, school_year, symbol, sen
 
     sess.headers.update({
         'X-V-RequestVerificationToken': antiForgeryToken,
-        'X-V-AppGuid': appGuid
+        'X-V-AppGuid': appGuid,
+        'Content-Type': 'application/json',
+        'TE': "Trailers"
     })
 
     payload = {
@@ -157,13 +137,9 @@ def send_message(register_id, register_r, oun, s, date, school_year, symbol, sen
 
     return send.json()
 
-def get_message_content(register_id, register_r, oun, s, date, school_year, symbol, message_id):
-    headers = {
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept': '*/*',
-        'Connection': 'keep-alive',
-        "User-Agent": "Wulkanowy-web :)"
-    }
+def get_message_content(register_id, students, oun, s, date, school_year, symbol, message_id):
+    with open('app/API/headers.json') as f:
+        headers = json.load(f)
 
     if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
         link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
@@ -195,5 +171,11 @@ def get_message_content(register_id, register_r, oun, s, date, school_year, symb
     }
 
     content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+
+    if content.status_code != 200:
+        while True:
+            content = sess.post(f'{link}/Wiadomosc.mvc/GetInboxMessageDetails', data=json.dumps(payload))
+            if content.status_code == 200:
+                break
 
     return content.json()
