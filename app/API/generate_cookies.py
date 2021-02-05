@@ -9,4 +9,4 @@ def autogenerate_cookies(students, s):
         "idBiezacyUczen": f"{students['data'][0]['IdUczen']}"
     })
 
-    return cookies
+    return cookies 

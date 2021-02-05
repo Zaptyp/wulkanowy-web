@@ -17,7 +17,7 @@ class AccountManager extends Component {
         super(props)
         this.handleChangeStudent = this.handleChangeStudent.bind(this)
         var cookies_data = JSON.parse(sessionStorage.getItem('cookies_data'));
-        var students = cookies_data.data.register_r.data;
+        var students = cookies_data.data.students.data;
         this.state.cookies_data = cookies_data;
         this.state.students =  students;
         students.forEach((student) => {
@@ -33,7 +33,7 @@ class AccountManager extends Component {
         this.state.students.forEach((student) => {
             if (student.UczenPelnaNazwa == this.state.student) {
                 console.log(this.state.cookies_data)
-                this.state.cookies_data.data.register_r.data = [student];
+                this.state.cookies_data.data.students.data = [student];
                 sessionStorage.setItem('cookies_data', JSON.stringify(this.state.cookies_data));
                 window.location.href = '/content/';
             }

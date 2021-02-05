@@ -3,6 +3,7 @@ import json
 import calendar
 import time
 import re
+from .generate_cookies import autogenerate_cookies
 
 def get_received_messages(register_id, students, oun, s, date, school_year, symbol):
     with open('app/API/headers.json') as f:

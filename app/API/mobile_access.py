@@ -3,7 +3,6 @@ import requests
 from .generate_cookies import autogenerate_cookies
 
 def get_registered_devices(register_id, students, oun, s):
-    
     cookies = autogenerate_cookies(students, s)
 
     with open('app/API/headers.json') as f:
@@ -14,7 +13,6 @@ def get_registered_devices(register_id, students, oun, s):
     return registered.json()
 
 def register_device(register_id, students, oun, s):
-    
     cookies = autogenerate_cookies(students, s)
 
     with open('app/API/headers.json') as f:

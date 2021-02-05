@@ -9,7 +9,7 @@ def get_dashboard(register_id, students, s, diary_url, symbol):
         diary_url = 'http://uonetplus.vulcan.net.pl/'
     else:
         diary_url = 'http://uonetplus.fakelog.cf/'
-
+        
     cookies = autogenerate_cookies(students, s)
 
     with open('app/API/headers.json') as f:
