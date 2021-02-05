@@ -44,7 +44,7 @@ class LoginForm extends Component {
         return cookieValue;
     };
     handleSubmit = (event) => {
-        fetch("http://127.0.0.1:8000/api/login", {
+        fetch("api/login", {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -59,7 +59,6 @@ class LoginForm extends Component {
                 sessionStorage.setItem('csrfcookie', this.csrfcookie());
                 sessionStorage.setItem('email', this.state.loginName);
                 window.location.href = "/account-manager/";
-                console.log("Success!")
             }
             else{
                 document.querySelector('#error').innerHTML = 'Zła nazwa użytkownika, hasło lub symbol';
@@ -81,7 +80,7 @@ class LoginForm extends Component {
                             <MenuItem value={this.urls.Fakelog}>Fakelog</MenuItem>
                         </Select><br />
                         <div id="error"></div>
-                        <Button type="submit" id="button" variant="contained" size="large">Wyślij</Button>
+                        <Button type="submit" id="button" variant="contained" size="large">Zaloguj</Button>
                     </form>
                 </div>
             </div>
