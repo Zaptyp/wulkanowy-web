@@ -17,6 +17,10 @@ __pycache__/
 # C extensions
 *.so
 
+frontend/static/frontend/login.js
+frontend/static/frontend/content.js
+frontend/static/frontend/AccountManager.js
+
 # Distribution / packaging
 .Python
 build/
