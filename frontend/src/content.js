@@ -1,1 +1,1 @@
-import Content from "./components/Content";
+import UI from "./components/UI";
