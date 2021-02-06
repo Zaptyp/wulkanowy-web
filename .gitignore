@@ -19,7 +19,7 @@ __pycache__/
 
 frontend/static/frontend/login.js
 frontend/static/frontend/content.js
-frontend/static/frontend/AccountManager.js
+frontend/static/frontend/accountManager.js
 
 # Distribution / packaging
 .Python
