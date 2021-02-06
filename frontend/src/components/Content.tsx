@@ -138,7 +138,7 @@ function MiniDrawer() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                    Wulkanowy web early access insider preview pre-alpha pre-beta alpha beta release canditate v. 0.0.1
+                        Wulkanowy web early access insider preview pre-alpha pre-beta alpha beta release canditate v. 0.0.1
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -179,7 +179,10 @@ function MiniDrawer() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                Here is content (in my imagination)
+                <div className={classes.toolbar} />
+                <Typography paragraph>
+                    Here is content (in my imagination)
+                </Typography>
             </main>
         </div>
     );
