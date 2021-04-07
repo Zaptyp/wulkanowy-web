@@ -1,4 +1,4 @@
-    name: Python application
+    name: Backend
     on: [push]
     jobs:
       build:
