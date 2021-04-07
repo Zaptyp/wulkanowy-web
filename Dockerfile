@@ -1,15 +1,17 @@
 FROM nikolaik/python-nodejs:python3.9-nodejs15
 
+ENV PYTHONUNBUFFERED 1
+
 WORKDIR /src
 
-COPY package-lock.json .
+COPY frontend/package-lock.json .
 COPY frontend/package*.json ./frontend/
 
 RUN npm install
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY app/* ./app/
 COPY app/API/* ./app/API/
