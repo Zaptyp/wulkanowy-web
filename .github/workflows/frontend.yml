@@ -6,9 +6,7 @@
         
         steps:
         - uses: actions/checkout@v1
-        - name: Go to frontend
-          run: cd frontend
         - name: Install npm
-          run: npm install
+          run: npm install --prefix frontend
         - name: Build app
-          run: npm run dev
+          run: npm run dev --prefix frontend
