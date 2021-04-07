@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  app:
+    container_name: wulkanowy_web
+    build: .
+    ports:
+      - "8000:8000"
