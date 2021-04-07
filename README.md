@@ -26,3 +26,13 @@ And in frontend:
 ```shell
 npm run dev
 ```
+
+# Docker
+## With docker compose
+```shell
+docker-compose up -d
+```
+## Without docker compose
+```shell
+docker build -t wulkanowy/web .
+docker run -d -p 8000:8000 wulkanowy/web
