@@ -1,0 +1,14 @@
+    name: Frontend
+    on: [push]
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - uses: actions/checkout@v1
+        - name: Go to frontend
+          run: cd frontend
+        - name: Install npm
+          run: npm install
+        - name: Build app
+          run: npm run dev
