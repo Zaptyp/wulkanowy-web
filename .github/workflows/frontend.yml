@@ -9,4 +9,4 @@
         - name: Install npm
           run: npm install --prefix frontend
         - name: Build app
-          run: npm run dev --prefix frontend
+          run: npm run build --prefix frontend
