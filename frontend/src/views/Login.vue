@@ -23,12 +23,6 @@ export default {
   },
   data() {
     return {
-      login: '',
-      password: '',
-      domains: [
-        'Vulcan Uonet',
-        'Fakelog',
-      ],
       isLoading: false,
     };
   },

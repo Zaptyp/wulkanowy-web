@@ -6,7 +6,7 @@
         <v-text-field
           class="login-input"
           v-model="login"
-          label="Login"
+          label="E-mail"
           outlined
           clearable>
         </v-text-field>
@@ -21,6 +21,9 @@
       <v-col cols="12">
         <v-select
           :items="domains"
+          v-model="selectedSymbol"
+          item-value="Fakelog"
+          v-on:change="itemSelected()"
           label="Symbol"
           outlined></v-select>
       </v-col>
@@ -29,7 +32,7 @@
           class="login-button"
           depressed
           color="primary"
-          v-on:click="this.loginUser()">
+          @click="loginUser()">
           Log in!</v-btn>
         <v-divider style="padding: 5px"></v-divider>
         <a style="">You forgot password click here!</a>
@@ -49,12 +52,18 @@ export default {
         'Vulcan',
         'Fakelog',
       ],
-      selectedDomain: '',
+      selectedSymbol: '',
     };
   },
   methods: {
     loginUser() {
       this.$store.state.isLoading = true;
+    },
+    itemSelected() {
+      if (this.selectedSymbol === 'Fakelog') {
+        this.login = 'jan@fakelog.cf';
+        this.password = 'jan123';
+      }
     },
   },
 };
