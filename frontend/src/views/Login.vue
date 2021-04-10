@@ -5,7 +5,8 @@
       <v-card loading="isLoading" id="login-form" class="mx-auto mt-9">
         <form>
           <v-container>
-            <UserLogin></UserLogin>
+            <UserLogin v-if="!this.$store.state.showStudentsList"></UserLogin>
+            <SelectStudent v-if="this.$store.state.showStudentsList"></SelectStudent>
           </v-container>
         </form>
       </v-card>
@@ -15,18 +16,13 @@
 
 <script>
 import UserLogin from '../components/Login/UserLogin.vue';
+import SelectStudent from '../components/Login/SelectStudent.vue';
 
 export default {
   name: 'Login',
   components: {
+    SelectStudent,
     UserLogin,
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
   },
 };
 </script>

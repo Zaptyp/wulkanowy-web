@@ -42,22 +42,34 @@
 </template>
 
 <script>
+//  import LoginForm from '../../props/LoginForm.ts';
+import login from '../../api/login';
+
 export default {
   name: 'UserLogin',
   data() {
     return {
       login: '',
       password: '',
+      selectedSymbol: '',
       domains: [
         'Vulcan',
         'Fakelog',
       ],
-      selectedSymbol: '',
     };
   },
   methods: {
-    loginUser() {
+    async loginUser() {
       this.$store.state.isLoading = true;
+      const response = await login.register(this.login, this.password, this.selectedSymbol);
+      this.$store.state.loginData = response.data;
+
+      console.log(this.$store.state.isLoading);
+
+      if (response.data.data.students.data.length > 1) {
+        this.$store.state.isLoading = false;
+        this.$store.state.showStudentsList = true;
+      }
     },
     itemSelected() {
       if (this.selectedSymbol === 'Fakelog') {
