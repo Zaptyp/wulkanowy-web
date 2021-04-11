@@ -7,8 +7,9 @@
       <v-radio-group>
         <v-radio
           v-model="selectedStudent"
-          v-for="student in this.$store.data.data"
-          :key="student.UczenPelnaNazwa">
+          v-for="student in this.$store.state.loginData.data.students.data"
+          :key="student.UczenPelnaNazwa"
+          :label="student.UczenPelnaNazwa">
         </v-radio>
       </v-radio-group>
     </v-col>
@@ -35,10 +36,14 @@ export default {
       },
     };
   },
+  beforeMount() {
+    console.log(this.$store.state.loginData.data.students.data[0]);
+  },
   methods: {
     async chooseClicked() {
       this.$store.state.selectedUser = this.selectedStudent;
       this.$store.state.showStudentsList = true;
+      await this.$router.push('/user');
     },
   },
 };

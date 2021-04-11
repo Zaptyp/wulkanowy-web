@@ -1,8 +1,12 @@
 <template>
   <div id="login">
-    <img class="image" src="../assets/logo_login.svg" width="500">
-    <v-content style="width: 100%;">
-      <v-card loading="isLoading" id="login-form" class="mx-auto mt-9">
+    <img class="image" src="../assets/logo_login.svg" width="500" alt="Wulkanowy">
+    <v-main style="width: 100%;">
+      <v-card
+        :loading="this.$store.state.isLoading"
+        elevation="24"
+        id="login-form"
+        class="mx-auto mt-9">
         <form>
           <v-container>
             <UserLogin v-if="!this.$store.state.showStudentsList"></UserLogin>
@@ -10,7 +14,7 @@
           </v-container>
         </form>
       </v-card>
-    </v-content>
+    </v-main>
   </div>
 </template>
 
@@ -23,6 +27,11 @@ export default {
   components: {
     SelectStudent,
     UserLogin,
+  },
+  methods: {
+    getLoading() {
+      return this.$store.state.isLoading;
+    },
   },
 };
 </script>

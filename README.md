@@ -24,7 +24,7 @@ python manage.py runserver
 ```
 And in frontend:
 ```shell
-npm run dev
+npm run build
 ```
 
 # Docker
