@@ -144,7 +144,7 @@ def get_data_test(client, cookies_data, assertEquals):
     assertEquals(response.status_code, 200)
     if response.status_code == 200:
        print("\033[92mPassed!")
-   else:
+    else:
        print("\033[91mFailed!")
 
     #DASHBOARD
