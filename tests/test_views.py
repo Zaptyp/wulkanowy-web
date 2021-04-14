@@ -17,7 +17,7 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'frontend/index.html')
         if response.status_code == 200:
-            print("\033[92mPassed!"")
+            print("\033[92mPassed!")
         else:
             print("\033[91mFailed!")
 
@@ -27,7 +27,7 @@ class TestViews(TestCase):
 
         self.assertEquals(response.status_code, 302)
         if response.status_code == 302:
-            print("\033[92mPassed!"")
+            print("\033[92mPassed!")
         else:
             print("\033[91mFailed!")
 
@@ -37,7 +37,7 @@ class TestViews(TestCase):
         
         self.assertEquals(response.status_code, 302)
         if response.status_code == 302:
-            print("\033[92mPassed!"")
+            print("\033[92mPassed!")
         else:
             print("\033[91mFailed!")
 
