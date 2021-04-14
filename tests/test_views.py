@@ -63,24 +63,18 @@ class TestViews(TestCase):
         students = cookies_data['data']['students']['data']
         #JAN
         print("\033[94mTesting registering as Jan Kowalski...")
+        print("\033[95m============================================================")
         jan_data = students[0]
         cookies_data['data']['students']['data'] = [jan_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
-        if response.status_code == 200:
-            print("\033[92mPassed!")
-        else:
-            print("\033[91mFailed!")
-        print("\033[95m============================================================")
+        print("\033[96m========================================================================")
         #JOANNA
         print("\033[94mTesting registering as Joanna Czerwińska...")
+        print("\033[95m============================================================")
         joanna_data = students[3]
         cookies_data['data']['students']['data'] = [joanna_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         log_out_test(self.client, self.assertEquals)
-        if response.status_code == 200:
-            print("\033[92mPassed!")
-        else:
-            print("\033[91mFailed!")
 
 
 def get_data_test(client, cookies_data, assertEquals):
