@@ -62,14 +62,14 @@ class TestViews(TestCase):
 
         students = cookies_data['data']['students']['data']
         #JAN
-        print("\033[94mTesting registering as Jan Kowalski...")
+        print("\033[94mTesting as Jan Kowalski...")
         print("\033[95m============================================================")
         jan_data = students[0]
         cookies_data['data']['students']['data'] = [jan_data]
         get_data_test(self.client, cookies_data, self.assertEquals)
         print("\033[96m========================================================================")
         #JOANNA
-        print("\033[94mTesting registering as Joanna Czerwińska...")
+        print("\033[94mTesting as Joanna Czerwińska...")
         print("\033[95m============================================================")
         joanna_data = students[3]
         cookies_data['data']['students']['data'] = [joanna_data]
