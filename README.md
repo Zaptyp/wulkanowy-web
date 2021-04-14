@@ -6,8 +6,6 @@
 ## Come to our discord server!!!
 [![Discord1](https://i.imgur.com/3ljTQWy.png)](https://discord.gg/5qsEujZMdp)
 
-![Status](https://img.shields.io/discord/390889354199040011.svg?color=#33CD56)
-
 # Development
 ## 1. Install dependencies.
 ```shell
