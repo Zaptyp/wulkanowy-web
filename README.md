@@ -2,7 +2,7 @@
 
 🌋 Unofficial VULCAN UONET+ browser client for students and their parents
 
-[![GitHub Workflow Status](https://github.com/wulkanowy/wulkanowy-web/workflows/Python%20application/badge.svg)](https://discord.gg/hVQeJx5Q)
+![GitHub Workflow Status](https://github.com/wulkanowy/wulkanowy-web/workflows/Python%20application/badge.svg)
 
 ## Join our Discord server!
 
