@@ -14,7 +14,7 @@
 
 ```sh
 pip install -r requirements.txt
-npm install
+npm i
 ```
 
 ## 2. Make migrations
@@ -28,6 +28,10 @@ python manage.py migrate
 
 ```sh
 python manage.py runserver
+```
+
+```sh
+cd frontend
 npm run dev
 ```
 
