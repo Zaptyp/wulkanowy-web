@@ -6,7 +6,7 @@
 
 ## Join our Discord server!
 
-[![Discord](https://discordapp.com/api/guilds/390889354199040011/widget.png?style=banner2)](https://discord.gg/5qsEujZMdp)
+[![Discord](https://discordapp.com/api/guilds/390889354199040011/widget.png?style=banner2)](https://discord.com/invite/vccAQBr)
 
 # Development
 
