@@ -1,4 +1,4 @@
-# Wulkanowy web
+# Wulkanowy Web
 
 🌋 Unofficial VULCAN UONET+ browser client for students and their parents
 
