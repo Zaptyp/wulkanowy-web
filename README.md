@@ -29,10 +29,10 @@ python manage.py migrate
 ```sh
 python manage.py runserver
 ```
-
-```sh
+And in frontend:
+```shell
 cd frontend
-npm run dev
+npm run build
 ```
 
 # Docker
