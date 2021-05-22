@@ -12,15 +12,7 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    setLoading(state) {
-      if (!this.state.isLoading) {
-        this.state.isLoading = true;
-      }
-
-      this.state.isLoading = false;
-    }
   },
   modules: {
-
   },
 });

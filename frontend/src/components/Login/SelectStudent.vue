@@ -4,7 +4,7 @@
       <a>Select student to login!</a>
     </v-col>
     <v-col cols="12">
-      <v-radio-group>
+      <v-radio-group v-model="radioGroup" @change="$store.state.selectedStudent = radioGroup">
         <v-radio
           v-model="selectedStudent"
           v-for="student in this.$store.state.loginData.data.students.data"
@@ -29,7 +29,7 @@ export default {
   name: 'SelectStudent',
   data() {
     return {
-      radioGroup: 1,
+      radioGroup: 0,
       selectedStudent: '',
       studentList: {
         type: Array,

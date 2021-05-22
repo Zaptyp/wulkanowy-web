@@ -42,7 +42,6 @@
 </template>
 
 <script>
-//  import LoginForm from '../../props/LoginForm.ts';
 import Vue from 'vue';
 import login from '../../api/login';
 
