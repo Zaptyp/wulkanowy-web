@@ -14,7 +14,7 @@
 
 ```sh
 pip install -r requirements.txt
-npm i
+npm i --prefix frontend
 ```
 
 ## 2. Make migrations
