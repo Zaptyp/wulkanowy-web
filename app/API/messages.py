@@ -143,7 +143,7 @@ def get_message_content(register_id, students, oun, s, date, school_year, symbol
         headers = json.load(f)
 
     if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
-        link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
+        link = f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}'
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
