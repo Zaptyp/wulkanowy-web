@@ -5,10 +5,10 @@ from bs4 import BeautifulSoup
 from .generate_cookies import autogenerate_cookies
 
 def get_dashboard(register_id, students, s, diary_url, symbol):
-    if diary_url != 'http://cufs.fakelog.tk/':
+    if diary_url != 'http://cufs.fakelog.cf/':
         diary_url = 'http://uonetplus.vulcan.net.pl/'
     else:
-        diary_url = 'http://uonetplus.fakelog.tk/'
+        diary_url = 'http://uonetplus.fakelog.cf/'
         
     cookies = autogenerate_cookies(students, s)
 

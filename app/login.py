@@ -27,8 +27,8 @@ def send(url, data, fail, diary_url, symbol, s):
     if fail in page.text:
         return {'success': False}
     else:
-        if diary_url == 'http://cufs.fakelog.tk/':
-            page = s.get('http://cufs.fakelog.tk/powiatwulkanowy/FS/LS?wa=wsignin1.0&wtrealm=http://uonetplus.fakelog.localhost:300/powiatwulkanowy/LoginEndpoint.aspx&wctx=http://uonetplus.fakelog.localhost:300/powiatwulkanowy/LoginEndpoint.aspx')
+        if diary_url == 'http://cufs.fakelog.cf/':
+            page = s.get('http://cufs.fakelog.cf/powiatwulkanowy/FS/LS?wa=wsignin1.0&wtrealm=http://uonetplus.fakelog.localhost:300/powiatwulkanowy/LoginEndpoint.aspx&wctx=http://uonetplus.fakelog.localhost:300/powiatwulkanowy/LoginEndpoint.aspx')
         bs = BeautifulSoup(page.text, 'html.parser')
         wa = bs.find('input', {'name': 'wa'})['value']
         cert = bs.find('input', {'name': 'wresult'})['value']
@@ -44,8 +44,8 @@ def send(url, data, fail, diary_url, symbol, s):
             school_url = a['href']
             break
 
-        if diary_url == 'http://cufs.fakelog.tk/':
-            school_url = 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458'
+        if diary_url == 'http://cufs.fakelog.cf/':
+            school_url = 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458'
 
         cookies = get_cookies(symbol, school_url, s, diary_url)
 
