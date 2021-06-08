@@ -11,8 +11,8 @@ def get_received_messages(register_id, students, oun, s, date, school_year, symb
 
     now = calendar.timegm(time.gmtime())
 
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        received_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        received_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
     else:
         received_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
 
@@ -24,8 +24,8 @@ def get_sent_messages(register_id, students, oun, s, date, school_year, symbol):
 
     now = calendar.timegm(time.gmtime())
 
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        sent_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        sent_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
     else:
         sent_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetInboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
 
@@ -37,8 +37,8 @@ def get_deleted_messages(register_id, students, oun, s, date, school_year, symbo
 
     now = calendar.timegm(time.gmtime())
    
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        deleted_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        deleted_messages = requests.get(f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
     else:
         deleted_messages = requests.get(f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}/Wiadomosc.mvc/GetOutboxMessages?_dc={now}&dataOd=&dataDo=&page=1&start=0&limit=25', headers=headers, cookies=s)
 
@@ -48,8 +48,8 @@ def get_recipients(register_id, students, oun, s, date, school_year, symbol):
     with open('app/API/headers.json') as f:
         headers = json.load(f)
 
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        link = f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}'
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
@@ -66,8 +66,8 @@ def send_message(register_id, students, oun, s, date, school_year, symbol, send_
     with open('app/API/headers.json') as f:
         headers = json.load(f)
 
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        link = f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}'
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
@@ -142,8 +142,8 @@ def get_message_content(register_id, students, oun, s, date, school_year, symbol
     with open('app/API/headers.json') as f:
         headers = json.load(f)
 
-    if oun == 'http://uonetplus-uczen.fakelog.cf/powiatwulkanowy/123458':
-        link = f'http://uonetplus-uzytkownik.fakelog.cf/{symbol}'
+    if oun == 'http://uonetplus-uczen.fakelog.tk/powiatwulkanowy/123458':
+        link = f'http://uonetplus-uzytkownik.fakelog.tk/{symbol}'
     else:
         link = f'https://uonetplus-uzytkownik.vulcan.net.pl/{symbol}'
 
