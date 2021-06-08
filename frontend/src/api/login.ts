@@ -15,7 +15,7 @@ export default {
         loginName: email,
         Password: password,
         Symbol: symbol,
-        diaryUrl: 'http://cufs.fakelog.cf/',
+        diaryUrl: 'http://cufs.fakelog.tk/',
       },
     });
 

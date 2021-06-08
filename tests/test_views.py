@@ -46,7 +46,7 @@ class TestViews(TestCase):
             "loginName": "jan@fakelog.cf",
             "Password": "jan123",
             "Symbol": "powiatwulkanowy",
-            "diaryUrl": "http://cufs.fakelog.cf/"
+            "diaryUrl": "http://cufs.fakelog.tk/"
         }
         
         print("\033[94mTesting login...")
