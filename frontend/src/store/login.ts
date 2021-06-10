@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     isLoading: false,
     loginData: null,
-    showStudentsList: false,
+    showStudentsList: true,
   },
   mutations: {
   },
