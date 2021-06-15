@@ -20,11 +20,12 @@
       </v-col>
       <v-col cols="12">
         <v-select
-          :items="domains"
-          v-model="selectedSymbol"
-          item-value="Fakelog"
+          :items="diaryNames"
+          v-model="selectedDiary"
+          item-value=""
           v-on:change="itemSelected()"
           label="Symbol"
+          selection="index"
           outlined></v-select>
       </v-col>
       <v-col cols="12">
@@ -41,29 +42,37 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import login from '../../api/login';
+import diary from '../../assets/data/diary.json';
 
-export default {
+interface Login {
+  login: string
+  password: string
+  diaryNames: Array<string>
+  selectedDiary: string
+}
+
+export default Vue.extend({
   name: 'UserLogin',
-  data() {
-    return {
-      login: '',
-      password: '',
-      selectedSymbol: '',
-      domains: [
-        'Vulcan',
-        'Fakelog',
-      ],
-    };
+  data: (): Login => ({
+    login: '',
+    password: '',
+    diaryNames: [],
+    selectedDiary: '',
+  }),
+  created() {
+    this.diaryNames = diary.diaries.map((item): string => item.name);
   },
   methods: {
     async loginUser() {
       Vue.set(this.$store.state, 'isLoading', true);
-      const response = await login.register(this.login, this.password, this.selectedSymbol);
+      const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
+      console.log(index);
+      const response = await login.login(this.login, this.password,
+        diary.diaries[index].name, diary.diaries[index].url);
       this.$store.state.loginData = response.data;
-
       console.log(this.$store.state.loginData);
 
       if (this.$store.state.loginData.data.students.data.length > 1) {
@@ -72,13 +81,13 @@ export default {
       }
     },
     itemSelected() {
-      if (this.selectedSymbol === 'Fakelog') {
+      if (this.selectedDiary === 'Fakelog') {
         this.login = 'jan@fakelog.cf';
         this.password = 'jan123';
       }
     },
   },
-};
+});
 </script>
 
 <style scoped>
