@@ -2,7 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import Cookies from 'universal-cookie';
 
 export default {
-  login: async (email: string, password: string, symbol: string, diaryUrl: string): Promise<AxiosResponse> => {
+  login: async (email: string, password: string, symbol: string, diaryUrl: string)
+    : Promise<AxiosResponse> => {
     const cookies = new Cookies();
     const response = await axios({
       method: 'POST',
@@ -15,7 +16,7 @@ export default {
         loginName: email,
         Password: password,
         Symbol: symbol,
-        diaryUrl: diaryUrl,
+        diaryUrl,
       },
     });
 
