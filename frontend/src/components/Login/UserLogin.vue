@@ -71,9 +71,7 @@ export default Vue.extend({
       const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
       const response = await login.login(this.login, this.password,
         'powiatwulkanowy', diary.diaries[index].url);
-      console.log(response);
       this.$store.state.loginData = response.data;
-      console.log(this.$store.state.loginData);
 
       if (this.$store.state.loginData.data.students.data.length > 1) {
         this.$store.state.isLoading = false;

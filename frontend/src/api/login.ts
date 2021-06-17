@@ -18,6 +18,7 @@ export default {
         Symbol: symbol,
         diaryUrl,
       },
+      withCredentials: true,
     });
 
     document.cookie = response.headers['Set-Cookie'];
