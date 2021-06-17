@@ -10,7 +10,7 @@ export default {
       url: 'http://localhost:8000/api/login',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': cookies.get('csrf-token'),
+        'X-CSRFToken': cookies.get('csrftoken'),
       },
       data: {
         loginName: email,

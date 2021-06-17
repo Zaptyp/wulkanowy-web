@@ -69,9 +69,9 @@ export default Vue.extend({
     async loginUser() {
       Vue.set(this.$store.state, 'isLoading', true);
       const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
-      console.log(index);
       const response = await login.login(this.login, this.password,
-        diary.diaries[index].name, diary.diaries[index].url);
+        'powiatwulkanowy', diary.diaries[index].url);
+      console.log(response);
       this.$store.state.loginData = response.data;
       console.log(this.$store.state.loginData);
 
@@ -82,7 +82,7 @@ export default Vue.extend({
     },
     itemSelected() {
       if (this.selectedDiary === 'Fakelog') {
-        this.login = 'jan@fakelog.cf';
+        this.login = 'jan@fakelog.tk';
         this.password = 'jan123';
       }
     },

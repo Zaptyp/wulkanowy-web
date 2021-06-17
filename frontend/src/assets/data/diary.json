@@ -2,11 +2,11 @@
     "diaries": [
         {
             "name": "Vulcan",
-            "url": "cufs.vulcan.net.pl"
+            "url": "https://cufs.vulcan.net.pl/"
         },
         {
             "name": "Fakelog",
-            "url": "cufs.fakelog.tk"
+            "url": "http://cufs.fakelog.tk/"
         }
     ]
 }
