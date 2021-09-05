@@ -11,7 +11,6 @@ interface IndexState {
   selectedStudent: number
 }
 
-
 export default new Vuex.Store({
   state: {
     drawer: true,
