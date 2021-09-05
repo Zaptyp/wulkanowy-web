@@ -87,6 +87,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://librus.fun",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
+
 WSGI_APPLICATION = 'wulkanowy.wsgi.application'
 
 
