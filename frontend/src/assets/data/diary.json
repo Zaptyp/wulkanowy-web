@@ -1,0 +1,12 @@
+{
+    "diaries": [
+        {
+            "name": "Vulcan",
+            "url": "https://cufs.vulcan.net.pl/"
+        },
+        {
+            "name": "Fakelog",
+            "url": "http://cufs.fakelog.tk/"
+        }
+    ]
+}
