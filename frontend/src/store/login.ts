@@ -10,7 +10,7 @@ interface LoginState {
 }
 
 export default new Vuex.Store({
-  state: (): LoginState => ({
+  state: {
     isLoading: false,
     loginData: null,
     showStudentsList: true,

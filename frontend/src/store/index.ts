@@ -11,8 +11,9 @@ interface IndexState {
   selectedStudent: number
 }
 
+
 export default new Vuex.Store({
-  state: (): IndexState => ({
+  state: {
     drawer: true,
     group: null,
     mini: true,

@@ -19,7 +19,7 @@
     </v-row>
   </div>
 </template>
-<script>
+<script lang="ts">
 import Vue from 'vue';
 import login from '../../api/login';
 import diary from '../../assets/data/diary.json';
@@ -28,7 +28,9 @@ interface Login {
   login: string
   password: string
   diaryNames: Array<string>
-  selectedDiary: string
+  selectedDiary: string,
+  selectedSymbol: string,
+  symbol: string
 }
 
 export default Vue.extend({
@@ -38,8 +40,8 @@ export default Vue.extend({
       inputDisabled: false,
       login: '',
       password: '',
-      selectedSymbols: '',
-      symbols: '',
+      selectedSymbol: '',
+      symbol: '',
       item: [
         'Vulcan',
         'Fakelog',
@@ -50,7 +52,7 @@ export default Vue.extend({
     async loginUser() {
       this.inputDisabled = true;
       Vue.set(this.$store.state, 'isLoading', true);
-      const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
+      const index = diary.diaries.findIndex((item) => item.name === this.selectedSymbol);
       const response = await login.login(this.login, this.password,
         'powiatwulkanowy', diary.diaries[index].url);
       this.$store.state.loginData = response.data;
