@@ -10,11 +10,11 @@ interface LoginState {
 }
 
 export default new Vuex.Store({
-  state: (): LoginState => ({
+  state: {
     isLoading: false,
     loginData: null,
-    showStudentsList: false,
-  }),
+    showStudentsList: true,
+  },
   mutations: {
   },
   actions: {

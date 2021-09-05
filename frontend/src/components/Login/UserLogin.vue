@@ -1,47 +1,24 @@
 <template>
-  <div>
+  <div id="App" style="height: 476px; margin: 0;">
     <v-row align="center">
-      <v-col cols="12"></v-col>
       <v-col cols="12">
-        <v-text-field
-          class="login-input"
-          v-model="login"
-          label="E-mail"
-          outlined
-          clearable>
-        </v-text-field>
-        <v-text-field
-          class="login-input"
-          v-model="password"
-          label="Password"
-          outlined
-          clearable>
-        </v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-select
-          :items="diaryNames"
-          v-model="selectedDiary"
-          item-value=""
-          v-on:change="itemSelected()"
-          label="Symbol"
-          selection="index"
-          outlined></v-select>
-      </v-col>
-      <v-col cols="12">
-        <v-btn
-          class="login-button"
-          depressed
-          color="primary"
-          @click="loginUser()">
-          Log in!</v-btn>
-        <v-divider style="padding: 5px"></v-divider>
-        <a style="">You forgot password click here!</a>
+              <div id="nag">Zaloguj się za pomocą konta ucznia lub rodzica</div>
+              <v-text-field color="red" v-model="login" :disabled="inputDisabled"
+              label="E-mail" outlined></v-text-field>
+              <v-text-field color="red" v-model="password" :disabled="inputDisabled"
+              label="Hasło" outlined type="password"></v-text-field>
+              <v-text-field color="red" v-model="symbol" :disabled="inputDisabled"
+              label="Symbol" outlined></v-text-field>
+              <v-select color="red" v-model="selectedSymbol" :disabled="inputDisabled"
+              label="Wybierz odmianę dziennika UONET+" outlined :items="item"
+              v-on:change="fakelog()"
+              item-color="red"></v-select>
+              <v-btn id="buttonTwo" dark color="red" elevation="2"
+              @click="loginUser()">Zaloguj się</v-btn>
       </v-col>
     </v-row>
   </div>
 </template>
-
 <script lang="ts">
 import Vue from 'vue';
 import login from '../../api/login';
@@ -51,43 +28,65 @@ interface Login {
   login: string
   password: string
   diaryNames: Array<string>
-  selectedDiary: string
+  selectedDiary: string,
+  selectedSymbol: string,
+  symbol: string
 }
 
 export default Vue.extend({
   name: 'UserLogin',
-  data: (): Login => ({
-    login: '',
-    password: '',
-    diaryNames: [],
-    selectedDiary: '',
-  }),
-  created() {
-    this.diaryNames = diary.diaries.map((item): string => item.name);
+  data() {
+    return {
+      inputDisabled: false,
+      login: '',
+      password: '',
+      selectedSymbol: '',
+      symbol: '',
+      item: [
+        'Vulcan',
+        'Fakelog',
+      ],
+    };
   },
   methods: {
     async loginUser() {
+      this.inputDisabled = true;
       Vue.set(this.$store.state, 'isLoading', true);
-      const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
+      const index = diary.diaries.findIndex((item) => item.name === this.selectedSymbol);
       const response = await login.login(this.login, this.password,
         'powiatwulkanowy', diary.diaries[index].url);
       this.$store.state.loginData = response.data;
 
       if (this.$store.state.loginData.data.students.data.length > 1) {
-        this.$store.state.isLoading = false;
         this.$store.state.showStudentsList = true;
+        this.$store.state.isLoading = false;
       }
     },
-    itemSelected() {
-      if (this.selectedDiary === 'Fakelog') {
-        this.login = 'jan@fakelog.tk';
+
+    fakelog() {
+      if (this.selectedSymbol === 'Fakelog') {
+        this.login = 'jan@fakelog.cf';
         this.password = 'jan123';
+        this.symbol = 'powiatwulkanowy';
       }
     },
   },
 });
 </script>
+<style>
+  #App{
+    padding: 10px;
+  }
+  #nag{
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.3pc;
+    margin-bottom: 1pc;
+  }
 
-<style scoped>
-
+  #buttonOne{
+    margin-right: auto;
+    display: block;
+    float: left;
+  }
 </style>

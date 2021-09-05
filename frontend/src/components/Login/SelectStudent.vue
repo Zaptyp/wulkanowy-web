@@ -1,10 +1,9 @@
 <template>
+<div id="App" style="min-height: 476px; margin: 0;">
   <v-row align="center">
     <v-col cols="12">
-      <a>Select student to login!</a>
-    </v-col>
-    <v-col cols="12">
-      <v-radio-group v-model="radioGroup" @change="$store.state.selectedStudent = radioGroup">
+      <div id="nag">Wybierz ucznia</div>
+      <v-radio-group>
         <v-radio
           v-model="selectedStudent"
           v-for="student in this.$store.state.loginData.data.students.data"
@@ -14,14 +13,12 @@
       </v-radio-group>
     </v-col>
     <v-col cols="12">
-      <v-btn
-        class="login-button"
-        depressed
-        color="primary"
-        @click="chooseClicked()">
-        Choose</v-btn>
+      <v-btn id="buttonTwo" dark color="red" elevation="2"
+        @click="chooseClicked()" :disabled="inputDisabled"
+      >Wybierz</v-btn>
     </v-col>
   </v-row>
+</div>
 </template>
 
 <script>
@@ -29,7 +26,8 @@ export default {
   name: 'SelectStudent',
   data() {
     return {
-      radioGroup: 0,
+      itemSelected: '',
+      radioGroup: 1,
       selectedStudent: '',
       studentList: {
         type: Array,
@@ -45,10 +43,28 @@ export default {
       this.$store.state.showStudentsList = true;
       await this.$router.push('/user');
     },
+    back() {
+      this.$store.state.showStudentsList = false;
+    },
   },
 };
 </script>
 
-<style scoped>
+<style>
+  #nag{
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.3pc;
+    margin-bottom: 1pc;
+  }
 
+  #App{
+    padding: 10px;
+  }
+
+  #buttonTwo{
+    margin-top: auto;
+    margin-left: auto;
+    display: flex;
+  }
 </style>

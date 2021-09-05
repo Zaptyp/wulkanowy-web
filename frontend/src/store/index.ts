@@ -12,13 +12,15 @@ interface IndexState {
 }
 
 export default new Vuex.Store({
-  state: (): IndexState => ({
+  state: {
     drawer: true,
     group: null,
     mini: true,
     appbarTitle: 'Dashboard',
-    selectedStudent: 0,
-  }),
+    selcetDialog: false,
+    page: 'about',
+    showStudentsList: false,
+  },
   mutations: {
   },
   actions: {
