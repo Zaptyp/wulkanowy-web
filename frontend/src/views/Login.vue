@@ -1,15 +1,21 @@
 <template>
   <div id="login">
     <v-main style="width: 100%;">
-      <div style="clear: both;"></div>
       <v-card
         elevation="10"
         id="login-form"
         class="mx-auto"
+        :tile="window.width < 900"
         >
-        <Baner v-if="window.width > 900"></Baner>
-        <div class="card">
-          <v-col>
+        <v-row no-gutters>
+          <v-col
+            class="red darken-2 rounded-l-sm"
+            cols="12"
+            md="5"
+            style="min-height: 500px;"
+            v-if="window.width > 900"
+          ><Baner v-if="window.width > 900"></Baner></v-col>
+          <v-col cols="12" md="7">
             <form>
               <v-container>
                 <UserLogin
@@ -22,7 +28,7 @@
               </v-container>
             </form>
           </v-col>
-        </div>
+        </v-row>
       </v-card>
     </v-main>
   </div>
@@ -80,18 +86,28 @@ export default {
   overflow: hidden;
   background-image: url("../assets/wallpaper.jpg");
   background-size: cover;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
 }
 #login-form {
   top: 15%;
   width: 850px;
   margin-bottom: 200px;
+  min-height: 500px;
 }
 .login-input {
   margin: 10px;
 }
 .login-button {
   margin: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+  #login-form {
+    top: 0%;
+    margin: 0;
+    width: 100vw;
+    min-height: 100vh;
+  }
 }
 </style>

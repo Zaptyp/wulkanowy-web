@@ -1,9 +1,10 @@
 <template>
-<div id="App" style="margin: 0;">
-    <div id="appbar">
-      <Appbar></Appbar>
-      <Drawer></Drawer>
-    </div>
+<div>
+  <div id="appbar">
+    <Appbar></Appbar>
+    <Drawer></Drawer>
+  </div>
+  <v-main></v-main>
 </div>
 </template>
 
@@ -19,6 +20,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>

@@ -1,48 +1,69 @@
 <template>
-  <div id="App" style="height: 476px; margin: 0;">
-    <v-row align="center">
-      <v-col cols="12">
-              <div id="nag">Zaloguj się za pomocą konta ucznia lub rodzica</div>
-              <v-text-field color="red" v-model="login" :disabled="inputDisabled"
-              label="E-mail" outlined></v-text-field>
-              <v-text-field color="red" v-model="password" :disabled="inputDisabled"
-              label="Hasło" outlined type="password"></v-text-field>
-              <v-text-field color="red" v-model="symbol" :disabled="inputDisabled"
-              label="Symbol" outlined></v-text-field>
-              <v-select color="red" v-model="selectedSymbol" :disabled="inputDisabled"
-              label="Wybierz odmianę dziennika UONET+" outlined :items="item"
-              v-on:change="fakelog()"
-              item-color="red"></v-select>
-              <v-btn id="buttonTwo" dark color="red" elevation="2"
-              @click="loginUser()">Zaloguj się</v-btn>
-      </v-col>
-    </v-row>
+  <div>
+    <v-col cols="12">
+      <p class="justify-center text-center headline font-weight-light">
+        Zaloguj się za pomocą konta ucznia lub rodzica
+      </p>
+    </v-col>
+    <v-col cols="12">
+      <v-text-field
+        color="red"
+        v-model="login"
+        :disabled="inputDisabled"
+        label="E-mail"
+        outlined
+      />
+      <v-text-field
+        color="red"
+        v-model="password"
+        :disabled="inputDisabled"
+        label="Hasło"
+        outlined
+        type="password"
+      />
+      <v-text-field
+        color="red"
+        v-model="symbol"
+        :disabled="inputDisabled"
+        label="Symbol"
+        outlined
+      />
+      <v-select
+        color="red"
+        v-model="selectedSymbol"
+        :disabled="inputDisabled"
+        label="Wybierz odmianę dziennika UONET+"
+        outlined
+        :items="domains"
+        v-on:change="fakelog()"
+        item-color="red"
+      />
+    </v-col>
+    <v-col cols="12">
+      <v-btn
+        dark
+        color="red"
+        elevation="2"
+        @click="loginUser()"
+        class="justify-end"
+      >Zaloguj się</v-btn>
+    </v-col>
   </div>
 </template>
-<script lang="ts">
+<script>
 import Vue from 'vue';
 import login from '../../api/login';
-import diary from '../../assets/data/diary.json';
 
-interface Login {
-  login: string
-  password: string
-  diaryNames: Array<string>
-  selectedDiary: string,
-  selectedSymbol: string,
-  symbol: string
-}
-
-export default Vue.extend({
+export default {
   name: 'UserLogin',
   data() {
     return {
       inputDisabled: false,
       login: '',
       password: '',
-      selectedSymbol: '',
-      symbol: '',
-      item: [
+      selectedSymbols: '',
+      symbols: '',
+      domains: [
         'Vulcan',
         'Fakelog',
       ],
@@ -71,7 +92,7 @@ export default Vue.extend({
       }
     },
   },
-});
+};
 </script>
 <style>
   #App{

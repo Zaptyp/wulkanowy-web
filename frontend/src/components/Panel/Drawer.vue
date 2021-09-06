@@ -99,22 +99,6 @@
             </v-list-item-icon>
             <v-list-item-title>School</v-list-item-title>
           </v-list-item>
-
-          <v-divider></v-divider>
-
-          <v-list-item @click="clickMenu(settings)">
-            <v-list-item-icon>
-              <v-icon>mdi-cog</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Settings</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item @click="clickMenu(about)">
-            <v-list-item-icon>
-              <v-icon>mdi-information-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>About</v-list-item-title>
-          </v-list-item>
        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
