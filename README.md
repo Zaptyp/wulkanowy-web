@@ -14,7 +14,11 @@
 
 ```sh
 pip install -r requirements.txt
-npm i --prefix frontend
+```
+And in frontend:
+```sh
+cd frontend
+npm install
 ```
 
 ## 2. Make migrations
@@ -30,7 +34,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 And in frontend:
-```shell
+```sh
 cd frontend
 npm run build
 ```

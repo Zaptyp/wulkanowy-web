@@ -2,11 +2,15 @@
     on: [push]
     jobs:
       build:
+
         runs-on: ubuntu-latest
         
         steps:
-        - uses: actions/checkout@v1
-        - name: Install npm
-          run: npm install --prefix frontend
+        - name: Check out code
+          uses: actions/checkout@v2
+        - name: Install deps
+          working-directory: ./frontend
+          run: npm install --immutable
         - name: Build app
-          run: npm run build --prefix frontend
+          working-directory: ./frontend
+          run: npm run build
