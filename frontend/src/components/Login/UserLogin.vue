@@ -30,12 +30,14 @@
       />
       <v-select
         color="red"
-        v-model="selectedSymbol"
+        :items="diaryNames"
+        v-model="selectedDiary"
+        item-value=""
+        v-on:change="itemSelected()"
+        label="Symbol"
+        selection="index"
         :disabled="inputDisabled"
-        label="Wybierz odmianę dziennika UONET+"
         outlined
-        :items="domains"
-        v-on:change="fakelog()"
         item-color="red"
       />
     </v-col>
@@ -50,64 +52,54 @@
     </v-col>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import Vue from 'vue';
 import login from '../../api/login';
+import diary from '../../assets/data/diary.json';
 
-export default {
+interface Login {
+  login: string
+  password: string
+  symbol: string
+  diaryNames: Array<string>
+  selectedDiary: string
+  inputDisabled: boolean
+}
+export default Vue.extend({
   name: 'UserLogin',
-  data() {
-    return {
-      inputDisabled: false,
-      login: '',
-      password: '',
-      selectedSymbols: '',
-      symbols: '',
-      domains: [
-        'Vulcan',
-        'Fakelog',
-      ],
-    };
+  data: (): Login => ({
+    login: '',
+    password: '',
+    symbol: '',
+    diaryNames: [],
+    selectedDiary: '',
+    inputDisabled: false,
+  }),
+  created() {
+    this.diaryNames = diary.diaries.map((item): string => item.name);
   },
   methods: {
     async loginUser() {
-      this.inputDisabled = true;
       Vue.set(this.$store.state, 'isLoading', true);
-      const index = diary.diaries.findIndex((item) => item.name === this.selectedSymbol);
+      const index = diary.diaries.findIndex((item) => item.name === this.selectedDiary);
       const response = await login.login(this.login, this.password,
         'powiatwulkanowy', diary.diaries[index].url);
       this.$store.state.loginData = response.data;
-
       if (this.$store.state.loginData.data.students.data.length > 1) {
-        this.$store.state.showStudentsList = true;
         this.$store.state.isLoading = false;
+        this.$store.state.showStudentsList = true;
+      } else {
+        alert('Dane logowania są nie prawidłowe!');
       }
     },
-
-    fakelog() {
-      if (this.selectedSymbol === 'Fakelog') {
-        this.login = 'jan@fakelog.cf';
+    itemSelected() {
+      if (this.selectedDiary === 'Fakelog') {
+        this.login = 'jan@fakelog.tk';
         this.password = 'jan123';
         this.symbol = 'powiatwulkanowy';
       }
     },
   },
-};
+});
 </script>
-<style>
-  #App{
-    padding: 10px;
-  }
-  #nag{
-    text-align: center;
-    font-weight: 300;
-    font-size: 1.3pc;
-    margin-bottom: 1pc;
-  }
-
-  #buttonOne{
-    margin-right: auto;
-    display: block;
-    float: left;
-  }
-</style>
