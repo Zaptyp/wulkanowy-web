@@ -1,34 +1,29 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs15
+FROM nikolaik/python-nodejs:python3.10-nodejs16-bullseye
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /src
+WORKDIR /src/frontend
 
-COPY frontend/package-lock.json .
-COPY frontend/package*.json ./frontend/
+COPY frontend/package-lock.json /src/frontend/package-lock.json
+COPY frontend/package.json /src/frontend/package.json
 
 RUN npm install
 
-COPY requirements.txt .
+WORKDIR /src/backend
 
+COPY backend/requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY app/* ./app/
-COPY app/API/* ./app/API/
-COPY app/migrations/* ./app/migrations/
 COPY frontend/* ./frontend/
 COPY frontend/src/* ./frontend/src/
-COPY frontend/migrations/* ./frontend/migrations/
-COPY frontend/static/frontend/* ./frontend/static/frontend/
-COPY frontend/static/frontend/css/* ./frontend/static/frontend/css/
-COPY frontend/static/frontend/images/* ./frontend/static/frontend/images/
-COPY frontend/templates/frontend/* ./frontend/templates/frontend/
-COPY wulkanowy/* ./wulkanowy/
-COPY manage.py .
+COPY frontend/public/* ./frontend/public/
+COPY frontend/tests/* ./frontend/tests/
+COPY backend/* ./backend/
+COPY backend/app/* ./backend/app/
+COPY backend/app/endpoints/* ./backend/app/endpoints/
+COPY backend/app/models/* ./backend/app/models/
 
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-
+WORKDIR /src/frontend
 EXPOSE 8000
 
-ENTRYPOINT [ "python3", "manage.py", "runserver", "0.0.0.0:8000" ]
+ENTRYPOINT [ "python3", "main", "0.0.0.0:8000"]

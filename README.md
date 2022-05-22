@@ -13,6 +13,7 @@
 ## 1. Install dependencies
 
 ```sh
+cd backend
 pip install -r requirements.txt
 ```
 And in frontend:
@@ -20,23 +21,16 @@ And in frontend:
 cd frontend
 npm install
 ```
-
-## 2. Make migrations
-
-```sh
-python manage.py makemigrations
-python manage.py migrate
-```
-
-## 3. Start the server
+## 2. Start the server
 
 ```sh
-python manage.py runserver
+cd backend
+py -m main
 ```
 And in frontend:
 ```sh
 cd frontend
-npm run build
+npm run serve
 ```
 
 # Docker

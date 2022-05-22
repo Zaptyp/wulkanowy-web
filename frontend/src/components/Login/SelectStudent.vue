@@ -1,57 +1,66 @@
 <template>
-<div>
-  <v-row align="center">
-    <v-col cols="12">
-      <p class="justify-center text-center headline font-weight-light">Wybierz Ucznia</p>
-    </v-col>
-    <v-col cols="12">
-      <v-radio-group>
-        <v-radio
-          v-model="selectedStudent"
-          v-for="student in this.$store.state.loginData.data.students.data"
-          :key="student.UczenPelnaNazwa"
-          :label="student.UczenPelnaNazwa">
-        </v-radio>
-      </v-radio-group>
-    </v-col>
-    <v-col cols="12">
-      <v-btn
-        dark
-        color="red"
-        elevation="2"
-        @click="chooseClicked()"
-        :disabled="inputDisabled"
-      >Wybierz</v-btn>
-    </v-col>
-  </v-row>
-</div>
+  <div id="select-student" class="fill-height">
+    <v-form @submit.prevent="select_student" class="fill-height d-flex flex-column">
+      <v-card-title class="d-flex justify-center">Select Student</v-card-title>
+      <div id="login-students-list" class="overflow-y-auto">
+        <v-list>
+          <v-list-item-group color="primary" v-model="$store.state.selected_student" mandatory>
+            <v-list-item
+              v-for="(student, id) in this.$store.state.loginData.students"
+              :key="id"
+              :value="id"
+            >
+              <template #default="{ active }">
+                <v-list-item-action>
+                  <v-icon
+                    :color="active ? 'primary' : ''"
+                    v-text="active ? 'mdi-radiobox-marked' : 'mdi-radiobox-blank'"
+                  />
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>
+                    {{ student.student_name }}
+                    {{ student.student_second_name }}
+                    {{ student.student_surname }}
+                    {{ student.level }}{{ student.symbol }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>{{ student.school_name }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </template>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </div>
+      <v-card-actions class="px-5 pb-5 pt-0 mt-auto">
+        <v-spacer />
+        <v-btn color="primary" type="submit">Sign in</v-btn>
+      </v-card-actions>
+    </v-form>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'SelectStudent',
-  data() {
-    return {
-      itemSelected: '',
-      radioGroup: 1,
-      selectedStudent: '',
-      studentList: {
-        type: Array,
-      },
-    };
-  },
-  beforeMount() {
-    console.log(this.$store.state.loginData.data.students.data[0]);
-  },
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "SelectStudent",
+
   methods: {
-    async chooseClicked() {
-      this.$store.state.selectedUser = this.selectedStudent;
-      this.$store.state.showStudentsList = true;
-      await this.$router.push('/user');
-    },
-    back() {
-      this.$store.state.showStudentsList = false;
+    select_student() {
+      this.$router.push("/user");
     },
   },
-};
+});
 </script>
+
+<style lang="scss" scoped>
+@media only screen and (min-width: 960px) {
+  #login-students-list {
+    max-height: 410px;
+  }
+}
+
+.theme--dark.v-btn {
+  color: #1e1e1e !important;
+}
+</style>

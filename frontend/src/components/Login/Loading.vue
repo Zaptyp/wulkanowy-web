@@ -1,14 +1,12 @@
 <template>
-<div>
-  <v-row
-    align="center"
-    justify="center"
-  >
-    <v-progress-circular
-      indeterminate
-      color="red"
-      style="position: absolute; top: 50%; bottom: 50%;"
-    ></v-progress-circular>
-  </v-row>
-</div>
+  <div id="loading" class="d-flex fill-height justify-center align-center">
+    <v-progress-circular indeterminate color="primary" />
+  </div>
 </template>
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "Loading",
+});
+</script>

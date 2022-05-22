@@ -8,7 +8,7 @@ __pycache__/
 *.code-workspace
 .idea/*
 .venv/*
-
+.DS_Store
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
@@ -153,3 +153,14 @@ dmypy.json
 cython_debug/
 
 node_modules/
+/tests/e2e/videos/
+/tests/e2e/screenshots/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

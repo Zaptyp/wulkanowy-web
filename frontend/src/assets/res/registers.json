@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Vulcan",
+    "host": "vulcan.net.pl",
+    "ssl": true
+  },
+  {
+    "name": "Fakelog",
+    "host": "fakelog.cf",
+    "ssl": false
+  }
+]

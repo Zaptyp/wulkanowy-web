@@ -1,30 +1,58 @@
-import Vue from 'vue';
-import Vuex, { Store } from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
+import router from "@/router";
 
 Vue.use(Vuex);
 
-interface IndexState {
-  drawer: boolean
-  group: any
-  mini: boolean
-  appbarTitle: string
-  selectedStudent: number
+interface State {
+  loading: boolean;
+  loginData: any;
+  logged_in: boolean;
+  selected_student: number;
+  small_ui: boolean;
+  view: string;
+  drawer: {
+    show: boolean;
+    mini: boolean;
+  };
+  error: {
+    show: boolean;
+    description: string;
+    details: string;
+  };
 }
 
 export default new Vuex.Store({
-  state: {
-    drawer: true,
-    group: null,
-    mini: true,
-    appbarTitle: 'Dashboard',
-    selcetDialog: false,
-    page: 'about',
-    showStudentsList: false,
-  },
+  state: (): State => ({
+    loading: false,
+    loginData: [],
+    logged_in: false,
+    selected_student: 0,
+    small_ui: false,
+    view: "dashboard",
+    drawer: {
+      show: true,
+      mini: false,
+    },
+    error: {
+      show: false,
+      description: "",
+      details: "",
+    },
+  }),
   mutations: {
+    log_out(state) {
+      state.loginData = [];
+      state.logged_in = false;
+      router.push("/")
+    },
+    drawer_show(state) {
+      state.drawer.show = !state.drawer.show
+    },
+    drawer_mini(state) {
+      state.drawer.mini = !state.drawer.mini
+    },
   },
-  actions: {
-  },
-  modules: {
-  },
+  actions: {},
+  modules: {},
 });

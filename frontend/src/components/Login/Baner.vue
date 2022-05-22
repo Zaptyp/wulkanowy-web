@@ -1,32 +1,84 @@
 <template>
-  <div>
-    <div class="pa-1 text-center justify-center">
-      <img
-        src="../../assets/iconWhite.svg"
-        width="140"
-        style="text-shadow: -1px 2px 0px rgba(157,0,0,0.73);"
-      />
-    </div>
+  <div id="baner" class="d-flex justify-center align-center fill-height flex-column">
+    <img
+      :src="`${
+        this.$vuetify.theme.dark
+          ? require('../../assets/img/black_icon.svg')
+          : require('../../assets/img/white_icon.svg')
+      }`"
+      width="140"
+    />
     <v-card-title
-      style="text-shadow: -1px 2px 0px rgba(157,0,0,0.73);"
-      class="white--text text-center justify-center pa-2 headline"
-    >Wulkanowy</v-card-title>
-    <v-card-text class="white--text text-center pa-2">
-      Nieoficjalna aplikacja przeglądarkowa ucznia i
-      rodzica dla dziennika Vulcan UONET+
-    </v-card-text>
-    <br><br><br>
-    <v-card-subtitle
-      class="white--text"
-      style="position: absolute; bottom: 0px;"
+      :class="`text-center justify-center pa-2 headline ${
+        this.$vuetify.theme.dark ? 'black--text' : 'white--text'
+      }`"
     >
-      v 0.1.0
-      <v-icon class="white--text">mdi-circle-small</v-icon>
-      <a
-        href="#"
+      Wulkanowy
+    </v-card-title>
+    <v-card-text
+      :class="`${this.$vuetify.theme.dark ? 'black--text' : 'white--text'} text-center pa-2`"
+    >
+      Unofficial VULCAN UONET+ browser client for students and their parents
+    </v-card-text>
+    <v-card-subtitle
+      :class="`text-center justify-center mt-6 ${
+        this.$vuetify.theme.dark ? 'black--text' : 'white--text'
+      }`"
+    >
+      <v-btn
+        icon
+        v-for="(item, i) in social"
+        :key="i"
+        :href="item.link"
         target="_blank"
-        class="white--text"
-      >Polityka prywatności</a>
+        :light="$vuetify.theme.dark"
+        :dark="!$vuetify.theme.dark"
+      >
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
+    </v-card-subtitle>
+    <v-card-subtitle
+      :class="`text-center justify-center ${
+        this.$vuetify.theme.dark ? 'black--text' : 'white--text'
+      }`"
+    >
+      feature/add-new-backend-and-rewrite-login
     </v-card-subtitle>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+
+interface BanerData {
+  social: any;
+}
+
+export default Vue.extend({
+  name: "Baner",
+  data: (): BanerData => ({
+    social: [
+      {
+        icon: "mdi-web",
+        link: "https://wulkanowy.github.io",
+      },
+      {
+        icon: "mdi-github",
+        link: "https://github.com/wulkanowy",
+      },
+      {
+        icon: "mdi-twitter",
+        link: "https://twitter.com/wulkanowy",
+      },
+      {
+        icon: "mdi-facebook",
+        link: "https://facebook.com/wulkanowy",
+      },
+      {
+        icon: "mdi-discord",
+        link: "https://discord.gg/vccAQBr",
+      },
+    ],
+  }),
+});
+</script>

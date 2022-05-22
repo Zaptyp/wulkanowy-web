@@ -1,113 +1,71 @@
 <template>
-  <div id="login">
-    <v-main style="width: 100%;">
-      <v-card
-        elevation="10"
-        id="login-form"
-        class="mx-auto"
-        :tile="window.width < 900"
-        >
-        <v-row no-gutters>
-          <v-col
-            class="red darken-2 rounded-l-sm"
-            cols="12"
-            md="5"
-            style="min-height: 500px;"
-            v-if="window.width > 900"
-          ><Baner v-if="window.width > 900"></Baner></v-col>
-          <v-col cols="12" md="7">
-            <form>
-              <v-container>
-                <UserLogin
-                v-if="!this.$store.state.showStudentsList && !this.$store.state.isLoading">
-                </UserLogin>
-                <SelectStudent
-                v-if="this.$store.state.showStudentsList && !this.$store.state.isLoading">
-                </SelectStudent>
-                <Loading v-if="this.$store.state.isLoading"></Loading>
-              </v-container>
-            </form>
-          </v-col>
-        </v-row>
-      </v-card>
-    </v-main>
+  <div id="login" class="d-flex fill-hieght justify-center align-center">
+    <v-card id="login-card" elevation="15">
+      <v-row no-gutters class="d-flex fill-height">
+        <v-col cols="12" md="5" class="primary rounded-l d-md-flex d-none">
+          <Baner />
+        </v-col>
+        <v-col cols="12" md="7">
+          <LoginForm v-if="!this.$store.state.logged_in & !this.$store.state.loading" />
+          <Loading v-if="this.$store.state.loading" />
+          <SelectStudent v-if="this.$store.state.logged_in & !this.$store.state.loading" />
+        </v-col>
+      </v-row>
+    </v-card>
+    <Snackbar />
   </div>
 </template>
 
-<script>
-import UserLogin from '../components/Login/UserLogin.vue';
-import SelectStudent from '../components/Login/SelectStudent.vue';
-import Baner from '../components/Login/Baner.vue';
-import Loading from '../components/Login/Loading.vue';
+<script lang="ts">
+import Vue from "vue";
+import { LoginForm, SelectStudent, Loading, Baner, Snackbar } from "@/components";
 
-export default {
-  name: 'Login',
+export default Vue.extend({
+  name: "Login",
+
   components: {
-    SelectStudent,
-    UserLogin,
-    Baner,
+    LoginForm,
     Loading,
+    SelectStudent,
+    Baner,
+    Snackbar,
   },
-  data() {
-    return {
-      windowWidth: '',
-      window: {
-        width: 0,
-        height: 0,
-      },
-    };
+  beforeMount() {
+    if (this.$store.state.logged_in) {
+      this.$router.push("/user");
+    }
   },
-  created() {
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.handleResize);
-  },
-  methods: {
-    getLoading() {
-      return this.$store.state.isLoading;
-    },
-    handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
-    },
-  },
-};
+});
 </script>
 
-<style>
-::-webkit-scrollbar {
-  display: none;
-}
+<style lang="scss" scoped>
 #login {
-  text-align: center;
-  background-position: center center;
-  overflow: hidden;
-  background-image: url("../assets/wallpaper.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("../assets/img/login_wallpaper.jpg");
   background-size: cover;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
 }
-#login-form {
-  top: 15%;
-  width: 850px;
-  margin-bottom: 200px;
-  min-height: 500px;
-}
-.login-input {
-  margin: 10px;
-}
-.login-button {
-  margin: 10px;
-}
 
-@media only screen and (max-width: 900px) {
-  #login-form {
-    top: 0%;
-    margin: 0;
+@media only screen and (max-width: 959px) {
+  #login-card {
     width: 100vw;
     min-height: 100vh;
+    border-radius: 0;
+
+    .row {
+      min-height: 100vh;
+    }
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  #login-card {
+    width: 750px;
+
+    .row {
+      align-items: stretch;
+    }
   }
 }
 </style>

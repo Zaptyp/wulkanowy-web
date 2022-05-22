@@ -1,21 +1,16 @@
     name: Backend
     on: [push]
+    env:
+      PYTEST_ADDOPTS: "--color=yes"
     jobs:
       build:
         runs-on: ubuntu-latest
-        services:
-          postgres:
-            image: postgres:10.8
-            ports:
-              - 5432:5432
-            # needed because the postgres container does not provide a healthcheck
-            options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         steps:
         - uses: actions/checkout@v2
-        - name: Set up Python 3.9
+        - name: Set up Python 3.10.4
           uses: actions/setup-python@v2
           with:
-            python-version: 3.9
+            python-version: 3.10.4
         - name: psycopg2 prerequisites
           run: sudo apt-get install python-dev libpq-dev
         - name: Install dependencies
@@ -23,4 +18,5 @@
             python -m pip install --upgrade pip
             pip install -r .github/workflows/requirements.txt
         - name: Run tests
-          run: python manage.py test
+          working-directory: ./backend/
+          run: pytest test.py
