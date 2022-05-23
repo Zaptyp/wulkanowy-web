@@ -2,13 +2,18 @@
   <div id="login-form" class="fill-height">
     <v-form @submit.prevent="login" class="d-flex fill-height flex-column">
       <v-card-title class="d-flex justify-center text-center"
-        >Sign in with the student or parent account</v-card-title
+        >{{ $t("login.header") }}</v-card-title
       >
       <div class="px-5">
-        <v-text-field outlined label="Email" v-model="loginData.username" :rules="[rules.required]" />
         <v-text-field
           outlined
-          label="Password"
+          :label="$t('login.email_lablel')"
+          v-model="loginData.username"
+          :rules="[rules.required]"
+        />
+        <v-text-field
+          outlined
+          :label="$t('login.password_label')"
           v-model="loginData.password"
           :rules="[rules.required]"
           :type="showPassword ? 'text' : 'password'"
@@ -17,9 +22,9 @@
         />
         <v-autocomplete
           outlined
-          label="Symbol"
+          :label="$t('login.symbol_label')"
           v-model="loginData.symbol"
-          :rules="[rules.required]"
+          :rules="[$t(rules.required)]"
           :items="
             loginData.selectedRegisterVariantName == 'Fakelog'
               ? ['powiatwulkanowy', 'adsf']
@@ -28,7 +33,7 @@
         />
         <v-select
           outlined
-          label="UONET+ register variant"
+          :label="$t('login.host_label')"
           v-model="loginData.selectedRegisterVariantName"
           :rules="[rules.required]"
           :items="registerVariantsNames"
@@ -37,7 +42,7 @@
       </div>
       <v-card-actions class="px-5 pb-5 pt-0 mt-auto">
         <v-spacer />
-        <v-btn color="primary" type="submit">Sign in</v-btn>
+        <v-btn color="primary" type="submit">{{ $t('login.sign_in') }}</v-btn>
       </v-card-actions>
     </v-form>
   </div>
@@ -74,7 +79,7 @@ export default Vue.extend({
     symbols: [],
     showPassword: false,
     rules: {
-      required: (value: string) => !!value || "This field are required.",
+      required: (value: string) => !!value || "errors.field_required",
     },
   }),
 
@@ -117,7 +122,7 @@ export default Vue.extend({
       state.selected_student = undefined;
 
       if (!this.loginData.username || !this.loginData.password || !this.loginData.symbol) {
-        state.error.description = "All fields are required!";
+        state.error.description = "empty_fields";
         state.error.show = true;
         state.loading = false;
       } else {

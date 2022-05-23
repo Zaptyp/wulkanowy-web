@@ -13,7 +13,7 @@
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title class="text-capitalize">{{ item.name }}</v-list-item-title>
+              <v-list-item-title>{{ $t("nav_items." + item.name) }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
@@ -60,11 +60,11 @@ export default Vue.extend({
       },
       {
         icon: "mdi-trophy-outline",
-        name: "notes and achievements",
+        name: "notes",
       },
       {
         icon: "mdi-clover",
-        name: "lucky number",
+        name: "lucky_number",
       },
       {
         icon: "mdi-account-multiple-outline",
@@ -72,19 +72,19 @@ export default Vue.extend({
       },
       {
         icon: "mdi-alert-circle-outline",
-        name: "school annocuments",
+        name: "school_annocuments",
       },
       {
         icon: "mdi-domain",
-        name: "school and teachers",
+        name: "school_info",
       },
       {
         icon: "mdi-card-account-details-outline",
-        name: "student data",
+        name: "student_data",
       },
       {
         icon: "mdi-devices",
-        name: "mobile devices",
+        name: "mobile_devices",
       },
       {
         icon: "mdi-email-outline",

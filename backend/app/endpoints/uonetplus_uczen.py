@@ -201,14 +201,13 @@ def get_response(data, path):
         cookies=data.vulcan_cookies,
     )
     if response.status_code != 200:
-        detail = "UONET+ error code: " + response.status_code
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=detail)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="uonet_error")
     if (
-        "Wystąpił błąd aplikacji. Prosimy zalogować się ponownie. Jeśli problem będzie się powtarzał, prosimy o kontakt z serwisem."
+        "uonet_error"
         in response.text
     ):
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="UONET+ error"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="uonet_error"
         )
 
     return response

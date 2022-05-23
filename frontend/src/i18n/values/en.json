@@ -11,11 +11,8 @@
       "symbol_label": "Symbol",
       "host_label": "UONET+ register variant",
       "sign_in": "Sign in",
-      "incorrect_password": "Username or password is incorrect",
-      "incorrect_symbol": "Symbol is incorrect",
       "privacy_policy": "Privacy policy",
-      "select_student_header": "Select student",
-      "empty_filed_error": "This field are required"
+      "select_student_header": "Select student"
     },
     "nav_items": {
       "dashboard": "Dashboard",
@@ -48,6 +45,7 @@
       "empty_field": "This field are required",
       "empty_fields": "This fields are required",
       "no_students_account": "This account hasn't students",
-      "network_error": "No interent connection"
+      "network_error": "No interent connection",
+      "invalid_host_or_ssl": "Register url is invalid. Contact us."
     }
 }

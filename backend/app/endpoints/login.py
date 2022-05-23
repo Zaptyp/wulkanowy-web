@@ -36,11 +36,11 @@ def send_credentials(username: str, password: str, symbol: str, host: str, ssl: 
         page = session.post(url, payload)
         if page.status_code == 404:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST, detail="Host or ssl is invalid"
+                status_code=status.HTTP_400_BAD_REQUEST, detail="invalid_host_or_ssl"
             )
     except:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="Host or ssl is invalid"
+            status_code=status.HTTP_400_BAD_REQUEST, detail="invalid_host_or_ssl"
         )
     soup = BeautifulSoup(page.text, "lxml")
     error_tags = soup.select(".ErrorMessage, #ErrorTextLabel, #loginArea #errorText")
@@ -48,7 +48,7 @@ def send_credentials(username: str, password: str, symbol: str, host: str, ssl: 
         msg = re.sub(r"\s+", " ", error_tag.text).strip()
         if msg:
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="Username or password is incorrect"
+                status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_username_or_password"
             )
     wa: str = soup.select_one('input[name="wa"]')["value"]
     wresult: str = soup.select_one('input[name="wresult"]')["value"]
@@ -184,7 +184,7 @@ def get_students(symbol: str, host: str, ssl: bool, cers, session):
                 )
                 students.append(student)
     else:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Symbol is incorrect")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_symbol")
     return students
 
 

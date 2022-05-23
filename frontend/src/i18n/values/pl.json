@@ -11,11 +11,8 @@
       "symbol_label": "Symbol",
       "host_label": "Odmiana dziennika UONET+",
       "sign_in": "Zaloguj",
-      "incorrect_password": "Dane logowania są niepoprawne",
-      "incorrect_symbol": "Nieprawidłowy symbol",
       "privacy_policy": "Polityka Prywatności",
-      "select_student_header": "Wybierz ucznia",
-      "empty_filed_error": "To pole jest wymagane"
+      "select_student_header": "Wybierz ucznia"
     },
     "nav_items": {
       "dashboard": "Start",
@@ -48,6 +45,7 @@
       "empty_field": "To pole jest wymagane",
       "empty_fields": "Te pola są wymagane",
       "no_students_account": "To konto nie ma uczniów",
-      "network_error": "Brak połączenia z internetem"
+      "network_error": "Brak połączenia z internetem",
+      "invalid_host_or_ssl": "URL dziennika jest nieporpawne. Skontaktuj się z nami."
     }
 }

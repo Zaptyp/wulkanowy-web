@@ -13,12 +13,12 @@
         this.$vuetify.theme.dark ? 'black--text' : 'white--text'
       }`"
     >
-      Wulkanowy
+      {{ $t("app_name") }}
     </v-card-title>
     <v-card-text
       :class="`${this.$vuetify.theme.dark ? 'black--text' : 'white--text'} text-center pa-2`"
     >
-      Unofficial VULCAN UONET+ browser client for students and their parents
+      {{ $t("app_description") }}
     </v-card-text>
     <v-card-subtitle
       :class="`text-center justify-center mt-6 ${
@@ -42,7 +42,7 @@
         this.$vuetify.theme.dark ? 'black--text' : 'white--text'
       }`"
     >
-      feature/add-new-backend-and-rewrite-login
+      feature/add-settings
     </v-card-subtitle>
   </div>
 </template>
