@@ -11,15 +11,15 @@ export default Vue.extend({
   name: "App",
 
   beforeMount() {
-    let darkTheme = localStorage.getItem("dark_theme");
-    if (darkTheme) {
-      if (darkTheme == "true") {
+    const dark: string = localStorage.getItem("dark");
+    if (dark) {
+      if (dark == "true") {
         this.$vuetify.theme.dark = true;
       } else {
         this.$vuetify.theme.dark = false;
       }
     } else {
-      localStorage.setItem("dark_theme", "false");
+      localStorage.setItem("dark", "false");
     }
   },
   created() {
@@ -35,6 +35,13 @@ export default Vue.extend({
       this.$store.state.small_ui = screen_width < 1264;
     },
   },
+  watch: {
+    '$vuetify.theme.dark': {
+      handler (value: boolean) {
+        localStorage.setItem("dark", String(value))
+      }
+    }
+  }
 });
 </script>
 
@@ -44,3 +51,4 @@ export default Vue.extend({
   word-break: normal !important;
 }
 </style>
+
