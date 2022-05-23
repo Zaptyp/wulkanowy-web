@@ -31,7 +31,7 @@
             >this is mobile devices</v-window-item
           >
           <v-window-item transition="false" value="messages">this is messages</v-window-item>
-          <v-window-item transition="false" value="settings">this is settings</v-window-item>
+          <v-window-item transition="false" value="settings"><Settings/></v-window-item>
         </v-window>
       </v-container>
     </v-main>
@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer } from "@/components";
+import { AppBar, Drawer, Settings } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -48,6 +48,7 @@ export default Vue.extend({
   components: {
     AppBar,
     Drawer,
+    Settings,
   },
 
   beforeMount() {
