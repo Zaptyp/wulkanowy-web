@@ -1,0 +1,53 @@
+{
+    "app_name": "Wulkanowy",
+    "app_description": "Unofficial VULCAN UONET+ browser client for students and their parents",
+    "log_out": "Log out",
+    "close": "Close",
+    "details": "Details",
+    "login": {
+      "header": "Sign in with student or parent account",
+      "email_lablel": "E-mail adress",
+      "password_label": "Password",
+      "symbol_label": "Symbol",
+      "host_label": "UONET+ register variant",
+      "sign_in": "Sign in",
+      "incorrect_password": "Username or password is incorrect",
+      "incorrect_symbol": "Symbol is incorrect",
+      "privacy_policy": "Privacy policy",
+      "select_student_header": "Select student",
+      "empty_filed_error": "This field are required"
+    },
+    "nav_items": {
+      "dashboard": "Dashboard",
+      "grades": "Grades",
+      "attedance": "Attedance",
+      "timetable": "Timetable",
+      "exams": "Exams",
+      "homework": "Homework",
+      "notes": "Notes and achievements",
+      "lucky_number": "Lucky number",
+      "conferences": "Conferences",
+      "school_annocuments": "School annocuments",
+      "school_info": "School and teachers",
+      "student_data": "Student data",
+      "mobile_devices": "Mobile access",
+      "messages": "Messages",
+      "settings": "Settings"
+    },
+    "settings": {
+      "apperance_title": "Apperance & Behaviour",
+      "app_language": "Language",
+      "theme_header": "Theme",
+      "theme_light": "Light",
+      "theme_dark": "Dark"
+    },
+    "errors": {
+      "incorrect_password_or_username": "Username/E-mail address or password is incorrect",
+      "incorrect_symbol": "Symbol is incorrect",
+      "uonet_error": "An unexpected error has occurred",
+      "empty_field": "This field are required",
+      "empty_fields": "This fields are required",
+      "no_students_account": "This account hasn't students",
+      "network_error": "No interent connection"
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "app_name": "Wulkanowy",
+    "app_description": "Przeglądarkowy klient dzienniczka VULCAN UONET+ dla ucznia i rodzica",
+    "log_out": "Wyloguj się",
+    "close": "Zamknij",
+    "details": "Szczegóły",
+    "login": {
+      "header": "Zaloguj się za pomocą konta ucznia lub rodzica",
+      "email_lablel": "Adres e-mail",
+      "password_label": "Hasło",
+      "symbol_label": "Symbol",
+      "host_label": "Odmiana dziennika UONET+",
+      "sign_in": "Zaloguj",
+      "incorrect_password": "Dane logowania są niepoprawne",
+      "incorrect_symbol": "Nieprawidłowy symbol",
+      "privacy_policy": "Polityka Prywatności",
+      "select_student_header": "Wybierz ucznia",
+      "empty_filed_error": "To pole jest wymagane"
+    },
+    "nav_items": {
+      "dashboard": "Start",
+      "grades": "Oceny",
+      "attedance": "Frekwencja",
+      "timetable": "Plan lekcji",
+      "exams": "Sprawdziany",
+      "homework": "Zadania domowe",
+      "notes": "Uwagi i osiągnięcia",
+      "lucky_number": "Szczęśliwy numerek",
+      "conferences": "Zebrania",
+      "school_annocuments": "Ogłoszenia szkolne",
+      "school_info": "Szkoła i nauczyciele",
+      "student_data": "Informacje o uczniu",
+      "mobile_devices": "Dostęp mobilny",
+      "messages": "Wiadomości",
+      "settings": "Ustawienia"
+    },
+    "settings": {
+      "apperance_title": "Wygląd i zachowanie",
+      "app_language": "Język",
+      "theme_header": "Motyw",
+      "theme_light": "Jasny",
+      "theme_dark": "Ciemny"
+    },
+    "errors": {
+      "incorrect_password_or_username": "Nazwa użytkownika/Adres e-mail lub hasło jest niepoprawne",
+      "incorrect_symbol": "Symbol jest niepoprawny",
+      "uonet_error": "Wystąpił nieoczekiwany błąd",
+      "empty_field": "To pole jest wymagane",
+      "empty_fields": "Te pola są wymagane",
+      "no_students_account": "To konto nie ma uczniów",
+      "network_error": "Brak połączenia z internetem"
+    }
+}
