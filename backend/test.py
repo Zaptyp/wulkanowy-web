@@ -177,7 +177,7 @@ def test_login_incorrect():
         },
     )
     status_check(response.status_code, response.json())
-    assert response.json() == {'detail': 'Username or password is incorrect'}
+    assert response.json() == {'detail': 'incorrect_username_or_password'}
 
 
 def test_symbol_incorrect():
@@ -203,7 +203,7 @@ def test_symbol_incorrect():
         },
     )
     status_check(response.status_code, response.json())
-    assert response.json() == {"detail": "Symbol is incorrect"}
+    assert response.json() == {"detail": "incorrect_symbol"}
 
 
 def test_notes():
