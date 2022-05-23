@@ -7,7 +7,7 @@
       <div class="px-5">
         <v-text-field
           outlined
-          :label="$t('login.email_lablel')"
+          :label="$t('login.email_label')"
           v-model="loginData.username"
           :rules="[rules.required]"
         />

@@ -6,7 +6,7 @@
     "details": "Details",
     "login": {
       "header": "Sign in with student or parent account",
-      "email_lablel": "E-mail adress",
+      "email_label": "E-mail adress",
       "password_label": "Password",
       "symbol_label": "Symbol",
       "host_label": "UONET+ register variant",
@@ -45,7 +45,7 @@
       "empty_field": "This field are required",
       "empty_fields": "This fields are required",
       "no_students_account": "This account hasn't students",
-      "network_error": "No interent connection",
+      "network_error": "No internet connection",
       "invalid_host_or_ssl": "Register url is invalid. Contact us."
     }
 }

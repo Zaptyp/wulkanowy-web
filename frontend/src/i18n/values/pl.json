@@ -1,12 +1,12 @@
 {
     "app_name": "Wulkanowy",
-    "app_description": "Przeglądarkowy klient dzienniczka VULCAN UONET+ dla ucznia i rodzica",
+    "app_description": "Nieoficjalny klient przeglądarkowy VULCAN UONET+ dla uczniów i rodziców",
     "log_out": "Wyloguj się",
     "close": "Zamknij",
     "details": "Szczegóły",
     "login": {
       "header": "Zaloguj się za pomocą konta ucznia lub rodzica",
-      "email_lablel": "Adres e-mail",
+      "email_label": "Adres e-mail",
       "password_label": "Hasło",
       "symbol_label": "Symbol",
       "host_label": "Odmiana dziennika UONET+",
@@ -46,6 +46,6 @@
       "empty_fields": "Te pola są wymagane",
       "no_students_account": "To konto nie ma uczniów",
       "network_error": "Brak połączenia z internetem",
-      "invalid_host_or_ssl": "URL dziennika jest nieporpawne. Skontaktuj się z nami."
+      "invalid_host_or_ssl": "Adres URL dziennika jest nieprawidłowy. Skontaktuj się z nami."
     }
 }
