@@ -6,6 +6,7 @@ import requests
 from datetime import datetime
 from cryptography.fernet import Fernet
 import ast
+from git import Repo
 
 cookie_sec = APIKeyCookie(name="key")
 
@@ -219,3 +220,8 @@ def encrypt_cookies(key: str, vulcan_cookies: str):
     cookies = ast.literal_eval(cookies.decode("utf-8"))
 
     return cookies
+@router.post("/github")
+def get_branch_name():
+    local_repo = Repo(path='..')
+    local_branch = local_repo.active_branch.name
+    return local_branch
