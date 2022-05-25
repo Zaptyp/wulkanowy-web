@@ -10,4 +10,4 @@ starlette~=0.17.1
 lxml
 sty
 pytest-xdist
-git
+gitpython
