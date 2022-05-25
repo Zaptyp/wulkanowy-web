@@ -2,12 +2,13 @@ import uvicorn
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.endpoints import login, uonetplus_uczen
+from app.endpoints import login, uonetplus_uczen, github
 
 app = FastAPI(title="Uonetplus API")
 
 app.include_router(login.router)
 app.include_router(uonetplus_uczen.router)
+app.include_router(github.router)
 
 origins = [
     "http://localhost:8080",

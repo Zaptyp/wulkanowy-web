@@ -4,6 +4,9 @@ from main import app
 import pytest
 import json
 import requests
+from git import Repo
+import re
+import math
 client = TestClient(app)
 class fg:
     lightgreen = "\x1B[38;5;46m"
@@ -131,7 +134,7 @@ def test_login_correct():
         try:
             assert login.json()["host"] == "fakelog.cf"
         except:
-            assert login.json()["host"] == "fakelog.tk"
+            assert login.json()["host"] == host
     if not cookies:
         errorcode = 1
         print("\nCookies output: ")
@@ -419,3 +422,38 @@ def test_mobile_access_delete_registed():
     #    print("Test")
     assert response.json()["success"] == True
     # print(response.json())
+
+def test_github_info():
+    repo = Repo(path='..')
+    # Repo section
+    repo_url = repo.remote("origin").url
+    repo_name = re.search(r"\/[a-zA-Z]+\/[a-zA-Z]+.*", str(repo_url)).group(0)
+    repo_commit_number = repo.git.rev_list("--count", "master")
+    # Branch section
+    current_branch = repo.active_branch.name
+    commit_number_master = repo.git.rev_list("--count", "master")
+    commit_number_current_branch = repo.git.rev_list("--count", "HEAD", current_branch)
+    current_branch_url = (repo_url + "/tree/" + current_branch)
+    if (int(commit_number_current_branch) - int(commit_number_master) > 0):
+        current_branch_commit_number = int(commit_number_current_branch) - int(commit_number_master)
+    else:
+        current_branch_commit_number = int(commit_number_master) - int(commit_number_current_branch)
+    # Commit section
+    current_commit_hash = repo.head.commit.hexsha
+    commit_author = repo.head.commit.author.name
+    commit_date = repo.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
+    cc = repo.head.commit.message
+    response = client.get(
+        "/github",
+        headers={},
+        json={},
+    )
+    status_check(response.status_code, response.json())
+    assert response.json()["repo_name"] == repo_name[1:]
+    assert response.json()["repo_link"] == repo_url
+    assert response.json()["repo_commit_number"] == repo_commit_number
+    assert response.json()["branch_info"][0]["active_branch_url"] == current_branch_url
+    assert response.json()["branch_info"][0]["active_branch_commit_number"] == current_branch_commit_number
+    assert response.json()["commit_info"][0]["active_commit_hash_long"] == current_commit_hash
+    assert response.json()["commit_info"][0]["commit_date"] == commit_date
+    assert response.json()["commit_info"][0]["commit_author"] == commit_author
