@@ -176,7 +176,7 @@ def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = 
     if path:
         url += path
     if not kwargs.get("symbol"):
-        kwargs["symbol"] = "Deflaut"
+        kwargs["symbol"] = "Default"
 
     for k in kwargs:
         url = url.replace(f"{{{k.upper()}}}", str(kwargs[k]))
