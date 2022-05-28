@@ -88,7 +88,7 @@ def test_notes():
         "/uonetplus-uczen/notes",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -107,7 +107,7 @@ def test_grades():
         "/uonetplus-uczen/grades",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -126,7 +126,7 @@ def test_school_info():
         "/uonetplus-uczen/school-info",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -148,7 +148,7 @@ def test_conference():
         "/uonetplus-uczen/conferences",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -170,7 +170,7 @@ def test_mobile_access_registed():
         "/uonetplus-uczen/mobile-access/get-registered-devices",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -192,7 +192,7 @@ def test_mobile_access_register():
         "/uonetplus-uczen/mobile-access/register-device",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
@@ -211,7 +211,7 @@ def test_mobile_access_delete_registed():
         "/uonetplus-uczen/mobile-access/delete-registered-device",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": login_data["cookies"],
+            "vulcan_cookies": login_data["vulcan_cookies"],
             "student": login_data["students"][0]["cookies"],
             "school_id": login_data["students"][0]["school_id"],
             "host": login_data["host"],
