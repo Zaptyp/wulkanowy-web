@@ -428,11 +428,11 @@ def test_github_info():
     # Repo section
     repo_url = repo.remote("origin").url
     repo_name = re.search(r"\/[a-zA-Z]+\/[a-zA-Z]+.*", str(repo_url)).group(0)
-    repo_commit_number = repo.git.rev_list("--count", "master")
+    repo_commit_number = repo.git.rev_list("--count", "develop")
     # Branch section
     current_branch = repo.active_branch.name
-    commit_number_master = repo.git.rev_list("--count", "master")
-    commit_number_current_branch = repo.git.rev_list("--count", "HEAD", current_branch)
+    commit_number_master = repo.git.rev_list("--count", "develop")
+    commit_number_current_branch = repo.git.rev_list("--count", "HEAD", current_branch, "--")
     current_branch_url = (repo_url + "/tree/" + current_branch)
     if (int(commit_number_current_branch) - int(commit_number_master) > 0):
         current_branch_commit_number = int(commit_number_current_branch) - int(commit_number_master)
