@@ -38,7 +38,7 @@ class Github:
     repo_commit_number = repos.git.rev_list("--count", "develop")
     repo_size = repos.git.count_objects("-H")
     current_branch = repos.active_branch.name
-    c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
+    c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch, "--")
     current_branch_url = (repo_url + "/tree/" + current_branch)
     if (int(c_number_current_branch) - int(c_number_master) > 0):
         current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
