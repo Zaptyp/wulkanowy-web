@@ -426,12 +426,12 @@ def test_mobile_access_delete_registed():
 def test_github_info():
     repos = Repo(path='..')
     current_commit_hash = repos.head.commit.hexsha
-    c_number_master = repos.git.rev_list("--count", "develop")
+    c_number_master = repos.git.rev_list("--count", "develop", "--")
     commit_author = repos.head.commit.author.name
     commit_date = repos.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
     repo_url = repos.remote("origin").url
     repo_name = re.search(r"\/[a-zA-Z]+\/[a-zA-Z]+.*", str(repo_url)).group(0)
-    repo_commit_number = repos.git.rev_list("--count", "develop")
+    repo_commit_number = repos.git.rev_list("--count", "develop", "--")
     current_branch = repos.active_branch.name
     c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch, "--")
     current_branch_url = (repo_url + "/tree/" + current_branch)
