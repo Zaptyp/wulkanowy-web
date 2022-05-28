@@ -24,8 +24,12 @@ def convert_size(size_bytes):
    return "%s %s" % (s, size_name[i])
 
 
-class Github: 
-    repos = Repo(path='..')
+class Github:
+    try:
+        repos = Repo(path='/home/runner/work/wulkanowy-web/wulkanowy-web/') 
+        #repos = Repo(path='..')
+    except:
+        repos = Repo(path='..')
     current_commit_hash = repos.head.commit.hexsha
     c_number_master = repos.git.rev_list("--count", "develop")
     commit_author = repos.head.commit.author.name
