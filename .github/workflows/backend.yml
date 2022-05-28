@@ -20,5 +20,5 @@
             python -m pip install --upgrade pip
             pip install -r .github/workflows/requirements.txt
         - name: Run tests
-          working-directory: $GITHUB_WORKSPACE/backend
-          run: pytest $GITHUB_WORKSPACE/backend/test.py
+          working-directory: /home/runner/work/wulkanowy-web/wulkanowy-web/
+          run: pytest /home/runner/work/wulkanowy-web/wulkanowy-web/backend/test.py
