@@ -1,12 +1,9 @@
-# Wulkanowy Web
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/27146352?s=200&v=4" />
+</p>
+<h1 align="center">Wulkanowy Web</h1>
 
-🌋 Unofficial VULCAN UONET+ browser client for students and their parents
-
-![GitHub Workflow Status](https://github.com/wulkanowy/wulkanowy-web/workflows/Python%20application/badge.svg)
-
-## Join our Discord server!
-
-[![Discord](https://discordapp.com/api/guilds/390889354199040011/widget.png?style=banner2)](https://discord.com/invite/vccAQBr)
+<h4 align="center">🌋 Unofficial VULCAN UONET+ browser client for students and their parents</h4>
 
 # Development
 
@@ -33,17 +30,12 @@ cd frontend
 npm run serve
 ```
 
-# Docker
+# Features
+* logging in using the email, password and symbol
 
-With docker compose
+# Api
+This project uses the project [Marioneq4958/uonetplus_api](https://github.com/Marioneq4958/uonetplus_api). Check [documentation](https://github.com/Marioneq4958/uonetplus_api/wiki)
 
-```sh
-docker-compose up -d
-```
+# License
 
-Without docker compose
-
-```sh
-docker build -t wulkanowy/web .
-docker run -d -p 8000:8000 wulkanowy/web
-```
+This project is licensed under the Apache License 2.0
