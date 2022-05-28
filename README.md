@@ -4,11 +4,6 @@
 <h1 align="center">Wulkanowy Web</h1>
 
 <h4 align="center">🌋 Unofficial VULCAN UONET+ browser client for students and their parents</h4>
-<!-- <p align="center">
-  <a href="https://discord.com/invite/vccAQBr">
-    <img src="https://discordapp.com/api/guilds/390889354199040011/widget.png?style=banner2"/>
-  </a>
-</p> -->
 
 # Development
 
