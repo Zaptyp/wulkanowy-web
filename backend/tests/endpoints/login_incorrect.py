@@ -16,4 +16,4 @@ def login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, head
         },
     )
     status_check(response.status_code, response.json(), fg)
-    assert response.json() == {'detail': 'Username or password is incorrect'}
+    assert response.json() == {'detail': 'incorrect_username_or_password'}
