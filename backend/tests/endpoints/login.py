@@ -15,13 +15,11 @@ def login_test(nick, password, host, symbol, ssl, fg):
         },
     )
     cookies = login.json()["vulcan_cookies"]
-    headars = login.json()["students"][0]["headers"]
+    headers = login.json()["students"][0]["headers"]
     student = login.json()["students"][0]["cookies"]
     school_id = login.json()["students"][0]["school_id"]
-    #print(login.json())
     status_check(login.status_code, login.json(), fg)
     assert login.json()["symbol"] == "powiatwulkanowy"
-    #assert login.json()["school_id"]
     assert login.json()["vulcan_cookies"]
     try:
         assert login.json()["host"] == "fakelog.cf"
@@ -33,7 +31,7 @@ def login_test(nick, password, host, symbol, ssl, fg):
         print("\nCookies output: ")
         print(login.json()["vulcan_cookies"])
         pytest.fail("No VULCAN cookies detected")
-    elif not headars:
+    elif not headers:
         errorcode = 2
         print("\nHeaders output: ")
         print(login.json()["students"][0]["headers"])
@@ -49,4 +47,4 @@ def login_test(nick, password, host, symbol, ssl, fg):
         print(login.json()["students"][0]["school_id"])
         pytest.fail("No school ID detected")
     """
-    return cookies, headars, student, school_id
+    return cookies, headers, student, school_id

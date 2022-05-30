@@ -43,35 +43,35 @@ def test_check_connection():
 
 
 def test_login_correct():
-    global cookies, headars, student, school_id
-    cookies, headars, student, school_id = login.login_test(nick, password, host, symbol, ssl, fg)
+    global cookies, headers, student, school_id
+    cookies, headers, student, school_id = login.login_test(nick, password, host, symbol, ssl, fg)
 
 def test_login_incorrect():
-    login_incorrect.login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headars, fg)
+    login_incorrect.login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg)
 
 def test_symbol_incorrect():
-    symbol_incorrect.symbol_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headars, fg)
+    symbol_incorrect.symbol_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg)
 
 def test_notes():
-    notes.notes_test(cookies, headars, student, school_id, host, symbol, ssl, fg)
+    notes.notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_grades():
-    grades.grades_test(cookies, headars, student, school_id, host, symbol, ssl, week_grades, fg)
+    grades.grades_test(cookies, headers, student, school_id, host, symbol, ssl, week_grades, fg)
 
 def test_school_info():
-    school_info.school_info_test(cookies, headars, student, school_id, host, symbol, ssl, fg)
+    school_info.school_info_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_conference():
-    conference.conference_test(cookies, headars, student, school_id, host, symbol, ssl, fg)
+    conference.conference_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_mobile_access_registed():
-    mobile_access_registed.mobile_access_registed_test(cookies, headars, student, school_id, host, symbol, ssl, fg)
+    mobile_access_registed.mobile_access_registed_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_mobile_access_register():
-    mobile_access_register.mobile_access_register_test(cookies, headars, student, school_id, host, symbol, ssl, fg)
+    mobile_access_register.mobile_access_register_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
     
 def test_mobile_access_delete_registed():
-    mobile_access_delete_registed.mobile_access_delete_registed_test(cookies, headars, student, school_id, host, symbol, ssl, id_mobile_deleted, fg)
+    mobile_access_delete_registed.mobile_access_delete_registed_test(cookies, headers, student, school_id, host, symbol, ssl, id_mobile_deleted, fg)
 
 def test_github_info():
     github.github_info_test(fg)
