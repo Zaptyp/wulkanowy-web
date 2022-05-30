@@ -136,14 +136,18 @@ def get_registered_devices(data: models.UonetPlusUczen, key: str = Depends(cooki
         device = models.Device(
             id=device["Id"],
             name=device["NazwaUrzadzenia"],
-            create_date=datetime.fromisoformat(device["DataUtworzenia"]).strftime("%d.%m.%Y %H:%M"),
+            create_date=datetime.fromisoformat(device["DataUtworzenia"]).strftime(
+                "%d.%m.%Y %H:%M"
+            ),
         )
         registered_devices.append(device)
     return registered_devices
 
 
 @router.post("/uonetplus-uczen/mobile-access/register-device")
-def get_register_device_token(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
+def get_register_device_token(
+    data: models.UonetPlusUczen, key: str = Depends(cookie_sec)
+):
     data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
     path = paths.UCZEN.REJESTRACJAURZADZENIATOKEN_GET
     response = get_response(data, path)
@@ -157,14 +161,18 @@ def get_register_device_token(data: models.UonetPlusUczen, key: str = Depends(co
 
 
 @router.post("/uonetplus-uczen/mobile-access/delete-registered-device")
-def get_register_device_token(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
+def get_register_device_token(
+    data: models.UonetPlusUczen, key: str = Depends(cookie_sec)
+):
     data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
     path = paths.UCZEN.ZAREJESTROWANEURZADZENIA_DELETE
     response = get_response(data, path)
     return response.json()
 
 
-def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs):
+def build_url(
+    subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs
+):
     if ssl:
         url = "https://"
     else:
@@ -201,11 +209,10 @@ def get_response(data, path):
         cookies=data.vulcan_cookies,
     )
     if response.status_code != 200:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="uonet_error")
-    if (
-        "uonet_error"
-        in response.text
-    ):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="uonet_error"
+        )
+    if "uonet_error" in response.text:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="uonet_error"
         )
