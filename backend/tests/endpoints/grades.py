@@ -1,7 +1,10 @@
 from tests.checks.status_code import status_check
 from tests.endpoints.login import client
-#client = TestClient(app)
-def grades_test(cookies, headers, student, school_id, host, symbol, ssl, week_grades, fg):
+
+# client = TestClient(app)
+def grades_test(
+    cookies, headers, student, school_id, host, symbol, ssl, week_grades, fg
+):
     response = client.post(
         "/uonetplus-uczen/grades",
         headers={"Content-Type": "application/json"},

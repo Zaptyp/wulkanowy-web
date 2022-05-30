@@ -14,14 +14,18 @@ router = APIRouter()
 @router.post("/login")
 def login(data: models.Login, response: Response):
     session = requests.Session()
-    cers = send_credentials(data.username, data.password, data.symbol, data.host, data.ssl, session)
+    cers = send_credentials(
+        data.username, data.password, data.symbol, data.host, data.ssl, session
+    )
     students = get_students(data.symbol, data.host, data.ssl, cers, session)
     cookies = get_cookies(data.ssl, data.host, data.symbol, session, students, response)
 
     return cookies
 
 
-def send_credentials(username: str, password: str, symbol: str, host: str, ssl: bool, session):
+def send_credentials(
+    username: str, password: str, symbol: str, host: str, ssl: bool, session
+):
     realm = build_url(subd="uonetplus", host=host, ssl=ssl)
     url = build_url(
         subd="cufs",
@@ -48,7 +52,8 @@ def send_credentials(username: str, password: str, symbol: str, host: str, ssl: 
         msg = re.sub(r"\s+", " ", error_tag.text).strip()
         if msg:
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_username_or_password"
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="incorrect_username_or_password",
             )
     wa: str = soup.select_one('input[name="wa"]')["value"]
     wresult: str = soup.select_one('input[name="wresult"]')["value"]
@@ -59,7 +64,9 @@ def send_credentials(username: str, password: str, symbol: str, host: str, ssl: 
     return cers
 
 
-def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs):
+def build_url(
+    subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs
+):
     if ssl:
         url = "https://"
     else:
@@ -97,7 +104,9 @@ def get_cookies(ssl: bool, host: str, symbol: str, session, students, response):
 
 def get_students(symbol: str, host: str, ssl: bool, cers, session):
     students = []
-    url = build_url(subd="uonetplus", path=paths.UONETPLUS.START, symbol=symbol, host=host, ssl=ssl)
+    url = build_url(
+        subd="uonetplus", path=paths.UONETPLUS.START, symbol=symbol, host=host, ssl=ssl
+    )
     crtr = session.post(
         url=url,
         headers={
@@ -107,7 +116,9 @@ def get_students(symbol: str, host: str, ssl: bool, cers, session):
     )
     if not "nie został zarejestrowany" in crtr.text:
         soup = BeautifulSoup(crtr.text, "lxml")
-        schools = soup.select('.panel.linkownia.pracownik.klient a[href*="uonetplus-uczen"]')
+        schools = soup.select(
+            '.panel.linkownia.pracownik.klient a[href*="uonetplus-uczen"]'
+        )
         for school in schools:
             school_id = school["href"].split("/")[4]
             url = build_url(
@@ -176,7 +187,9 @@ def get_students(symbol: str, host: str, ssl: bool, cers, session):
                     cookies={
                         "idBiezacyDziennik": str(student["IdDziennik"]),
                         "idBiezacyUczen": str(student["IdUczen"]),
-                        "idBiezacyDziennikPrzedszkole": str(student["IdPrzedszkoleDziennik"]),
+                        "idBiezacyDziennikPrzedszkole": str(
+                            student["IdPrzedszkoleDziennik"]
+                        ),
                         "biezacyRokSzkolny": str(student["DziennikRokSzkolny"]),
                     },
                     headers=headers,
@@ -184,7 +197,9 @@ def get_students(symbol: str, host: str, ssl: bool, cers, session):
                 )
                 students.append(student)
     else:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_symbol")
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_symbol"
+        )
     return students
 
 

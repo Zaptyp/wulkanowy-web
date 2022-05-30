@@ -1,4 +1,5 @@
 import pytest
+
 pytest.register_assert_rewrite("tests.endpoints.login_incorrect")
 pytest.register_assert_rewrite("tests.endpoints.conferences")
 pytest.register_assert_rewrite("tests.endpoints.grades")

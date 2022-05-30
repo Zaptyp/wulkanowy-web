@@ -1,5 +1,7 @@
 from tests.checks.status_code import status_check
 from tests.endpoints.login import client
+
+
 def symbol_incorrect_test(nick, password, host, symbol_invalid, ssl, headers, fg):
     response = client.post(
         "/login",
@@ -13,4 +15,4 @@ def symbol_incorrect_test(nick, password, host, symbol_invalid, ssl, headers, fg
         },
     )
     status_check(response.status_code, response.json(), fg)
-    #assert response.json() == {"detail": "Symbol is incorrect"}
+    # assert response.json() == {"detail": "Symbol is incorrect"}

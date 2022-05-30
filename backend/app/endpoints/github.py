@@ -5,24 +5,25 @@ import math
 
 router = APIRouter()
 
+
 def convert_size(size_bytes):
-   if size_bytes == 0:
-       return "0B"
-   size_name = ("B", "KB", "MB", "GB", "TB")
-   i = int(math.floor(math.log(size_bytes, 1024)))
-   p = math.pow(1024, i)
-   s = round(size_bytes / p, 2)
-   return "%s %s" % (s, size_name[i])
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KB", "MB", "GB", "TB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
 
 
 class Github:
     try:
         try:
-            repos = Repo(path=r'./wulkanowy-web/')
+            repos = Repo(path=r"./wulkanowy-web/")
         except:
-            repos = Repo(path=r'../..')
+            repos = Repo(path=r"../..")
     except:
-        repos = Repo(path=r'..')
+        repos = Repo(path=r"..")
     current_commit_hash = repos.head.commit.hexsha
     try:
         c_number_master = repos.git.rev_list("--count", "develop")
@@ -44,15 +45,22 @@ class Github:
     try:
         c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
     except:
-        c_number_current_branch = "ERROR - Connot get " + current_branch + "branch commit number!"
-    current_branch_url = (repo_url + "/tree/" + current_branch)
+        c_number_current_branch = (
+            "ERROR - Connot get " + current_branch + "branch commit number!"
+        )
+    current_branch_url = repo_url + "/tree/" + current_branch
     try:
         if int(c_number_master) - (int(c_number_current_branch) > 0):
-            current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
+            current_branch_commit_number = int(c_number_current_branch) - int(
+                c_number_master
+            )
         else:
-            current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+            current_branch_commit_number = int(c_number_master) - int(
+                c_number_current_branch
+            )
     except:
         current_branch_commit_number = "ERROR - Cannot calculate!"
+
 
 @router.get("/github")
 def get_branch_name(repozi: str = Depends(Github)):
@@ -61,14 +69,14 @@ def get_branch_name(repozi: str = Depends(Github)):
         "repo_link": Github.repo_url,
         "repo_commit_number": Github.repo_commit_number,
         "repo_size": Github.repo_size[13:],
-        "branch_info":[
+        "branch_info": [
             {
                 "active_branch": Github.current_branch,
                 "active_branch_url": Github.current_branch_url,
                 "active_branch_commit_number": Github.current_branch_commit_number,
             }
         ],
-        "commit_info":[
+        "commit_info": [
             {
                 "active_commit": Github.current_commit,
                 "active_commit_hash_long": Github.current_commit_hash,

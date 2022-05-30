@@ -1,8 +1,11 @@
 from fastapi.testclient import TestClient
 from tests.checks.status_code import status_check
 from main import app
+
 client = TestClient(app)
-def login_test(nick, password, host, symbol, ssl, fg):    
+
+
+def login_test(nick, password, host, symbol, ssl, fg):
     login = client.post(
         "/login",
         headers={"Content-Type": "application/json"},

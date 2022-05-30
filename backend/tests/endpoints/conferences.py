@@ -1,5 +1,7 @@
 from tests.checks.status_code import status_check
 from tests.endpoints.login import client
+
+
 def conference_test(cookies, headers, student, school_id, host, symbol, ssl, fg):
     response = client.post(
         "/uonetplus-uczen/conferences",

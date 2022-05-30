@@ -1,7 +1,10 @@
 from tests.checks.status_code import status_check
 from tests.endpoints.login import client
-#client = TestClient(app)
-def login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg):
+
+# client = TestClient(app)
+def login_incorrect_test(
+    nick_invalid, password_invalid, host, symbol, ssl, headers, fg
+):
     response = client.post(
         "/login",
         headers={"Content-Type": "application/json"},
@@ -14,4 +17,4 @@ def login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, head
         },
     )
     status_check(response.status_code, response.json(), fg)
-    assert response.json() == {'detail': 'incorrect_username_or_password'}
+    assert response.json() == {"detail": "incorrect_username_or_password"}

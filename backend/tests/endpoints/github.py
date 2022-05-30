@@ -3,14 +3,15 @@ from tests.endpoints.login import client
 from git import Repo
 import re
 
+
 def github_info_test(fg):
     try:
         try:
-            repos = Repo(path=r'./wulkanowy-web/')
+            repos = Repo(path=r"./wulkanowy-web/")
         except:
-            repos = Repo(path=r'../..')
+            repos = Repo(path=r"../..")
     except:
-        repos = Repo(path=r'..')
+        repos = Repo(path=r"..")
     current_commit_hash = repos.head.commit.hexsha
     try:
         c_number_master = repos.git.rev_list("--count", "develop")
@@ -29,13 +30,19 @@ def github_info_test(fg):
     try:
         c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
     except:
-        c_number_current_branch = "ERROR - Connot get " + current_branch + "branch commit number!"
-    current_branch_url = (repo_url + "/tree/" + current_branch)
+        c_number_current_branch = (
+            "ERROR - Connot get " + current_branch + "branch commit number!"
+        )
+    current_branch_url = repo_url + "/tree/" + current_branch
     try:
         if int(c_number_master) - (int(c_number_current_branch) > 0):
-            current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
+            current_branch_commit_number = int(c_number_current_branch) - int(
+                c_number_master
+            )
         else:
-            current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+            current_branch_commit_number = int(c_number_master) - int(
+                c_number_current_branch
+            )
     except:
         current_branch_commit_number = "ERROR - Cannot calculate!"
     response = client.get(
@@ -48,7 +55,13 @@ def github_info_test(fg):
     assert response.json()["repo_link"] == repo_url
     assert response.json()["repo_commit_number"] == repo_commit_number
     assert response.json()["branch_info"][0]["active_branch_url"] == current_branch_url
-    assert response.json()["branch_info"][0]["active_branch_commit_number"] == current_branch_commit_number
-    assert response.json()["commit_info"][0]["active_commit_hash_long"] == current_commit_hash
+    assert (
+        response.json()["branch_info"][0]["active_branch_commit_number"]
+        == current_branch_commit_number
+    )
+    assert (
+        response.json()["commit_info"][0]["active_commit_hash_long"]
+        == current_commit_hash
+    )
     assert response.json()["commit_info"][0]["commit_date"] == commit_date
     assert response.json()["commit_info"][0]["commit_author"] == commit_author
