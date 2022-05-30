@@ -1,9 +1,7 @@
 from fastapi import APIRouter, Depends
-from fastapi.security import APIKeyCookie
 from git import Repo
 import re
 import math
-cookie_sec = APIKeyCookie(name="key")
 
 router = APIRouter()
 

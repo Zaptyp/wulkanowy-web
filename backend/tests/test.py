@@ -10,18 +10,18 @@ class fg:
     red = "\x1B[38;5;160m"
     rs = "\033[0m"
 
-# Ustawienia dla wszystkich testów
+# Settings for all tests
 nick = "jan@fakelog.cf"
 password = "jan123"
 host = "fakelog.cf"
 backuphost = "fakelog.tk"
 symbol = "powiatwulkanowy"
 ssl = "false"
-# Ustawienia tygodni dla testów
+# Weekly settings for tests
 week_grades = "16"
-# Ustawienia id dla testów
+# ID settings for tests
 id_mobile_deleted = 1234
-# Ustawienia dla test_login_incorrect i test_symbol_incorrect
+# Settings for test_login_incorrect and test_symbol_incorrect
 nick_invalid = "jan@fakelog.cf"
 password_invalid = "Jan321"
 symbol_invalid = "warszawa"
