@@ -1,15 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from fastapi.security import APIKeyCookie
-from starlette import status
-from app import models, paths
-import requests
-from datetime import datetime
-from cryptography.fernet import Fernet
-import ast
 from git import Repo
 import re
 import math
-
 cookie_sec = APIKeyCookie(name="key")
 
 router = APIRouter()
