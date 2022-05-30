@@ -26,8 +26,7 @@ def convert_size(size_bytes):
 
 class Github:
     try:
-        repos = Repo(path='/home/runner/work/wulkanowy-web/wulkanowy-web/') 
-        #repos = Repo(path='..')
+        repos = Repo(path='./wulkanowy-web/')
     except:
         repos = Repo(path='..')
     current_commit_hash = repos.head.commit.hexsha
