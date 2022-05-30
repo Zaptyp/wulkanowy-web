@@ -1,7 +1,7 @@
 <template>
   <div id="select-student" class="fill-height">
     <v-form @submit.prevent="select_student" class="fill-height d-flex flex-column">
-      <v-card-title class="d-flex justify-center">Select Student</v-card-title>
+      <v-card-title class="d-flex justify-center">{{ $t("login.select_student_header") }}</v-card-title>
       <div id="login-students-list" class="overflow-y-auto">
         <v-list>
           <v-list-item-group color="primary" v-model="$store.state.selected_student" mandatory>
@@ -33,7 +33,7 @@
       </div>
       <v-card-actions class="px-5 pb-5 pt-0 mt-auto">
         <v-spacer />
-        <v-btn color="primary" type="submit">Sign in</v-btn>
+        <v-btn color="primary" type="submit">{{ $t("login.sign_in") }}</v-btn>
       </v-card-actions>
     </v-form>
   </div>

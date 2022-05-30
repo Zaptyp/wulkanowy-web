@@ -9,3 +9,4 @@ export { default as Snackbar } from "./Login/Snackbar.vue";
 export { default as AppBar } from "./Panel/AppBar.vue";
 export { default as Drawer } from "./Panel/Drawer.vue";
 export { default as AccountManager } from "./Panel/AccountManager.vue";
+export { default as Settings } from "./Panel/Settings.vue";

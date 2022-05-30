@@ -8,7 +8,7 @@
       </template>
       <template #default="dialog">
         <v-card>
-          <v-card-title>Select student</v-card-title>
+          <v-card-title>{{ $t("login.select_student_header") }}</v-card-title>
           <v-divider></v-divider>
           <div class="overflow-y-auto">
             <v-list>
@@ -38,8 +38,8 @@
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer />
-            <v-btn text color="primary" @click="$store.commit('log_out')">Log out</v-btn>
-            <v-btn text color="primary" @click="dialog.value = false">Close</v-btn>
+            <v-btn text color="primary" @click="$store.commit('log_out')">{{ $t("log_out") }}</v-btn>
+            <v-btn text color="primary" @click="dialog.value = false">{{ $t("close") }}</v-btn>
           </v-card-actions>
         </v-card>
       </template>
