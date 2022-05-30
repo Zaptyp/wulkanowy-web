@@ -18,5 +18,5 @@
             python -m pip install --upgrade pip
             pip install -r .github/workflows/requirements.txt
         - name: Run tests
-          working-directory: ./backend/
+          working-directory: ./backend/tests
           run: pytest test.py
