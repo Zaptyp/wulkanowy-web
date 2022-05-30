@@ -21,6 +21,10 @@ export default Vue.extend({
     } else {
       localStorage.setItem("dark", "false");
     }
+    const language = localStorage.getItem("language");
+    if (language) {
+      this.$i18n.locale = language;
+    }
   },
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -40,7 +44,12 @@ export default Vue.extend({
       handler (value: boolean) {
         localStorage.setItem("dark", String(value))
       }
-    }
+    },
+    '$i18n.locale': {
+      handler (value: string) {
+        localStorage.setItem("language", value)
+      }
+    },
   }
 });
 </script>
