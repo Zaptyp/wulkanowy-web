@@ -13,6 +13,7 @@
         - name: Clone the repo
           run: |
             git clone -b ${{ steps.extract_branch.outputs.branch }} ${{ secrets.REPO_LINK }}
+            ls
         - name: Set up Python 3.10.4
           uses: actions/setup-python@v3
           with:
