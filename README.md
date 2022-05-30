@@ -32,6 +32,7 @@ npm run serve
 
 # Features
 * logging in using the email, password and symbol
+* light and dark theme
 
 # Api
 This project uses the project [Marioneq4958/uonetplus_api](https://github.com/Marioneq4958/uonetplus_api). Check [documentation](https://github.com/Marioneq4958/uonetplus_api/wiki)
