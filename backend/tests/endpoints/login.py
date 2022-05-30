@@ -25,26 +25,4 @@ def login_test(nick, password, host, symbol, ssl, fg):
         assert login.json()["host"] == "fakelog.cf"
     except:
         assert login.json()["host"] == "fakelog.tk"
-    """
-    if not cookies:
-        errorcode = 1
-        print("\nCookies output: ")
-        print(login.json()["vulcan_cookies"])
-        pytest.fail("No VULCAN cookies detected")
-    elif not headers:
-        errorcode = 2
-        print("\nHeaders output: ")
-        print(login.json()["students"][0]["headers"])
-        pytest.fail("No headers detected")
-    elif not student:
-        errorcode = 3
-        print("\nStudent output: ")
-        print(login.json()["students"][0]["cookies"])
-        pytest.fail("No student cookies detected")
-    elif not school_id:
-        errorcode = 4
-        print("\nSchool ID output: ")
-        print(login.json()["students"][0]["school_id"])
-        pytest.fail("No school ID detected")
-    """
     return cookies, headers, student, school_id
