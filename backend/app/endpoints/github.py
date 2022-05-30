@@ -22,7 +22,7 @@ class Github:
         try:
             repos = Repo(path=r'./wulkanowy-web/')
         except:
-            repos = Repo(path=r'..\..')
+            repos = Repo(path=r'../..')
     except:
         repos = Repo(path=r'..')
     current_commit_hash = repos.head.commit.hexsha
