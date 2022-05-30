@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from main import app
 import requests
-from tests.endpoints import login, login_incorrect, symbol_incorrect, notes, grades, school_info, conference, mobile_access_register, mobile_access_delete_registed, mobile_access_registed
+from tests.endpoints import login, login_incorrect, symbol_incorrect, notes, grades, school_info, conference, mobile_access_register, mobile_access_delete_registed, mobile_access_registed, github
 from tests.checks import status_code
 client = TestClient(app)
 class fg:
@@ -72,3 +72,6 @@ def test_mobile_access_register():
     
 def test_mobile_access_delete_registed():
     mobile_access_delete_registed.mobile_access_delete_registed_test(cookies, headars, student, school_id, host, symbol, ssl, id_mobile_deleted, fg)
+
+def test_github_info():
+    github.github_info_test(fg)

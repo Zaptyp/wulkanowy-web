@@ -26,9 +26,12 @@ def convert_size(size_bytes):
 
 class Github:
     try:
-        repos = Repo(path='./wulkanowy-web/')
+        try:
+            repos = Repo(path=r'./wulkanowy-web/')
+        except:
+            repos = Repo(path=r'..\..')
     except:
-        repos = Repo(path='..')
+        repos = Repo(path=r'..')
     current_commit_hash = repos.head.commit.hexsha
     try:
         c_number_master = repos.git.rev_list("--count", "develop")
