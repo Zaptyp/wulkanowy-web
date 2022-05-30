@@ -6,21 +6,28 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Api from "@/api";
 
 export default Vue.extend({
   name: "App",
 
-  beforeMount() {
-    let darkTheme = localStorage.getItem("dark_theme");
-    if (darkTheme) {
-      if (darkTheme == "true") {
+  async beforeMount() {
+    const dark = localStorage.getItem("dark");
+    if (dark) {
+      if (dark == "true") {
         this.$vuetify.theme.dark = true;
       } else {
         this.$vuetify.theme.dark = false;
       }
     } else {
-      localStorage.setItem("dark_theme", "false");
+      localStorage.setItem("dark", "false");
     }
+    const language = localStorage.getItem("language");
+    if (language) {
+      this.$i18n.locale = language;
+    }
+    const repoInfo = await Api.get_repo_info()
+    this.$store.state.repo_info = repoInfo.data;
   },
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -35,6 +42,18 @@ export default Vue.extend({
       this.$store.state.small_ui = screen_width < 1264;
     },
   },
+  watch: {
+    '$vuetify.theme.dark': {
+      handler (value: boolean) {
+        localStorage.setItem("dark", String(value))
+      }
+    },
+    '$i18n.locale': {
+      handler (value: string) {
+        localStorage.setItem("language", value)
+      }
+    },
+  }
 });
 </script>
 

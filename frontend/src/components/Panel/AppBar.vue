@@ -8,7 +8,7 @@
         <v-icon v-if="$store.state.drawer.mini">mdi-chevron-right</v-icon>
         <v-icon v-else>mdi-chevron-left</v-icon>
       </v-btn>
-      <v-toolbar-title>{{ this.$store.state.view }}</v-toolbar-title>
+      <v-toolbar-title>{{ $t("nav_items." + this.$store.state.view) }}</v-toolbar-title>
       <v-spacer />
       <AccountManager />
     </v-app-bar>

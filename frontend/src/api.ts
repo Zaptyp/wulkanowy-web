@@ -42,4 +42,28 @@ export default {
       return response;
     }
   },
+  get_repo_info: async () => {
+    const response: any = await axios({
+      method: 'GET',
+      url: 'http://localhost:8000/github',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: false,
+    })
+    .catch(function (error: any) {
+      if(error.toJSON().message == 'Network Error'){
+        store.state.error.description = 'No internet connection';
+        store.state.error.details = error.toJSON().stack;
+        store.state.error.show = true;
+        store.state.loading = false;
+      } else {
+        store.state.error.description = error.response.data.detail;
+        store.state.error.details = error.toJSON().stack;
+        store.state.error.show = true;
+        store.state.loading = false;
+      }
+    });
+    return response;
+  }
 };

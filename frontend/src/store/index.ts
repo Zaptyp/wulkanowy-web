@@ -7,6 +7,7 @@ Vue.use(Vuex);
 interface State {
   loading: boolean;
   loginData: any;
+  repo_info: any;
   logged_in: boolean;
   selected_student: number;
   small_ui: boolean;
@@ -26,6 +27,7 @@ export default new Vuex.Store({
   state: (): State => ({
     loading: false,
     loginData: [],
+    repo_info: [],
     logged_in: false,
     selected_student: 0,
     small_ui: false,
@@ -44,13 +46,13 @@ export default new Vuex.Store({
     log_out(state) {
       state.loginData = [];
       state.logged_in = false;
-      router.push("/")
+      router.push("/");
     },
     drawer_show(state) {
-      state.drawer.show = !state.drawer.show
+      state.drawer.show = !state.drawer.show;
     },
     drawer_mini(state) {
-      state.drawer.mini = !state.drawer.mini
+      state.drawer.mini = !state.drawer.mini;
     },
   },
   actions: {},

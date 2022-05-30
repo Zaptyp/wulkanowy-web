@@ -13,12 +13,12 @@
         this.$vuetify.theme.dark ? 'black--text' : 'white--text'
       }`"
     >
-      Wulkanowy
+      {{ $t("app_name") }}
     </v-card-title>
     <v-card-text
       :class="`${this.$vuetify.theme.dark ? 'black--text' : 'white--text'} text-center pa-2`"
     >
-      Unofficial VULCAN UONET+ browser client for students and their parents
+      {{ $t("app_description") }}
     </v-card-text>
     <v-card-subtitle
       :class="`text-center justify-center mt-6 ${
@@ -38,11 +38,14 @@
       </v-btn>
     </v-card-subtitle>
     <v-card-subtitle
-      :class="`text-center justify-center ${
-        this.$vuetify.theme.dark ? 'black--text' : 'white--text'
-      }`"
+      class="text-center justify-center"
     >
-      feature/add-new-backend-and-rewrite-login
+      <a
+        :class="`${this.$vuetify.theme.dark ? 'black--text' : 'white--text'} text-center pa-2`"
+        :href="this.$store.state.repo_info.branch_info[0].active_branch_url"
+      >
+        {{ this.$store.state.repo_info.branch_info[0].active_branch }}
+      </a>
     </v-card-subtitle>
   </div>
 </template>
