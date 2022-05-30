@@ -6,11 +6,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Api from "@/api";
 
 export default Vue.extend({
   name: "App",
 
-  beforeMount() {
+  async beforeMount() {
     const dark = localStorage.getItem("dark");
     if (dark) {
       if (dark == "true") {
@@ -25,6 +26,8 @@ export default Vue.extend({
     if (language) {
       this.$i18n.locale = language;
     }
+    const repoInfo = await Api.get_repo_info()
+    this.$store.state.repo_info = repoInfo.data;
   },
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -60,4 +63,3 @@ export default Vue.extend({
   word-break: normal !important;
 }
 </style>
-

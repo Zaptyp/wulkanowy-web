@@ -38,11 +38,14 @@
       </v-btn>
     </v-card-subtitle>
     <v-card-subtitle
-      :class="`text-center justify-center ${
-        this.$vuetify.theme.dark ? 'black--text' : 'white--text'
-      }`"
+      class="text-center justify-center"
     >
-      feature/add-settings
+      <a
+        :class="`${this.$vuetify.theme.dark ? 'black--text' : 'white--text'} text-center pa-2`"
+        :href="this.$store.state.repo_info.branch_info[0].active_branch_url"
+      >
+        {{ this.$store.state.repo_info.branch_info[0].active_branch }}
+      </a>
     </v-card-subtitle>
   </div>
 </template>
