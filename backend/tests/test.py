@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from main import app
 import requests
-from tests.endpoints import login, login_incorrect, symbol_incorrect, notes, grades, school_info, conference, mobile_access_register, mobile_access_delete_registed, mobile_access_registed, github
+from tests.endpoints import login, login_incorrect, login_with_incorrect_symbol, notes, grades, school_info, conferences, mobile_access_register, mobile_access_delete_registed, mobile_access_registed, github
 from tests.checks import status_code
 client = TestClient(app)
 class fg:
@@ -50,7 +50,7 @@ def test_login_incorrect():
     login_incorrect.login_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg)
 
 def test_symbol_incorrect():
-    symbol_incorrect.symbol_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg)
+    login_with_incorrect_symbol.symbol_incorrect_test(nick_invalid, password_invalid, host, symbol, ssl, headers, fg)
 
 def test_notes():
     notes.notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
@@ -62,7 +62,7 @@ def test_school_info():
     school_info.school_info_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_conference():
-    conference.conference_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
+    conferences.conference_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
 
 def test_mobile_access_registed():
     mobile_access_registed.mobile_access_registed_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
