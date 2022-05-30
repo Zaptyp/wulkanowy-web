@@ -30,7 +30,7 @@ class Github:
     except:
         repos = Repo(path='..')
     current_commit_hash = repos.head.commit.hexsha
-    c_number_master = repos.git.rev_list("--count", "develop")
+    c_number_master = repos.git.rev_list("--count", "develop", "--", "develop")
     commit_author = repos.head.commit.author.name
     commit_date = repos.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
     commit_size = convert_size(repos.head.commit.size)
@@ -43,7 +43,8 @@ class Github:
     current_branch = repos.active_branch.name
     c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
     current_branch_url = (repo_url + "/tree/" + current_branch)
-    if (int(c_number_current_branch) - int(c_number_master) > 0):
+    #if (int(c_number_current_branch) - int(c_number_master) > 0):
+    if int(c_number_master) - (int(c_number_current_branch) > 0):
         current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
     else:
         current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
