@@ -33,7 +33,7 @@ class Github:
     try:
         c_number_master = repos.git.rev_list("--count", "develop")
     except:
-        c_number_master = "ERROR - git rev-list"
+        c_number_master = "ERROR - Cannot get develop branch commit number!"
     commit_author = repos.head.commit.author.name
     commit_date = repos.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
     commit_size = convert_size(repos.head.commit.size)
@@ -44,22 +44,21 @@ class Github:
     try:
         repo_commit_number = repos.git.rev_list("--count", "develop")
     except:
-        repo_commit_number = "ERROR - git rev-list"
+        repo_commit_number = "ERROR - Cannot get repo commit number!"
     repo_size = repos.git.count_objects("-H")
     current_branch = repos.active_branch.name
     try:
         c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
     except:
-        c_number_current_branch = "ERROR - git rev-list"
+        c_number_current_branch = "ERROR - Connot get " + current_branch + "branch commit number!"
     current_branch_url = (repo_url + "/tree/" + current_branch)
-    #if (int(c_number_current_branch) - int(c_number_master) > 0):
     try:
         if int(c_number_master) - (int(c_number_current_branch) > 0):
             current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
         else:
             current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
     except:
-        current_branch_commit_number = "ERROR - git rev-list"
+        current_branch_commit_number = "ERROR - Cannot calculate!"
 
 @router.get("/github")
 def get_branch_name(repozi: str = Depends(Github)):

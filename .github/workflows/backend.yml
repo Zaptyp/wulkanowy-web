@@ -26,5 +26,4 @@
         - name: Run tests
           working-directory: ./wulkanowy-web/backend/
           run: |
-            git fetch --all
             pytest test.py
