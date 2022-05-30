@@ -53,10 +53,13 @@ class Github:
         c_number_current_branch = "ERROR - git rev-list"
     current_branch_url = (repo_url + "/tree/" + current_branch)
     #if (int(c_number_current_branch) - int(c_number_master) > 0):
-    if int(c_number_master) - (int(c_number_current_branch) > 0):
-        current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
-    else:
-        current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+    try:
+        if int(c_number_master) - (int(c_number_current_branch) > 0):
+            current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
+        else:
+            current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+    except:
+        current_branch_commit_number = "ERROR - git rev-list"
 
 @router.get("/github")
 def get_branch_name(repozi: str = Depends(Github)):

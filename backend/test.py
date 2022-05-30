@@ -447,10 +447,13 @@ def test_github_info():
     except:
         c_number_current_branch = "ERROR - git rev-list"
     current_branch_url = (repo_url + "/tree/" + current_branch)
-    if (int(c_number_current_branch) - int(c_number_master) > 0):
-        current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
-    else:
-        current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+    try:
+        if (int(c_number_current_branch) - int(c_number_master) > 0):
+            current_branch_commit_number = int(c_number_current_branch) - int(c_number_master)
+        else:
+            current_branch_commit_number = int(c_number_master) - int(c_number_current_branch)
+    except:
+        current_branch_commit_number = "ERROR - git rev-list"
     response = client.get(
         "/github",
         headers={},
