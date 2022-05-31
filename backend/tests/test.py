@@ -80,13 +80,13 @@ def test_login_correct():
 
 def test_login_incorrect():
     login_incorrect.login_incorrect_test(
-        nick_invalid, password_invalid, host, symbol, ssl, headers, fg
+        nick_invalid, password_invalid, host, symbol, ssl, fg
     )
 
 
 def test_symbol_incorrect():
     login_with_incorrect_symbol.symbol_incorrect_test(
-        nick_invalid, password_invalid, host, symbol, ssl, headers, fg
+        nick_invalid, password_invalid, host, symbol, ssl, fg
     )
 
 
