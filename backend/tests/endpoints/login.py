@@ -18,7 +18,7 @@ def login_test(nick, password, host, symbol, ssl, fg):
         },
     )
     cookies = login.json()[0]["session_data"]
-    headers = login.json()[0]["schools"][0]["students"][0]["headers"]
+    headers = login.json()[0]["schools"][0]["headers"]
     student = login.json()[0]["schools"][0]["students"][0]["cookies"]
     school_id = login.json()[0]["schools"][0]["id"]
     status_check(login.status_code, login.json(), fg)
