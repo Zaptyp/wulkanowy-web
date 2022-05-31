@@ -17,5 +17,5 @@ class UonetPlusUczen(BaseModel):
     ssl: bool
     headers: object
     student: object
-    vulcan_cookies: object
+    session_data: object
     payload: Optional[dict]
