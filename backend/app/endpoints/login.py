@@ -38,7 +38,6 @@ def send_credentials(username: str, password: str, host: str, symbol: str, ssl: 
         symbol=symbol,
         ssl=ssl,
     )
-    print(url)
     credentials = {"LoginName": username, "Password": password}
     credentials_response = session.post(url=url, data=credentials)
     check_errors(credentials_response.text)
@@ -56,7 +55,6 @@ def check_errors(credentials_response: str):
 
 def create_cert(credentials_response: str) -> dict:
     soup = BeautifulSoup(credentials_response, "lxml")
-    print(credentials_response)
     wa: str = soup.select_one('input[name="wa"]')["value"]
     wresult: str = soup.select_one('input[name="wresult"]')["value"]
     wctx_tag = soup.select_one('input[name="wctx"]')
