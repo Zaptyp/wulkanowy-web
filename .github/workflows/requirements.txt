@@ -11,3 +11,4 @@ lxml
 sty
 pytest-xdist
 gitpython
+itsdangerous
