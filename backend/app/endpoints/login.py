@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, HTTPException
 from starlette import status
+from starlette.requests import Request
 from bs4 import BeautifulSoup
 from urllib.parse import quote
-from datetime import datetime
+from datetime import datetime, timedelta
 from cryptography.fernet import Fernet
 import requests
 import re
@@ -12,16 +13,16 @@ router = APIRouter()
 
 
 @router.post("/login")
-def login(data: models.Login, response: Response):
+def login(data: models.Login, request: Request):
     session: requests.sessions.session = requests.Session()
     cert: dict = send_credentials(
         data.username, data.password, data.host, data.symbol, data.ssl, session)
     students: list[models.Student] = get_students(
         data.host, data.symbol, data.ssl, cert, session)
-    session_cookies: str = encrypt_session_cookies(session, response)
+    session_data: str = encrypt_session_data(session, request)
     data = {
         "students": students,
-        "session_cookies": session_cookies,
+        "session_data": session_data,
         "host": data.host,
         "ssl": data.ssl
     }
@@ -79,17 +80,29 @@ def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = 
         url = url.replace(f"{{{k.upper()}}}", str(kwargs[k]))
     return url
 
-def encrypt_session_cookies(session: requests.sessions.Session, response) -> str:
+def encrypt_session_data(session: requests.sessions.Session, request) -> str:
+    expire = datetime.timestamp(datetime.utcnow() + timedelta(minutes=15))*1000
     key = Fernet.generate_key().decode("utf8")
+    request.session["session_key"] = key
     fernet = Fernet(bytes(key, "utf-8"))
     session_cookies = session.cookies.get_dict()
-    session_cookies = fernet.encrypt(str(session_cookies).encode("utf-8"))
-    response.set_cookie(key="key", value=key, max_age=1200)
-    return session_cookies
+    session_data = fernet.encrypt(
+        str(
+            {
+                "session_cookies": session_cookies,
+                "expire": expire
+            }
+        ).encode("utf-8")
+    )
+    return session_data
 
 def send_cert(host: str, symbol: str, ssl: bool, cert: dict, session: requests.sessions.Session) -> requests.models.Response:
-    url = build_url(subd="uonetplus", path=paths.UONETPLUS.START,
-                    symbol=symbol, host=host, ssl=ssl)
+    url = build_url(
+        subd="uonetplus",
+        path=paths.UONETPLUS.START,
+        symbol=symbol,
+        host=host, ssl=ssl
+    )
     cert_response = session.post(
         url=url,
         headers={

@@ -1,22 +1,20 @@
-from fastapi import APIRouter, HTTPException, Depends
-from fastapi.security import APIKeyCookie
+from fastapi import APIRouter, HTTPException
 from starlette import status
+from starlette.requests import Request
 from app import models, paths
 import requests
 from datetime import datetime
 from cryptography.fernet import Fernet
 import ast
 
-cookie_sec = APIKeyCookie(name="key")
-
 router = APIRouter()
 
 
 @router.post("/uonetplus-uczen/notes")
-def get_notes(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_notes(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.UWAGIIOSIAGNIECIA_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     notes = []
     for note in response.json()["data"]["Uwagi"]:
         note = models.Note(
@@ -34,12 +32,11 @@ def get_notes(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
     )
     return notes_and_achievements
 
-
 @router.post("/uonetplus-uczen/school-info")
-def get_school_info(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_school_info(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.SZKOLAINAUCZYCIELE_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     teachers = []
     school = models.School(
         name=response.json()["data"]["Szkola"]["Nazwa"],
@@ -54,12 +51,11 @@ def get_school_info(data: models.UonetPlusUczen, key: str = Depends(cookie_sec))
     school_info = models.SchoolInfo(school=school, teachers=teachers)
     return school_info
 
-
 @router.post("/uonetplus-uczen/conferences")
-def get_conferences(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_conferences(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.ZEBRANIA_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     conferences = []
     for conference in response.json()["data"]:
         split = conference["Tytul"].split(", ")
@@ -77,12 +73,11 @@ def get_conferences(data: models.UonetPlusUczen, key: str = Depends(cookie_sec))
         conferences.append(conference)
     return conferences
 
-
 @router.post("/uonetplus-uczen/grades")
-def get_grades(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_grades(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.OCENY_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     subjects = []
     descriptive_grades = []
     for subject in response.json()["data"]["Oceny"]:
@@ -125,32 +120,26 @@ def get_grades(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
     )
     return grades
 
-
 @router.post("/uonetplus-uczen/mobile-access/get-registered-devices")
-def get_registered_devices(data: models.UonetPlusUczen, key: str = Depends(cookie_sec)):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_registered_devices(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.ZAREJESTROWANEURZADZENIA_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     registered_devices = []
     for device in response.json()["data"]:
         device = models.Device(
             id=device["Id"],
             name=device["NazwaUrzadzenia"],
-            create_date=datetime.fromisoformat(device["DataUtworzenia"]).strftime(
-                "%d.%m.%Y %H:%M"
-            ),
+            create_date=datetime.fromisoformat(device["DataUtworzenia"]).strftime("%d.%m.%Y %H:%M"),
         )
         registered_devices.append(device)
     return registered_devices
 
-
 @router.post("/uonetplus-uczen/mobile-access/register-device")
-def get_register_device_token(
-    data: models.UonetPlusUczen, key: str = Depends(cookie_sec)
-):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_register_device_token(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.REJESTRACJAURZADZENIATOKEN_GET
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     token_response = models.TokenResponse(
         token=response.json()["data"]["TokenKey"],
         symbol=response.json()["data"]["CustomerGroup"],
@@ -159,20 +148,14 @@ def get_register_device_token(
     )
     return token_response
 
-
 @router.post("/uonetplus-uczen/mobile-access/delete-registered-device")
-def get_register_device_token(
-    data: models.UonetPlusUczen, key: str = Depends(cookie_sec)
-):
-    data.vulcan_cookies = encrypt_cookies(key, data.vulcan_cookies)
+def get_register_device_token(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
     path = paths.UCZEN.ZAREJESTROWANEURZADZENIA_DELETE
-    response = get_response(data, path)
+    response = get_response(data, path, session_cookies)
     return response.json()
 
-
-def build_url(
-    subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs
-):
+def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs) -> str:
     if ssl:
         url = "https://"
     else:
@@ -187,13 +170,11 @@ def build_url(
 
     for k in kwargs:
         url = url.replace(f"{{{k.upper()}}}", str(kwargs[k]))
-
     return url
 
-
-def get_response(data, path):
+def get_response(data, path, session_cookies) -> requests.models.Response:
     session = requests.Session()
-    data.vulcan_cookies.update(data.student)
+    session_cookies.update(data.student)
     url = build_url(
         subd="uonetplus-uczen",
         path=path,
@@ -206,23 +187,36 @@ def get_response(data, path):
         url=url,
         headers=data.headers,
         json=data.payload,
-        cookies=data.vulcan_cookies,
+        cookies=session_cookies,
     )
     if response.status_code != 200:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail="uonet_error"
-        )
-    if "uonet_error" in response.text:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="uonet_error")
+    if (
+        "uonet_error"
+        in response.text
+    ):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="uonet_error"
         )
-
     return response
 
-
-def encrypt_cookies(key: str, vulcan_cookies: str):
-    fernet = Fernet(bytes(key, "utf-8"))
-    cookies = fernet.decrypt((vulcan_cookies).encode())
-    cookies = ast.literal_eval(cookies.decode("utf-8"))
-
-    return cookies
+def decrypt_session_data(request, session_data: str) -> dict:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials"
+    )
+    try:
+        if request.session.get('session_key'):
+            session_key = request.session.get('session_key')
+        else:
+            raise credentials_exception
+        fernet = Fernet(bytes(session_key, "utf-8"))
+        session_data = ast.literal_eval(fernet.decrypt(session_data.encode("utf-8")).decode("utf-8"))
+        if session_data['expire'] != None and session_data['session_cookies'] != None:
+            if datetime.timestamp(datetime.utcnow())*1000 > float(session_data['expire']):
+                raise credentials_exception
+        else:
+            raise credentials_exception
+        return dict(session_data['session_cookies'])
+    except:
+        raise credentials_exception
