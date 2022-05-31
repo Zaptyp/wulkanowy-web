@@ -2,6 +2,8 @@ import uvicorn
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
+from cryptography.fernet import Fernet
 from app.endpoints import login, uonetplus_uczen, github
 
 app = FastAPI(title="Uonetplus API")
@@ -13,6 +15,7 @@ app.include_router(github.router)
 origins = [
     "http://localhost:8080",
 ]
+secret_key = Fernet.generate_key().decode("utf-8")
 
 app.add_middleware(
     CORSMiddleware,
@@ -21,6 +24,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(SessionMiddleware, secret_key=secret_key)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
