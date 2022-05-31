@@ -9,7 +9,7 @@ def mobile_access_register_test(
         "/uonetplus-uczen/mobile-access/register-device",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": cookies,
+            "session_data": cookies,
             "student": student,
             "school_id": school_id,
             "host": host,

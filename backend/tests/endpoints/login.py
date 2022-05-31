@@ -17,13 +17,13 @@ def login_test(nick, password, host, symbol, ssl, fg):
             "ssl": ssl,
         },
     )
-    cookies = login.json()["session_cookies"]
+    cookies = login.json()["session_data"]
     headers = login.json()["students"][0]["headers"]
     student = login.json()["students"][0]["cookies"]
     school_id = login.json()["students"][0]["school_id"]
     status_check(login.status_code, login.json(), fg)
     assert login.json()["students"][0]["school_symbol"] == "powiatwulkanowy"
-    assert login.json()["session_cookies"]
+    assert login.json()["session_data"]
     try:
         assert login.json()["host"] == "fakelog.cf"
     except:
