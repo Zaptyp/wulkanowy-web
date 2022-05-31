@@ -5,7 +5,6 @@ from typing import Optional
 class Login(BaseModel):
     username: str
     password: str
-    symbol: str
     host: str
     ssl: Optional[bool]
 
