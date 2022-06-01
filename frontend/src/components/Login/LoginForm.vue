@@ -44,13 +44,11 @@ interface LoginFormData {
   loginData: {
     username: string;
     password: string;
-    symbol: string;
     selectedRegisterVariantName: string;
   };
   registerVariantsNames: Array<string>;
   symbols: Array<string>;
   showPassword: boolean;
-  rules: any;
 }
 
 export default Vue.extend({
