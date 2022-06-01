@@ -6,7 +6,11 @@ Vue.use(Vuex);
 
 interface State {
   loading: boolean;
-  loginData: any;
+  loginData: {
+    symbols?: any;
+    host?: string;
+    ssl?: boolean;
+  };
   repo_info: any;
   logged_in: boolean;
   selected_student: number;
@@ -26,7 +30,11 @@ interface State {
 export default new Vuex.Store({
   state: (): State => ({
     loading: false,
-    loginData: [],
+    loginData: {
+      symbols: undefined,
+      host: undefined,
+      ssl: undefined,
+    },
     repo_info: [],
     logged_in: false,
     selected_student: 0,

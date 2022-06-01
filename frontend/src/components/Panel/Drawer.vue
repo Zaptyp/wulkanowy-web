@@ -6,6 +6,7 @@
       clipped
       app
     >
+      {{ $store.state.view }}
       <v-list nav dense>
         <v-list-item-group v-model="$store.state.view" mandatory color="primary">
           <v-list-item v-for="(item, i) in nav" :key="i" :value="item.name">
