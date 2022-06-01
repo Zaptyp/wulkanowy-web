@@ -9,33 +9,19 @@
           outlined
           :label="$t('login.email_label')"
           v-model="loginData.username"
-          :rules="[rules.required]"
         />
         <v-text-field
           outlined
           :label="$t('login.password_label')"
           v-model="loginData.password"
-          :rules="[rules.required]"
           :type="showPassword ? 'text' : 'password'"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
-        />
-        <v-autocomplete
-          outlined
-          :label="$t('login.symbol_label')"
-          v-model="loginData.symbol"
-          :rules="[$t(rules.required)]"
-          :items="
-            loginData.selectedRegisterVariantName == 'Fakelog'
-              ? ['powiatwulkanowy', 'adsf']
-              : symbols
-          "
         />
         <v-select
           outlined
           :label="$t('login.host_label')"
           v-model="loginData.selectedRegisterVariantName"
-          :rules="[rules.required]"
           :items="registerVariantsNames"
           @change="registerVariantSelected()"
         />
@@ -58,13 +44,11 @@ interface LoginFormData {
   loginData: {
     username: string;
     password: string;
-    symbol: string;
     selectedRegisterVariantName: string;
   };
   registerVariantsNames: Array<string>;
   symbols: Array<string>;
   showPassword: boolean;
-  rules: any;
 }
 
 export default Vue.extend({
@@ -72,15 +56,11 @@ export default Vue.extend({
     loginData: {
       username: "",
       password: "",
-      symbol: "",
       selectedRegisterVariantName: "Vulcan",
     },
     registerVariantsNames: [],
     symbols: [],
     showPassword: false,
-    rules: {
-      required: (value: string) => !!value || "errors.field_required",
-    },
   }),
 
   created() {
@@ -110,7 +90,6 @@ export default Vue.extend({
       if (this.loginData.selectedRegisterVariantName == "Fakelog") {
         this.loginData.username = "jan@fakelog.cf";
         this.loginData.password = "jan123";
-        this.loginData.symbol = "powiatwulkanowy";
       }
     },
     async login() {
@@ -121,7 +100,7 @@ export default Vue.extend({
       state.logged_in = false;
       state.selected_student = undefined;
 
-      if (!this.loginData.username || !this.loginData.password || !this.loginData.symbol) {
+      if (!this.loginData.username || !this.loginData.password) {
         state.error.description = "empty_fields";
         state.error.show = true;
         state.loading = false;
@@ -129,12 +108,13 @@ export default Vue.extend({
         let response: any = await Api.login(
           this.loginData.username,
           this.loginData.password,
-          this.loginData.symbol,
           this.host,
           this.ssl
         );
         if (response) {
-          this.$store.state.loginData = response.data;
+          this.$store.state.loginData.symbols = response.data;
+          this.$store.state.loginData.host = this.host;
+          this.$store.state.loginData.ssl = this.ssl;
         }
       }
     },

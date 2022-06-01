@@ -3,7 +3,7 @@ from tests.endpoints.login import client
 
 # client = TestClient(app)
 def login_incorrect_test(
-    nick_invalid, password_invalid, host, symbol, ssl, headers, fg
+    nick_invalid, password_invalid, host, symbol, ssl, fg
 ):
     response = client.post(
         "/login",

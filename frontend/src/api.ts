@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '@/store/index';
 
 export default {
-  login: async (username: string, password: string, symbol: string, host: string, ssl: boolean) => {
+  login: async (username: string, password: string, host: string, ssl: boolean) => {
     const response: any = await axios({
       method: 'POST',
       url: 'http://localhost:8000/login',
@@ -12,7 +12,6 @@ export default {
       data: {
         username,
         password,
-        symbol,
         host,
         ssl,
       },
@@ -20,7 +19,7 @@ export default {
     })
     .catch(function (error: any) {
       if(error.toJSON().message == 'Network Error'){
-        store.state.error.description = 'No internet connection';
+        store.state.error.description = 'network_error';
         store.state.error.details = error.toJSON().stack;
         store.state.error.show = true;
         store.state.loading = false;
@@ -31,8 +30,8 @@ export default {
         store.state.loading = false;
       }
     });
-    if (!response.data.students.length) {
-      store.state.error.description = 'This account have not any students';
+    if (!response.data.length) {
+      store.state.error.description = 'no_symbols_account';
       store.state.error.show = true;
       store.state.loading = false;
       return null;
@@ -53,7 +52,7 @@ export default {
     })
     .catch(function (error: any) {
       if(error.toJSON().message == 'Network Error'){
-        store.state.error.description = 'No internet connection';
+        store.state.error.description = 'network_error';
         store.state.error.details = error.toJSON().stack;
         store.state.error.show = true;
         store.state.loading = false;

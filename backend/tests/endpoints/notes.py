@@ -7,7 +7,7 @@ def notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg):
         "/uonetplus-uczen/notes",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": cookies,
+            "session_data": cookies,
             "student": student,
             "school_id": school_id,
             "host": host,
