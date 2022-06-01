@@ -2,7 +2,7 @@ from tests.checks.status_code import status_check
 from tests.endpoints.login import client
 
 
-def symbol_incorrect_test(nick, password, host, symbol_invalid, ssl, headers, fg):
+def symbol_incorrect_test(nick, password, host, symbol_invalid, ssl, fg):
     response = client.post(
         "/login",
         headers={"Content-Type": "application/json"},

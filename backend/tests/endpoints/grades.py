@@ -9,7 +9,7 @@ def grades_test(
         "/uonetplus-uczen/grades",
         headers={"Content-Type": "application/json"},
         json={
-            "vulcan_cookies": cookies,
+            "session_data": cookies,
             "student": student,
             "school_id": school_id,
             "host": host,
