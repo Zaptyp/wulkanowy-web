@@ -12,6 +12,9 @@ interface State {
     ssl?: boolean;
   };
   repo_info: any;
+  grades: {
+    view: string;
+  };
   logged_in: boolean;
   selected_student: {
     symbol?: string;
@@ -40,6 +43,9 @@ export default new Vuex.Store({
       ssl: undefined,
     },
     repo_info: [],
+    grades: {
+      view: "details",
+    },
     logged_in: false,
     selected_student: {
       symbol: undefined,

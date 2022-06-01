@@ -6,7 +6,7 @@
       <v-container fluid>
         <v-window v-model="$store.state.view" touchless>
           <v-window-item transition="false" value="dashboard">this is dashbaord</v-window-item>
-          <v-window-item transition="false" value="grades">this is grades</v-window-item>
+          <v-window-item transition="false" value="grades"><Grades/></v-window-item>
           <v-window-item transition="false" value="attedance">this is attedance</v-window-item>
           <v-window-item transition="false" value="timetable">this is timetable</v-window-item>
           <v-window-item transition="false" value="exams">this is exams</v-window-item>
@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer, Settings } from "@/components";
+import { AppBar, Drawer, Settings, Grades } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -49,6 +49,7 @@ export default Vue.extend({
     AppBar,
     Drawer,
     Settings,
+    Grades,
   },
 
   beforeMount() {
