@@ -13,7 +13,11 @@ interface State {
   };
   repo_info: any;
   logged_in: boolean;
-  selected_student: number;
+  selected_student: {
+    symbol?: string;
+    school?: string;
+    student?: string;
+  };
   small_ui: boolean;
   view: string;
   drawer: {
@@ -37,7 +41,11 @@ export default new Vuex.Store({
     },
     repo_info: [],
     logged_in: false,
-    selected_student: 0,
+    selected_student: {
+      symbol: undefined,
+      school: undefined,
+      student: undefined,
+    },
     small_ui: false,
     view: "dashboard",
     drawer: {
@@ -52,7 +60,12 @@ export default new Vuex.Store({
   }),
   mutations: {
     log_out(state) {
-      state.loginData = [];
+      state.loginData.symbols = undefined;
+      state.loginData.host = undefined;
+      state.loginData.ssl = undefined;
+      state.selected_student.symbol = undefined;
+      state.selected_student.school = undefined;
+      state.selected_student.student = undefined;
       state.logged_in = false;
       router.push("/");
     },
