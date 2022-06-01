@@ -31,7 +31,7 @@ npm run serve
 ```
 
 # Features
-* logging in using the email, password and symbol
+* logging in using the email, password
 * light and dark theme
 
 # Api
