@@ -14,6 +14,7 @@ interface State {
   repo_info: any;
   grades: {
     view: string;
+    semesterId?: number;
   };
   logged_in: boolean;
   selected_student: {
@@ -45,6 +46,7 @@ export default new Vuex.Store({
     repo_info: [],
     grades: {
       view: "details",
+      semesterId: undefined
     },
     logged_in: false,
     selected_student: {

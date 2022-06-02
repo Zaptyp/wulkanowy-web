@@ -16,3 +16,4 @@ export { default as GradesDetails } from "./Panel/Grades/Details.vue";
 export { default as GradesSummary } from "./Panel/Grades/Summary.vue";
 export { default as GradesClass } from "./Panel/Grades/Class.vue";
 export { default as Grades } from "./Panel/Grades/Main.vue";
+export { default as GradesSemesterSwitch } from "./Panel/Grades/SemesterSwitch.vue";

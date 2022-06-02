@@ -2,7 +2,7 @@
   <div id="login" class="d-flex fill-hieght justify-center align-center">
     <v-card id="login-card" elevation="15">
       <v-row no-gutters class="d-flex fill-height">
-        <v-col cols="12" md="5" class="d-flex justify-center align-center primary rounded-l d-md-flex d-none">
+        <v-col cols="12" md="5" class="d-flex justify-center align-center primary rounded-l d-md-flex d-none" v-if="!this.$store.state.small_ui">
           <Baner />
         </v-col>
         <v-col cols="12" md="7">
