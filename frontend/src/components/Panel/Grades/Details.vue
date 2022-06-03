@@ -34,6 +34,13 @@ export default Vue.extend({
   },
   beforeMount() {
     this.getGrades()
+  },
+  watch: {
+    '$store.state.selected_student': {
+      handler () {
+        this.getGrades();
+      }
+    }
   }
 });
 </script>
