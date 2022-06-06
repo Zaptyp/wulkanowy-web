@@ -83,22 +83,40 @@ def get_grades(data: models.UonetPlusUczen, request: Request):
     for subject in response.json()["data"]["Oceny"]:
         subject_grades = []
         for grade in subject["OcenyCzastkowe"]:
+            if "(" in grade["Wpis"]:
+                comment = grade["Wpis"].split("(")[1].replace(")", "")
+                entry = grade["Wpis"].split("(")[0]
+            else:
+                comment = None
+                entry = grade["Wpis"]
+            color = str(grade["KolorOceny"]).replace("0", "black").replace("7261447", "green").replace(
+                "11627761", "purple").replace("15748172", "red").replace("2139383", "blue")
+            if "/" in entry:
+                comment = grade["Wpis"]
+                entry = str(int(int(entry.split("/")[0]) * 100 / int(entry.split("/")[1]))) + "%"
+            weight = grade["Waga"]
+            weight = f"{weight:.2f}"
+            print(weight)
             grade = models.Grade(
-                entry=grade["Wpis"],
-                color=grade["KolorOceny"],
+                entry=entry,
+                comment=comment,
+                color=color,
                 symbol=grade["KodKolumny"],
                 description=grade["NazwaKolumny"],
-                weight_value=grade["Waga"],
+                weight_value=weight,
                 date=grade["DataOceny"],
                 teacher=grade["Nauczyciel"],
             )
+            print(grade.weight_value)
             subject_grades.append(grade)
+            subject_grades.sort(key=lambda t: datetime.strptime(t.date, "%d.%m.%Y"), reverse=True)
         subject = models.Subject(
             name=subject["Przedmiot"],
             visible_subject=subject["WidocznyPrzedmiot"],
             position=subject["Pozycja"],
             average=subject["Srednia"],
             proposed_grade=subject["ProponowanaOcenaRoczna"],
+            points=subject["SumaPunktow"],
             final_grade=subject["OcenaRoczna"],
             proposed_points=subject["ProponowanaOcenaRocznaPunkty"],
             final_points=subject["OcenaRocznaPunkty"],

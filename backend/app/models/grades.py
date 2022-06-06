@@ -16,6 +16,7 @@ class Subject(BaseModel):
     average: float
     proposed_grade: Optional[str]
     fianl_grade: Optional[str]
+    points: Optional[str]
     proposed_points: Optional[str]
     final_points: Optional[str]
     grades: list
@@ -23,10 +24,11 @@ class Subject(BaseModel):
 
 class Grade(BaseModel):
     entry: str
+    comment: Optional[str]
     color: str
     symbol: Optional[str]
     description: Optional[str]
-    weight_value: float
+    weight_value: str
     date: str
     teacher: str
 
