@@ -96,7 +96,6 @@ def get_grades(data: models.UonetPlusUczen, request: Request):
                 entry = str(int(int(entry.split("/")[0]) * 100 / int(entry.split("/")[1]))) + "%"
             weight = grade["Waga"]
             weight = f"{weight:.2f}"
-            print(weight)
             grade = models.Grade(
                 entry=entry,
                 comment=comment,
@@ -107,7 +106,6 @@ def get_grades(data: models.UonetPlusUczen, request: Request):
                 date=grade["DataOceny"],
                 teacher=grade["Nauczyciel"],
             )
-            print(grade.weight_value)
             subject_grades.append(grade)
             subject_grades.sort(key=lambda t: datetime.strptime(t.date, "%d.%m.%Y"), reverse=True)
         subject = models.Subject(
