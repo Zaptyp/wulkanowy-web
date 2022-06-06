@@ -25,7 +25,7 @@ export default Vue.extend({
         this.$store.state.loginData.symbols[studentData.symbol].schools[studentData.school].headers,
         this.$store.state.loginData.symbols[studentData.symbol].schools[studentData.school].students[studentData.student].cookies,
         this.$store.state.loginData.symbols[studentData.symbol].session_data,
-        { okres: this.$store.state.grades.semester }
+        { okres: this.$store.state.grades.semesterId }
       )
       if (response) {
         this.grades = response.data;
@@ -50,7 +50,7 @@ export default Vue.extend({
   watch: {
     "$store.state.selected_student": {
       handler() {
-        this.$store.state.grades.semester =
+        this.$store.state.grades.semesterId =
           this.getSemesters[
             this.getSemesters.findIndex((item: any) => item.current === true)
           ].id;
