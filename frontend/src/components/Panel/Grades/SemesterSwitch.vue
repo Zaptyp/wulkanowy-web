@@ -11,7 +11,7 @@
           <v-card-title>{{ $t("grades.switch_semester") }}</v-card-title>
           <v-list>
             <v-list-item-group
-              v-model="$store.state.grades.semester"
+              v-model="$store.state.grades.semesterId"
               color="primary"
             >
               <v-list-item
@@ -62,12 +62,6 @@ export default Vue.extend({
         .schools[selectedStudent.school].students[selectedStudent.student]
         .semesters;
     },
-  },
-  created() {
-    this.$store.state.grades.semester =
-      this.getSemesters[
-        this.getSemesters.findIndex((item: any) => item.current === true)
-      ].id;
   },
 });
 </script>

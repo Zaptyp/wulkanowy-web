@@ -33,14 +33,35 @@ export default Vue.extend({
     }
   },
   beforeMount() {
-    this.getGrades()
+    this.$store.state.grades.semesterId =
+      this.getSemesters[
+        this.getSemesters.findIndex((item: any) => item.current === true)
+      ].id;
+    this.getGrades();
+  },
+  computed: {
+    getSemesters() {
+      const selectedStudent = this.$store.state.selected_student;
+      return this.$store.state.loginData.symbols[selectedStudent.symbol]
+        .schools[selectedStudent.school].students[selectedStudent.student]
+        .semesters;
+    },
   },
   watch: {
-    '$store.state.selected_student': {
-      handler () {
+    "$store.state.selected_student": {
+      handler() {
+        this.$store.state.grades.semester =
+          this.getSemesters[
+            this.getSemesters.findIndex((item: any) => item.current === true)
+          ].id;
         this.getGrades();
-      }
-    }
-  }
+      },
+    },
+    "$store.state.grades.semesterId": {
+      handler() {
+        this.getGrades();
+      },
+    },
+  },
 });
 </script>
