@@ -100,6 +100,7 @@ def get_grades(data: models.UonetPlusUczen, request: Request):
             average=subject["Srednia"],
             proposed_grade=subject["ProponowanaOcenaRoczna"],
             final_grade=subject["OcenaRoczna"],
+            points=subject["SumaPunktow"],
             proposed_points=subject["ProponowanaOcenaRocznaPunkty"],
             final_points=subject["OcenaRocznaPunkty"],
             grades=subject_grades,

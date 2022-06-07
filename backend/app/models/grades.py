@@ -16,6 +16,7 @@ class Subject(BaseModel):
     average: float
     proposed_grade: Optional[str]
     fianl_grade: Optional[str]
+    points: Optional[str]
     proposed_points: Optional[str]
     final_points: Optional[str]
     grades: list
