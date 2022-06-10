@@ -3,7 +3,7 @@ from tests.routes.login import client
 
 # client = TestClient(app)
 def login_incorrect_test(
-    nick_invalid, password_invalid, host, symbol, ssl, fg
+    nick_invalid, password_invalid, host, ssl, fg
 ):
     response = client.post(
         "/login",
@@ -12,7 +12,6 @@ def login_incorrect_test(
             "username": nick_invalid,
             "password": password_invalid,
             "host": host,
-            "symbol": symbol,
             "ssl": ssl,
         },
     )

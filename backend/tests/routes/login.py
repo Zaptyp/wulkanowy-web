@@ -5,7 +5,7 @@ from main import app
 client = TestClient(app)
 
 
-def login_test(nick, password, host, symbol, ssl, fg):
+def login_test(nick, password, host, ssl, fg):
     login = client.post(
         "/login",
         headers={"Content-Type": "application/json"},
@@ -13,7 +13,6 @@ def login_test(nick, password, host, symbol, ssl, fg):
             "username": nick,
             "password": password,
             "host": host,
-            "symbol": symbol,
             "ssl": ssl,
         },
     )
