@@ -27,7 +27,7 @@ class fg:
 
 
 def test_check_connection():
-    check = requests.get(settings.TEST_HOST)
+    check = requests.get(settings.TESTS_HOST)
     status_code.status_check(check.status_code, check.json, fg)
     if (
         check.status_code == 503
