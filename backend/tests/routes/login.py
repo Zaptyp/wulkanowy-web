@@ -17,11 +17,11 @@ def login_test(nick, password, host, symbol, ssl, fg):
             "ssl": ssl,
         },
     )
-    cookies = login.json()[0]["session_data"]
+    session_data = login.json()[0]["session_data"]
     headers = login.json()[0]["schools"][0]["headers"]
     student = login.json()[0]["schools"][0]["students"][0]["cookies"]
     school_id = login.json()[0]["schools"][0]["id"]
     status_check(login.status_code, login.json(), fg)
     assert login.json()[0]["name"] == "powiatwulkanowy"
     assert login.json()[0]["session_data"]
-    return cookies, headers, student, school_id
+    return session_data, headers, student, school_id
