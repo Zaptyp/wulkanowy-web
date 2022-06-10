@@ -45,11 +45,7 @@ def github_info_test(fg):
             )
     except:
         current_branch_commit_number = "ERROR - Cannot calculate!"
-    response = client.get(
-        "/api/v1/github",
-        headers={},
-        json={},
-    )
+    response = client.get("/api/v1/github")
     status_check(response.status_code, response.json(), fg)
     assert response.json()["repo_name"] == repo_name[1:]
     assert response.json()["repo_link"] == repo_url
