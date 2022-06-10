@@ -24,4 +24,4 @@ def login_test(nick, password, host, ssl, fg):
     status_check(login.status_code, login.json(), fg)
     assert login.json()[0]["name"] == "powiatwulkanowy"
     assert login.json()[0]["session_data"]
-    return session_data, headers, student, school_id, symbol
+    return session_data, headers, student, symbol, school_id
