@@ -1,13 +1,13 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 
-def school_info_test(cookies, headers, student, school_id, host, symbol, ssl, fg):
+def conference_test(session_data, headers, student, school_id, host, symbol, ssl, fg):
     response = client.post(
-        "/uonetplus-uczen/school-info",
+        "/api/v1/uonetplus-uczen/conferences",
         headers={"Content-Type": "application/json"},
         json={
-            "session_data": cookies,
+            "session_data": session_data,
             "student": student,
             "school_id": school_id,
             "host": host,
@@ -19,7 +19,7 @@ def school_info_test(cookies, headers, student, school_id, host, symbol, ssl, fg
     )
     status_check(response.status_code, response.json(), fg)
     assert (
-        response.json()["school"]["name"]
-        == "Publiczna szkoła Wulkanowego nr 1 w fakelog.cf"
+        response.json()[0]["subject"]
+        == "Podsumowanie I semestru - średnia klasy, oceny, frekwencja, zachowanie."
     )
-    assert response.json()["teachers"][0]["name"] == "Karolina Kowalska [AN]"
+    assert response.json()[1]["date"] == "06.09.2019 16:30"

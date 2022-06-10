@@ -10,7 +10,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/login",
+      url: "http://localhost:8000/api/v1/auth/signin",
       headers: {
         "Content-Type": "application/json",
       },
@@ -57,7 +57,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/uonetplus-uczen/grades",
+      url: "http://localhost:8000/api/v1/uonetplus-uczen/grades",
       headers: {
         "Content-Type": "application/json",
       },

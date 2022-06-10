@@ -62,7 +62,7 @@ class Github:
         current_branch_commit_number = "ERROR - Cannot calculate!"
 
 
-@router.get("/github")
+@router.get("/")
 def get_branch_name(repozi: str = Depends(Github)):
     response = {
         "repo_name": Github.repo_name[1:],

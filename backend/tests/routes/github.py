@@ -1,5 +1,5 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 from git import Repo
 import re
 
@@ -45,11 +45,7 @@ def github_info_test(fg):
             )
     except:
         current_branch_commit_number = "ERROR - Cannot calculate!"
-    response = client.get(
-        "/github",
-        headers={},
-        json={},
-    )
+    response = client.get("/api/v1/github")
     status_check(response.status_code, response.json(), fg)
     assert response.json()["repo_name"] == repo_name[1:]
     assert response.json()["repo_link"] == repo_url
