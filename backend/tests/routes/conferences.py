@@ -4,7 +4,7 @@ from tests.routes.login import client
 
 def conference_test(session_data, headers, student, school_id, host, symbol, ssl, fg):
     response = client.post(
-        "/uonetplus-uczen/conferences",
+        "/api/v1/uonetplus-uczen/conferences",
         headers={"Content-Type": "application/json"},
         json={
             "session_data": session_data,

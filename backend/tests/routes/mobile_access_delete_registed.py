@@ -6,7 +6,7 @@ def mobile_access_delete_registed_test(
     session_data, headers, student, school_id, host, symbol, ssl, id_mobile_deleted, fg
 ):
     response = client.post(
-        "/uonetplus-uczen/mobile-access/delete-registered-device",
+        "/api/v1/uonetplus-uczen/mobile-access/delete-registered-device",
         headers={"Content-Type": "application/json"},
         json={
             "session_data": session_data,

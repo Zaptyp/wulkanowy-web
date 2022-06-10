@@ -6,7 +6,7 @@ def login_incorrect_test(
     nick_invalid, password_invalid, host, ssl, fg
 ):
     response = client.post(
-        "/login",
+        "/api/v1/auth/signin",
         headers={"Content-Type": "application/json"},
         json={
             "username": nick_invalid,

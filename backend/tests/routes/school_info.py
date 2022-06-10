@@ -4,7 +4,7 @@ from tests.routes.login import client
 
 def school_info_test(session_data, headers, student, school_id, host, symbol, ssl, fg):
     response = client.post(
-        "api/v1/uonetplus-uczen/school-info",
+        "/api/v1/uonetplus-uczen/school-info",
         headers={"Content-Type": "application/json"},
         json={
             "session_data": session_data,

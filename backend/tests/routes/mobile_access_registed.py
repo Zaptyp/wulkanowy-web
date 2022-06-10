@@ -6,7 +6,7 @@ def mobile_access_registed_test(
     session_data, headers, student, school_id, host, symbol, ssl, fg
 ):
     response = client.post(
-        "/uonetplus-uczen/mobile-access/get-registered-devices",
+        "/api/v1/uonetplus-uczen/mobile-access/get-registered-devices",
         headers={"Content-Type": "application/json"},
         json={
             "session_data": session_data,

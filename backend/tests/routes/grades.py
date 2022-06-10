@@ -6,7 +6,7 @@ def grades_test(
     session_data, headers, student, school_id, host, symbol, ssl, week_grades, fg
 ):
     response = client.post(
-        "/uonetplus-uczen/grades",
+        "/api/v1/uonetplus-uczen/grades",
         headers={"Content-Type": "application/json"},
         json={
             "session_data": session_data,
