@@ -8,7 +8,7 @@ class Settings(BaseSettings):
 
   TESTS_USERNAME: EmailStr = "jan@fakelog.cf"
   TESTS_PASSWORD: str = "jan123"
-  TESTS_HOST: str = "fakelog.cf"
+  TESTS_HOST: str = "http://fakelog.cf"
   TESTS_BACKUP_HOST: str = "http://fakelog.tk"
   TESTS_SSL: bool = False
   TESTS_INVALID_PASSWORD: str = "marzenna123"

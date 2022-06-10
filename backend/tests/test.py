@@ -27,14 +27,7 @@ class fg:
 
 
 def test_check_connection():
-    if settings.TESTS_SSL == True:
-        check = requests.get(
-            "https://fakelog.cf",
-        )
-    elif settings.TESTS_SSL == False:
-        check = requests.get(
-            "http://fakelog.cf",
-        )
+    check = requests.get(settings.TEST_HOST)
     status_code.status_check(check.status_code, check.json, fg)
     if (
         check.status_code == 503
@@ -50,8 +43,10 @@ def test_check_connection():
         or check.status_code == 111
     ):
         global host
-        host = settings.BACKUP_HOST
+        host = settings.TESTS_BACKUP_HOST
         print(fg.orange + "Main host unavailable. Changed to backup host" + fg.rs)
+    else:
+        host = settings.TESTS_HOST
 
 
 def test_login_correct():
