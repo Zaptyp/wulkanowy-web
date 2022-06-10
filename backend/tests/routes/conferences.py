@@ -1,5 +1,5 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 
 def conference_test(session_data, headers, student, school_id, host, symbol, ssl, fg):

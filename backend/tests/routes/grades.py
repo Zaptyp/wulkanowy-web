@@ -1,5 +1,5 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 # client = TestClient(app)
 def grades_test(
