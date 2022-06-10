@@ -245,7 +245,7 @@ def extract_symbols(wresult: str) -> list[str]:
 
 
 def extract_school_ids(text: str) -> list[str]:
-    soup = BeautifulSoup(text, "html")
+    soup = BeautifulSoup(text, "html.parser")
     school_tags = soup.select(
         '.panel.linkownia.pracownik.klient a[href*="uonetplus-uczen"]')
     school_ids = [school_tag["href"].split("/")[4] for school_tag in school_tags]
