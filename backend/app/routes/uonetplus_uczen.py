@@ -206,13 +206,13 @@ def get_response(data: dict, path: str, session_cookies: dict) -> requests.model
         cookies=session_cookies,
     )
     if response.status_code != 200:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=resources.UNKNOW_ERROR)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=resources.UNKNOWN_ERROR)
     if (
         "uonet_error"
         in response.text
     ):
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=resources.UNKNOW_ERROR
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=resources.UNKNOWN_ERROR
         )
     return response
 
