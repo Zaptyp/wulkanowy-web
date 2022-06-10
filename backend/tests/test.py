@@ -50,8 +50,8 @@ def test_check_connection():
 
 
 def test_login_correct():
-    global cookies, headers, student, symbol, school_id
-    cookies, headers, student, symbol, school_id = login.login_test(
+    global session_data, headers, student, symbol, school_id
+    session_data, headers, student, symbol, school_id = login.login_test(
         settings.TESTS_USERNAME, settings.TESTS_PASSWORD, host, settings.TESTS_SSL, fg
     )
 
@@ -63,43 +63,43 @@ def test_login_incorrect():
 
 
 def test_notes():
-    notes.notes_test(cookies, headers, student, school_id,
+    notes.notes_test(session_data, headers, student, school_id,
                      host, symbol, settings.TESTS_SSL, fg)
 
 
 def test_grades():
     grades.grades_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_SEMESTER, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_SEMESTER, fg
     )
 
 
 def test_school_info():
     school_info.school_info_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_conference():
     conferences.conference_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_registed():
     mobile_access_registed.mobile_access_registed_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_register():
     mobile_access_register.mobile_access_register_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_delete_registed():
     mobile_access_delete_registed.mobile_access_delete_registed_test(
-        cookies, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_DEVICE_ID, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_DEVICE_ID, fg
     )
 
 
