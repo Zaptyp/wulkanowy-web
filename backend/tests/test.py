@@ -1,10 +1,10 @@
 from fastapi.testclient import TestClient
 from main import app
+from app.core.config import settings
 import requests
-from tests.endpoints import (
+from tests.routes import (
     login,
     login_incorrect,
-    login_with_incorrect_symbol,
     notes,
     grades,
     school_info,
@@ -26,32 +26,8 @@ class fg:
     rs = "\033[0m"
 
 
-# Settings for all tests
-nick = "jan@fakelog.cf"
-password = "jan123"
-host = "fakelog.cf"
-backuphost = "fakelog.tk"
-symbol = "powiatwulkanowy"
-ssl = "false"
-# Weekly settings for tests
-week_grades = "16"
-# ID settings for tests
-id_mobile_deleted = 1234
-# Settings for test_login_incorrect and test_symbol_incorrect
-nick_invalid = "jan@fakelog.cf"
-password_invalid = "Jan321"
-symbol_invalid = "warszawa"
-
-
 def test_check_connection():
-    if ssl == "true":
-        check = requests.get(
-            "https://fakelog.cf",
-        )
-    elif ssl == "false":
-        check = requests.get(
-            "http://fakelog.cf",
-        )
+    check = requests.get("http://" + settings.TESTS_HOST)
     status_code.status_check(check.status_code, check.json, fg)
     if (
         check.status_code == 503
@@ -67,66 +43,63 @@ def test_check_connection():
         or check.status_code == 111
     ):
         global host
-        host = backuphost
+        host = settings.TESTS_BACKUP_HOST
         print(fg.orange + "Main host unavailable. Changed to backup host" + fg.rs)
+    else:
+        host = settings.TESTS_HOST
 
 
 def test_login_correct():
-    global cookies, headers, student, school_id
-    cookies, headers, student, school_id = login.login_test(
-        nick, password, host, symbol, ssl, fg
+    global session_data, headers, student, symbol, school_id
+    session_data, headers, student, symbol, school_id = login.login_test(
+        settings.TESTS_USERNAME, settings.TESTS_PASSWORD, host, settings.TESTS_SSL, fg
     )
 
 
 def test_login_incorrect():
     login_incorrect.login_incorrect_test(
-        nick_invalid, password_invalid, host, symbol, ssl, fg
-    )
-
-
-def test_symbol_incorrect():
-    login_with_incorrect_symbol.symbol_incorrect_test(
-        nick_invalid, password_invalid, host, symbol, ssl, fg
+        settings.TESTS_USERNAME, settings.TESTS_INVALID_PASSWORD, host, settings.TESTS_SSL, fg
     )
 
 
 def test_notes():
-    notes.notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg)
+    notes.notes_test(session_data, headers, student, school_id,
+                     host, symbol, settings.TESTS_SSL, fg)
 
 
 def test_grades():
     grades.grades_test(
-        cookies, headers, student, school_id, host, symbol, ssl, week_grades, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_SEMESTER, fg
     )
 
 
 def test_school_info():
     school_info.school_info_test(
-        cookies, headers, student, school_id, host, symbol, ssl, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_conference():
     conferences.conference_test(
-        cookies, headers, student, school_id, host, symbol, ssl, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_registed():
     mobile_access_registed.mobile_access_registed_test(
-        cookies, headers, student, school_id, host, symbol, ssl, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_register():
     mobile_access_register.mobile_access_register_test(
-        cookies, headers, student, school_id, host, symbol, ssl, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, fg
     )
 
 
 def test_mobile_access_delete_registed():
     mobile_access_delete_registed.mobile_access_delete_registed_test(
-        cookies, headers, student, school_id, host, symbol, ssl, id_mobile_deleted, fg
+        session_data, headers, student, school_id, host, symbol, settings.TESTS_SSL, settings.TESTS_DEVICE_ID, fg
     )
 
 

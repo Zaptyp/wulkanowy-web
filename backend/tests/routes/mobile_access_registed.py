@@ -1,13 +1,15 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 
-def notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg):
+def mobile_access_registed_test(
+    session_data, headers, student, school_id, host, symbol, ssl, fg
+):
     response = client.post(
-        "/uonetplus-uczen/notes",
+        "/api/v1/uonetplus-uczen/mobile-access/get-registered-devices",
         headers={"Content-Type": "application/json"},
         json={
-            "session_data": cookies,
+            "session_data": session_data,
             "student": student,
             "school_id": school_id,
             "host": host,
@@ -18,8 +20,8 @@ def notes_test(cookies, headers, student, school_id, host, symbol, ssl, fg):
         },
     )
     status_check(response.status_code, response.json(), fg)
-    assert response.json()["notes"][0]["teacher"] == "Karolina Kowalska [AN]"
     assert (
-        response.json()["notes"][1]["content"]
-        == "+ 20p za udział w Konkursie Języka Angielskiego"
+        response.json()[0]["name"]
+        == "To Be Filled By O.E.M.#To Be Filled By O.E.M. (Windows 8.1)"
     )
+    assert response.json()[1]["id"] == 1234

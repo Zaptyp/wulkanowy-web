@@ -1,15 +1,15 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 
 def mobile_access_register_test(
-    cookies, headers, student, school_id, host, symbol, ssl, fg
+    session_data, headers, student, school_id, host, symbol, ssl, fg
 ):
     response = client.post(
-        "/uonetplus-uczen/mobile-access/register-device",
+        "/api/v1/uonetplus-uczen/mobile-access/register-device",
         headers={"Content-Type": "application/json"},
         json={
-            "session_data": cookies,
+            "session_data": session_data,
             "student": student,
             "school_id": school_id,
             "host": host,

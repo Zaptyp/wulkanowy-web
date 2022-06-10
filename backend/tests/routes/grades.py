@@ -1,15 +1,15 @@
 from tests.checks.status_code import status_check
-from tests.endpoints.login import client
+from tests.routes.login import client
 
 # client = TestClient(app)
 def grades_test(
-    cookies, headers, student, school_id, host, symbol, ssl, week_grades, fg
+    session_data, headers, student, school_id, host, symbol, ssl, week_grades, fg
 ):
     response = client.post(
-        "/uonetplus-uczen/grades",
+        "/api/v1/uonetplus-uczen/grades",
         headers={"Content-Type": "application/json"},
         json={
-            "session_data": cookies,
+            "session_data": session_data,
             "student": student,
             "school_id": school_id,
             "host": host,

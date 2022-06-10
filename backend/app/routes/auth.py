@@ -7,13 +7,13 @@ from datetime import datetime, timedelta
 from cryptography.fernet import Fernet
 import requests
 import re
-from app import models, paths
+from app import models, paths, resources
 
 router = APIRouter()
 
 
-@router.post("/login")
-def login(data: models.Login, request: Request):
+@router.post("/signin", response_model=list[models.RegisterSymbol])
+def signin(data: models.Login, request: Request):
     key = Fernet.generate_key().decode("utf8")
     session: requests.sessions.session = requests.Session()
     cert: dict = send_credentials(
@@ -21,9 +21,14 @@ def login(data: models.Login, request: Request):
     key = Fernet.generate_key().decode("utf8")
     res = []
     symbols = extract_symbols(cert["wresult"])
+    if not symbols:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail=resources.no_students_account
+        )
     for symbol in symbols:
         cert: dict = send_credentials(data.username, data.password, data.host, symbol, data.ssl, session)
         cert_response = send_cert(data.host, symbol, data.ssl, cert, session)
+        soup = BeautifulSoup(cert_response.text, "html.parser")
         if not "nie został zarejestrowany" in cert_response.text:
             schools = []
             school_ids = extract_school_ids(cert_response.text)
@@ -80,7 +85,10 @@ def send_credentials(username: str, password: str, host: str, symbol: str, ssl: 
         ssl=ssl,
     )
     credentials = {"LoginName": username, "Password": password}
-    credentials_response = session.post(url=url, data=credentials)
+    try:
+        credentials_response = session.post(url=url, data=credentials)
+    except:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=resources.INVALID_HOST)
     check_errors(credentials_response.text)
     cert = create_cert(credentials_response.text)
     return cert
@@ -92,7 +100,7 @@ def check_errors(credentials_response: str):
         ".ErrorMessage, #ErrorTextLabel, #loginArea #errorText")
     if error_tag:
         raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, detail="incorrect_username_or_password"
+            status_code=status.HTTP_401_UNAUTHORIZED, detail=resources.INCORRECT_CREDENTIALS
         )
 
 
@@ -158,6 +166,7 @@ def send_cert(host: str, symbol: str, ssl: bool, cert: dict, session: requests.s
         data=cert,
     )
     return cert_response
+
 
 def get_students_from_school(
     host: str,
@@ -233,6 +242,7 @@ def extract_symbols(wresult: str) -> list[str]:
         r"[a-zA-Z0-9]*").fullmatch(symbol)]
 
     return symbols
+
 
 def extract_school_ids(text: str) -> list[str]:
     soup = BeautifulSoup(text, "html")
