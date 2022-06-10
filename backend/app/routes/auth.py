@@ -23,7 +23,7 @@ def signin(data: models.Login, request: Request):
     symbols = extract_symbols(cert["wresult"])
     if not symbols:
         raise HTTPException(
-
+            status_code=status.HTTP_403_FORBIDDEN, detail=resources.no_students_account
         )
     for symbol in symbols:
         cert: dict = send_credentials(data.username, data.password, data.host, symbol, data.ssl, session)
