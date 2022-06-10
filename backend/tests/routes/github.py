@@ -46,7 +46,7 @@ def github_info_test(fg):
     except:
         current_branch_commit_number = "ERROR - Cannot calculate!"
     response = client.get(
-        "/github",
+        "/api/v1/github",
         headers={},
         json={},
     )
