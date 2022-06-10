@@ -27,11 +27,11 @@ class fg:
 
 
 def test_check_connection():
-    if ssl == "true":
+    if settings.TESTS_SSL == True:
         check = requests.get(
             "https://fakelog.cf",
         )
-    elif ssl == "false":
+    elif settings.TESTS_SSL == False:
         check = requests.get(
             "http://fakelog.cf",
         )
