@@ -1,16 +1,15 @@
-from fastapi.testclient import TestClient
 from tests.checks.status_code import status_check
 from main import app
 
 client = TestClient(app)
 
 
-def login_test(nick, password, host, ssl, fg):
+def login_test(username, password, host, ssl, fg):
     login = client.post(
-        "/login",
+        "/api/v1/auth/signin",
         headers={"Content-Type": "application/json"},
         json={
-            "username": nick,
+            "username": username,
             "password": password,
             "host": host,
             "ssl": ssl,
