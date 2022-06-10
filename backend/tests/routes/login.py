@@ -1,3 +1,4 @@
+from fastapi.testclient import TestClient
 from tests.checks.status_code import status_check
 from main import app
 
