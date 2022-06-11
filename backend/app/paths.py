@@ -21,9 +21,6 @@ class UCZEN:
     START: str = "/{SYMBOL}/{SCHOOLID}/Start"
     UCZENDZIENNIK_GET: str = "/{SYMBOL}/{SCHOOLID}/UczenDziennik.mvc/Get"
     OCENY_GET: str = "/{SYMBOL}/{SCHOOLID}/Oceny.mvc/Get"
-    STATYSTYKI_GETOCENYCZASTKOWE: str = (
-        "/{SYMBOL}/{SCHOOLID}/Statystyki.mvc/GetOcenyCzastkowe"
-    )
     UWAGIIOSIAGNIECIA_GET: str = "/{SYMBOL}/{SCHOOLID}/UwagiIOsiagniecia.mvc/Get"
     ZEBRANIA_GET: str = "/{SYMBOL}/{SCHOOLID}/Zebrania.mvc/Get"
     SZKOLAINAUCZYCIELE_GET: str = "/{SYMBOL}/{SCHOOLID}/SzkolaINauczyciele.mvc/Get"
@@ -36,3 +33,6 @@ class UCZEN:
     REJESTRACJAURZADZENIATOKEN_GET: str = (
         "/{SYMBOL}/{SCHOOLID}/RejestracjaUrzadzeniaToken.mvc/Get"
     )
+    STATYSTYKI_GETOCENYCZASTKOWE: str = "/{SYMBOL}/{SCHOOLID}/Statystyki.mvc/GetOcenyCzastkowe"
+    STATYSTYKI_GETOCENYROCZNE: str = "/{SYMBOL}/{SCHOOLID}/Statystyki.mvc/GetOcenyRoczne"
+    STATYSTYKI_GETPUNKTY: str = "/{SYMBOL}/{SCHOOLID}/Statystyki.mvc/GetPunkty"

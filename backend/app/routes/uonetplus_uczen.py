@@ -171,6 +171,127 @@ def delete_registered_device(data: models.UonetPlusUczen, request: Request):
     response = get_response(data, path, session_cookies)
     return response.json()
 
+@router.post("/stats/partial", response_model=list[models.StatsPartialSubject])
+def get_partial_stats(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
+    path = paths.UCZEN.STATYSTYKI_GETOCENYCZASTKOWE
+    response = get_response(data, path, session_cookies)
+    subjects = []
+    for subject in response.json()["data"]:
+        class_chart_items = []
+        grade = 6
+        grades_quantity = 0
+        if subject["ClassSeries"]["Items"]:
+            for class_chart_item in subject["ClassSeries"]["Items"]:
+                grades_quantity = grades_quantity + class_chart_item["Value"]
+            for class_chart_item in subject["ClassSeries"]["Items"]:
+                try:
+                    value = int(
+                        class_chart_item["Value"]) * 100 / int(grades_quantity)
+                except:
+                    value = 0
+                class_chart_items.append(
+                    models.StatsSubjectChartItem(
+                        grade=grade,
+                        quantity=class_chart_item["Value"],
+                        value=value
+                    )
+                )
+                grade = grade - 1
+            class_chart = models.StatsPartialChart(
+                is_empty=subject["ClassSeries"]["IsEmpty"],
+                average=subject['ClassSeries']['Average'],
+                items=class_chart_items
+            )
+            student_chart_items = []
+            grade = 6
+            grades_quantity = 0
+        if subject["StudentSeries"]["Items"]:
+            for student_chart_item in subject["StudentSeries"]["Items"]:
+                grades_quantity = grades_quantity + student_chart_item["Value"]
+            for student_chart_item in subject["StudentSeries"]["Items"]:
+                try:
+                    value = student_chart_item["Value"] * 100 / grades_quantity
+                except:
+                    value = 0
+                student_chart_items.append(
+                    models.StatsSubjectChartItem(
+                        grade=grade,
+                        quantity=student_chart_item["Value"],
+                        value=value
+                    )
+                )
+                grade = grade - 1
+        student_chart = models.StatsPartialChart(
+            is_empty=subject["ClassSeries"]["IsEmpty"],
+            average=subject['StudentSeries']['Average'],
+            items=student_chart_items
+        )
+        subjects.append(
+            models.StatsPartialSubject(
+                is_average=subject["IsAverage"],
+                subject=subject["Subject"],
+                class_chart=class_chart,
+                student_chart=student_chart
+            )
+        )
+    return subjects
+
+@router.post("/stats/points", response_model=list[models.StatsPointsSubject])
+def get_points_stats(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
+    path = paths.UCZEN.STATYSTYKI_GETPUNKTY
+    response = get_response(data, path, session_cookies)
+    subjects = []
+    for subject in response.json()["data"]["Items"]:
+        subjects.append(
+            models.StatsPointsSubject(
+                subject=subject["Subject"],
+                student_points=subject["Value2"],
+                class_points=subject["Value1"]
+            )
+        )
+    return subjects
+
+@router.post("/stats/final", response_model=list[models.StatsFinalSubject])
+def get_final_stats(data: models.UonetPlusUczen, request: Request):
+    session_cookies = decrypt_session_data(request, data.session_data)
+    path = paths.UCZEN.STATYSTYKI_GETOCENYROCZNE
+    response = get_response(data, path, session_cookies)
+    subjects = []
+    for subject in response.json()["data"]:
+        student_grade = None
+        chart_items = []
+        grade = 6
+        grades_quantity = 0
+        if subject["Items"]:
+            for chart_item in subject["Items"]:
+                grades_quantity = grades_quantity + chart_item["Value"]
+            for chart_item in subject["Items"]:
+                try:
+                    value = chart_item["Value"] * 100 / grades_quantity
+                except:
+                    value = 0
+                if chart_item["Description"] == "Tu jesteś":
+                    student_grade = grade
+                chart_items.append(
+                    models.StatsSubjectChartItem(
+                        grade=grade,
+                        quantity=chart_item["Value"],
+                        value=value
+                    )
+                )
+                grade = grade - 1
+        subjects.append(
+            models.StatsFinalSubject(
+                is_empty=subject["IsEmpty"],
+                subject=subject["Subject"],
+                chart=chart_items,
+                student_grade=student_grade
+            )
+        )
+    return subjects
+
 def build_url(subd: str = None, host: str = None, path: str = None, ssl: bool = True, **kwargs) -> str:
     if ssl:
         url = "https://"
