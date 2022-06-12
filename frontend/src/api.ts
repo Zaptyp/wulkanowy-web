@@ -91,7 +91,7 @@ export default {
   get_repo_info: async () => {
     const response: any = await axios({
       method: "GET",
-      url: "http://localhost:8000/github",
+      url: "http://localhost:8000/api/v1/github",
       headers: {
         "Content-Type": "application/json",
       },
