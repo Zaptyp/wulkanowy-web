@@ -12,3 +12,4 @@ sty
 pytest-xdist
 gitpython
 pydantic[email]
+itsdangerous
