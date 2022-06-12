@@ -12,28 +12,48 @@ def github_info_test(fg):
             repos = Repo(path=r"../..")
     except:
         repos = Repo(path=r"..")
-    current_commit_hash = repos.head.commit.hexsha
+    try:        
+        current_commit_hash = repos.head.commit.hexsha
+    except:
+        current_commit_hash = "ERROR - Cannot get commit hash!"
     try:
         c_number_master = repos.git.rev_list("--count", "develop")
     except:
         c_number_master = "ERROR - Cannot get develop branch commit number!"
-    commit_author = repos.head.commit.author.name
-    commit_date = repos.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
-    cc = repos.head.commit.message
-    repo_url = repos.remote("origin").url
-    repo_name = re.search(r"\/[a-zA-Z]+\/[a-zA-Z]+.*", str(repo_url)).group(0)
+    try:
+        commit_author = repos.head.commit.author.name
+    except:
+        commit_author = "ERROR - Cannot get commit author!"
+    try:
+        commit_date = repos.head.commit.committed_datetime.strftime("%d.%m.%Y %H:%M")
+    except:
+        commit_date = "ERROR - Cannot get commit date!"
+    try:
+        repo_url = repos.remote("origin").url
+    except:
+        repo_url = "ERROR - Cannot get repo url!"
+    try:
+        repo_name = re.search(r"\/[a-zA-Z]+\/[a-zA-Z]+.*", str(repo_url)).group(0)
+    except:
+        repo_name = "ERROR - Cannot get repo name!"
     try:
         repo_commit_number = repos.git.rev_list("--count", "develop")
     except:
         repo_commit_number = "ERROR - Cannot get repo commit number!"
-    current_branch = repos.active_branch.name
+    try:
+        current_branch = repos.active_branch.name
+    except:
+        current_branch = "ERROR - Cannot get current branch!"
     try:
         c_number_current_branch = repos.git.rev_list("--count", "HEAD", current_branch)
     except:
         c_number_current_branch = (
             "ERROR - Connot get " + current_branch + "branch commit number!"
         )
-    current_branch_url = repo_url + "/tree/" + current_branch
+    try:
+        current_branch_url = repo_url + "/tree/" + current_branch
+    except:
+        current_branch_url = "ERROR - Cannot get current branch url!"
     try:
         if int(c_number_master) - (int(c_number_current_branch) > 0):
             current_branch_commit_number = int(c_number_current_branch) - int(
