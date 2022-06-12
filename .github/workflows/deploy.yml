@@ -1,0 +1,40 @@
+name: Wulkanowy-Web Deployer 2.0
+on:
+  push:
+    branches: [ deploy ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with: 
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'Error'
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Stop the Wulkanowy-Web Frontend server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl stop wulkanowywebf'
+      - name: Stop the Wulkanowy-Web Backend server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl stop wulkanowywebb'
+      - name: Deploy using rsync
+        run: rsync -avz /home/runner/work/wulkanowy-web/wulkanowy-web/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/Documents/Server-Wulkanowy-Web/wulkanowy-web/
+      - name: Start the Wulkanowy-Web Backend server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl start wulkanowywebb'
+      - name: Start the Wulkanowy-Web Frontend server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl start wulkanowywebf'
+      - name: Sleep for 20 seconds
+        run: sleep 10s
+      - name: Check Wulkanowy-Web Frontend server errors
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl status wulkanowywebf'
+      - name: Check Wulkanowy-Web Backend server errors
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl status wulkanowywebb'
+      - name: Collect Logs from Wulkanowy-Web Backend server
+        if: ${{ failure() }}
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo journalctl -xe --since "30 seconds ago" | grep start-web-backend.sh'
+      - name: Collect Logs from Wulkanowy-Web Frontend server
+        if: ${{ failure() }}
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo journalctl -xe --since "30 seconds ago" | grep start-web-frontend.sh'
