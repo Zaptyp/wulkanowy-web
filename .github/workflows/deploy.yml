@@ -65,7 +65,7 @@ jobs:
       - name: Start the Wulkanowy-Web Frontend server
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl start wulkanowywebf'
       - name: Sleep for 20 seconds
-        run: sleep 10s
+        run: sleep 20s
       - name: Check Wulkanowy-Web Frontend server errors
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'sudo systemctl status wulkanowywebf'
       - name: Check Wulkanowy-Web Backend server errors
