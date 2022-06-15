@@ -5,7 +5,7 @@ cryptography
 pytest
 pydantic~=1.9.1
 uvicorn~=0.17.6
-fastapi~=0.74.0
+fastapi~=0.78.0
 starlette
 lxml
 sty
