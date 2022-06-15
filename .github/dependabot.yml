@@ -6,14 +6,14 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "frontend\" 
+    directory: "frontend/" 
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions"
-    directory: ".github\workflow"
+    directory: ".github/workflow"
     schedule:
       interval: "daily"
   - package-ecosystem: "pip"
-    directory: ".github\workflows"
+    directory: ".github/workflows"
     schedule:
       interval: "daily"
