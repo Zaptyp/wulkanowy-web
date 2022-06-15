@@ -165,3 +165,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 vetur.config.js
+.dccache
