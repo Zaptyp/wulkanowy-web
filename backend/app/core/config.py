@@ -4,7 +4,7 @@ class Settings(BaseSettings):
   API_HOST: str = "127.0.0.1"
   API_PORT: int = 8000
   API_V1_URL: str = "/api/v1"
-  CORS_ORIGINS: list = [ "http://localhost:8081" ]
+  CORS_ORIGINS: list = [ "http://localhost:8081", "https://wulkanowy.fakelog.gq", "https://wulkanowy-backend.fakelog.gq" ]
 
   TESTS_USERNAME: EmailStr = "jan@fakelog.cf"
   TESTS_PASSWORD: str = "jan123"
