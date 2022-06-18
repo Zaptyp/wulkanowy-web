@@ -12,10 +12,10 @@ jobs:
         with:
           path: ./wulkanowy-web/
       - name: Install deps
-        working-directory: ./frontend
+        working-directory: ./wulkanowy-web/frontend
         run: npm install --immutable
       - name: Build app
-        working-directory: ./frontend
+        working-directory: ./wulkanowy-web/frontend
         run: npm run build
 
   backendt:
@@ -46,8 +46,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          path: ./wulkanowy-web/
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with: 
