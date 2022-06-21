@@ -12,7 +12,8 @@
       "host_label": "Odmiana dziennika UONET+",
       "sign_in": "Zaloguj",
       "privacy_policy": "Polityka Prywatności",
-      "select_student_header": "Wybierz ucznia"
+      "select_student_header": "Wybierz ucznia",
+      "select_register_header": "Zmień dziennik"
     },
     "nav_items": {
       "dashboard": "Start",

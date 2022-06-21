@@ -12,7 +12,8 @@
       "host_label": "UONET+ register variant",
       "sign_in": "Sign in",
       "privacy_policy": "Privacy policy",
-      "select_student_header": "Select student"
+      "select_student_header": "Select student",
+      "select_register_header": "Change register"
     },
     "nav_items": {
       "dashboard": "Dashboard",
