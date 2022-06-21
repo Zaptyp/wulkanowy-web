@@ -17,6 +17,7 @@ interface State {
     symbol?: string;
     school?: string;
     student?: string;
+    register?: number;
   };
   small_ui: boolean;
   view: string;
@@ -45,6 +46,7 @@ export default new Vuex.Store({
       symbol: undefined,
       school: undefined,
       student: undefined,
+      register: undefined
     },
     small_ui: false,
     view: "dashboard",
@@ -66,6 +68,7 @@ export default new Vuex.Store({
       state.selected_student.symbol = undefined;
       state.selected_student.school = undefined;
       state.selected_student.student = undefined;
+      state.selected_student.register = undefined;
       state.logged_in = false;
       router.push("/");
     },
