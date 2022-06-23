@@ -32,6 +32,18 @@
       "messages": "Wiadomości",
       "settings": "Ustawienia"
     },
+    "conferences": {
+      "date": "Data",
+      "place": "Miejsce",
+      "subject": "Temat",
+      "agenda": "Agenda",
+      "no_conferences": "Brak zebrań",
+      "present_on_conference": "Obecni na zebraniu",
+      "no_date": "Brak daty",
+      "no_place": "Brak miejsca",
+      "no_subject": "Brak tematu",
+      "join_to_online_conference": "Dołącz do zebrania online"
+    },
     "settings": {
       "apperance_title": "Wygląd i zachowanie",
       "app_language": "Język",
