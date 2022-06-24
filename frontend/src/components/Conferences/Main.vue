@@ -56,6 +56,7 @@ export default Vue.extend({
   }),
   methods: {
     async getConferences() {
+      this.$store.state.loading = true;
       const selectedStudent = this.$store.state.selected_student;
       const response = await Api.getConferences(
         this.$store.state.loginData.host,
@@ -78,6 +79,7 @@ export default Vue.extend({
       if (response) {
         this.conferences = response.data;
       }
+      this.$store.state.loading = false;
     },
   },
   beforeMount() {

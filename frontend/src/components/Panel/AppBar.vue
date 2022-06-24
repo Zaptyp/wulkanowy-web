@@ -29,6 +29,13 @@
         "
       />
       <AccountManager />
+      <v-progress-linear
+        :active="$store.state.loading"
+        indeterminate
+        absolute
+        bottom
+        color="primary"
+      />
     </v-app-bar>
   </div>
 </template>
