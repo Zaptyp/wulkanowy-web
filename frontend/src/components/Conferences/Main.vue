@@ -32,7 +32,7 @@
                   <td>{{ conference.date || '-' }}</td>
                   <td>{{ conference.place || '-' }}</td>
                   <td>{{ conference.present_on_conference || '-' }}</td>
-                  <td>{{ conference.agenda || '-' }}</td>
+                  <td style="white-space: pre-wrap !important">{{ conference.agenda || '-' }}</td>
                   <td>{{ conference.conference_link || '-' }}</td>
                 </tr>
               </tbody>
