@@ -33,12 +33,13 @@
           <v-window-item transition="false" value="settings"><Settings/></v-window-item>
         </v-window>
     </v-main>
+    <Snackbar/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer, Settings, Conferences } from "@/components";
+import { AppBar, Drawer, Settings, Conferences, Snackbar } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -46,6 +47,7 @@ export default Vue.extend({
   components: {
     AppBar,
     Drawer,
+    Snackbar,
     Settings,
     Conferences
   },

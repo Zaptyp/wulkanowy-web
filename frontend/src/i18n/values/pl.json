@@ -54,11 +54,12 @@
     },
     "errors": {
       "incorrect_username_or_password": "Nazwa użytkownika/Adres e-mail lub hasło jest niepoprawne",
-      "uonet_error": "Wystąpił nieoczekiwany błąd",
+      "unknown_error": "Wystąpił nieoczekiwany błąd",
       "field_required": "To pole jest wymagane",
       "empty_fields": "Te pola są wymagane",
       "no_symbols_account": "To konto nie ma uczniów",
       "network_error": "Brak połączenia z internetem",
-      "invalid_host_or_ssl": "Adres URL dziennika jest nieprawidłowy. Skontaktuj się z nami."
+      "invalid_host_or_ssl": "Adres URL dziennika jest nieprawidłowy. Skontaktuj się z nami.",
+      "authentication_required": "Sesja wygasła, zaloguj się ponownie."
     }
 }

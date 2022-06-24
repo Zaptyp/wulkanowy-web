@@ -82,6 +82,8 @@ export default Vue.extend({
       );
       if (response) {
           this.conferences = response.data;
+      } else {
+        this.conferences = [];
       }
       this.$store.state.loading = false;
     },

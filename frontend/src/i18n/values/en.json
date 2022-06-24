@@ -54,11 +54,12 @@
     },
     "errors": {
       "incorrect_or_username_password": "Username/E-mail address or password is incorrect",
-      "uonet_error": "An unexpected error has occurred",
+      "unknown_error": "An unexpected error has occurred",
       "field_required": "This field are required",
       "empty_fields": "This fields are required",
       "no_symbols_account": "This account hasn't students",
       "network_error": "No internet connection",
-      "invalid_host_or_ssl": "Register url is invalid. Contact us."
+      "invalid_host_or_ssl": "Register url is invalid. Contact us.",
+      "authentication_required": "Session has expired, please log in again."
     }
 }
