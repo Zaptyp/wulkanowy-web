@@ -1,10 +1,9 @@
 <template>
-  <div id="panel">
+  <div id="panel" class="fill-height">
     <AppBar />
     <Drawer />
-    <v-main>
-      <v-container fluid>
-        <v-window v-model="$store.state.view" touchless>
+    <v-main class="fill-height">
+        <v-window v-model="$store.state.view" touchless class="fill-height">
           <v-window-item transition="false" value="dashboard">this is dashbaord</v-window-item>
           <v-window-item transition="false" value="grades">this is grades</v-window-item>
           <v-window-item transition="false" value="attedance">this is attedance</v-window-item>
@@ -17,7 +16,7 @@
           <v-window-item transition="false" value="lucky_number"
             >this is lucky number</v-window-item
           >
-          <v-window-item transition="false" value="conferences">this is conferences</v-window-item>
+          <v-window-item transition="false" value="conferences" class="fill-height"><Conferences/></v-window-item>
           <v-window-item transition="false" value="school_annocuments"
             >this is school annocuments</v-window-item
           >
@@ -33,14 +32,14 @@
           <v-window-item transition="false" value="messages">this is messages</v-window-item>
           <v-window-item transition="false" value="settings"><Settings/></v-window-item>
         </v-window>
-      </v-container>
     </v-main>
+    <Snackbar/>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer, Settings } from "@/components";
+import { AppBar, Drawer, Settings, Conferences, Snackbar } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -48,7 +47,9 @@ export default Vue.extend({
   components: {
     AppBar,
     Drawer,
+    Snackbar,
     Settings,
+    Conferences
   },
 
   beforeMount() {
