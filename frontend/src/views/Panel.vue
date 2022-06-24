@@ -1,9 +1,9 @@
 <template>
-  <div id="panel">
+  <div id="panel" class="fill-height">
     <AppBar />
     <Drawer />
-    <v-main>
-        <v-window v-model="$store.state.view" touchless>
+    <v-main class="fill-height">
+        <v-window v-model="$store.state.view" touchless class="fill-height">
           <v-window-item transition="false" value="dashboard">this is dashbaord</v-window-item>
           <v-window-item transition="false" value="grades">this is grades</v-window-item>
           <v-window-item transition="false" value="attedance">this is attedance</v-window-item>
@@ -16,7 +16,7 @@
           <v-window-item transition="false" value="lucky_number"
             >this is lucky number</v-window-item
           >
-          <v-window-item transition="false" value="conferences"><Conferences/></v-window-item>
+          <v-window-item transition="false" value="conferences" class="fill-height"><Conferences/></v-window-item>
           <v-window-item transition="false" value="school_annocuments"
             >this is school annocuments</v-window-item
           >

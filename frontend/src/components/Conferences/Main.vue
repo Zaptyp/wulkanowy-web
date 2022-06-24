@@ -1,8 +1,8 @@
 <template>
-  <div id="conferences">
-    <v-container fluid :style="$store.state.small_ui ? 'padding: 0;' : ''">
-      <v-row :no-gutters="$store.state.small_ui">
-        <v-col cols="12" v-if="!$store.state.tableView && conferences">
+  <div id="conferences" class="fill-height">
+    <v-container fluid :style="$store.state.small_ui ? 'padding: 0;' : ''" class="fill-height">
+      <v-row :no-gutters="$store.state.small_ui" class="fill-height" v-if="conferences.length">
+        <v-col cols="12" v-if="!$store.state.tableView">
           <v-card :flat="$store.state.small_ui">
             <v-list>
               <Conference
@@ -13,8 +13,8 @@
             </v-list>
           </v-card>
         </v-col>
-        <v-col cols="12" v-if="$store.state.tableView && conferences">
-          <v-card>
+        <v-col cols="12" v-if="$store.state.tableView">
+          <v-card :flat="$store.state.small_ui">
             <v-simple-table class="table">
               <thead>
                   <tr>
@@ -40,6 +40,10 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row class="fill-height flex-column" justify="center" align="center" v-if="!conferences.length && !$store.state.loading">
+        <v-icon size="64">mdi-account-multiple-outline</v-icon>
+        <v-card-title>{{ $t('conferences.no_conferences') }}</v-card-title>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -52,7 +56,7 @@ import Api from "@/api";
 export default Vue.extend({
   components: { Conference },
   data: () => ({
-    conferences: undefined,
+    conferences: [],
   }),
   methods: {
     async getConferences() {
@@ -77,7 +81,7 @@ export default Vue.extend({
         {}
       );
       if (response) {
-        this.conferences = response.data;
+          this.conferences = response.data;
       }
       this.$store.state.loading = false;
     },
