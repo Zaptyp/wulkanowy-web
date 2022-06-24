@@ -82,6 +82,18 @@ export default Vue.extend({
       this.$store.state.loading = false;
     },
   },
+  watch: {
+    '$store.state.selected_student': {
+      handler() {
+        this.getConferences();
+      },
+    },
+    '$store.state.selected_student.register': {
+      handler() {
+        this.getConferences();
+      },
+    },
+  },
   beforeMount() {
     this.getConferences();
   },
