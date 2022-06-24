@@ -42,7 +42,8 @@
       "no_date": "No date",
       "no_place": "No place",
       "no_subject": "No subject",
-      "join_to_online_conference": "Join to online conference"
+      "join_to_online_conference": "Join to online conference",
+      "conference_link": "Link for online conference"
     },
     "settings": {
       "apperance_title": "Apperance & Behaviour",

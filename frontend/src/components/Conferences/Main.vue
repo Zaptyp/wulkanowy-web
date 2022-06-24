@@ -2,8 +2,8 @@
   <div id="conferences">
     <v-container fluid :style="$store.state.small_ui ? 'padding: 0;' : ''">
       <v-row :no-gutters="$store.state.small_ui">
-        <v-col>
-          <v-card v-if="this.conferences" :flat="$store.state.small_ui">
+        <v-col cols="12" v-if="!$store.state.tableView && conferences">
+          <v-card :flat="$store.state.small_ui">
             <v-list>
               <Conference
                 v-for="(conference, index) in conferences"
@@ -11,6 +11,32 @@
                 :conference="conference"
               />
             </v-list>
+          </v-card>
+        </v-col>
+        <v-col cols="12" v-if="$store.state.tableView && conferences">
+          <v-card>
+            <v-simple-table class="table">
+              <thead>
+                  <tr>
+                  <th>{{$t('conferences.subject')}}</th>
+                  <th>{{$t('conferences.date')}}</th>
+                  <th>{{ $t('conferences.place') }}</th>
+                  <th>{{$t('conferences.present_on_conference')}}</th>
+                  <th>{{$t('conferences.agenda')}}</th>
+                  <th>{{$t('conferences.conference_link')}}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(conference, index) in conferences" :key="index">
+                  <td>{{ conference.subject || '-' }}</td>
+                  <td>{{ conference.date || '-' }}</td>
+                  <td>{{ conference.place || '-' }}</td>
+                  <td>{{ conference.present_on_conference || '-' }}</td>
+                  <td>{{ conference.agenda || '-' }}</td>
+                  <td>{{ conference.conference_link || '-' }}</td>
+                </tr>
+              </tbody>
+            </v-simple-table>
           </v-card>
         </v-col>
       </v-row>

@@ -42,7 +42,8 @@
       "no_date": "Brak daty",
       "no_place": "Brak miejsca",
       "no_subject": "Brak tematu",
-      "join_to_online_conference": "Dołącz do zebrania online"
+      "join_to_online_conference": "Dołącz do zebrania online",
+      "conference_link": "Link do spotkania online"
     },
     "settings": {
       "apperance_title": "Wygląd i zachowanie",
