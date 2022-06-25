@@ -166,3 +166,5 @@ pnpm-debug.log*
 *.sw?
 vetur.config.js
 .dccache
+.github/*
+backend/.github/*
