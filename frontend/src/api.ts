@@ -10,7 +10,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "https://wulkanowy-backend.gq/api/v1/auth/signin",
+      url: "https://wulkanowy-backend.fakelog.gq/api/v1/auth/signin",
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,7 +58,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: `https://wulkanowy-backend.gq/api/v1/uonetplus-uczen/${request}`,
+      url: `https://wulkanowy-backend.fakelog.gq/api/v1/uonetplus-uczen/${request}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,7 +92,7 @@ export default {
   get_repo_info: async () => {
     const response: any = await axios({
       method: "GET",
-      url: "https://wulkanowy-backend.gq/api/v1/github",
+      url: "https://wulkanowy-backend.fakelog.gq/api/v1/github",
       headers: {
         "Content-Type": "application/json",
       },
