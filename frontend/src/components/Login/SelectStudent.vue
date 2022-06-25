@@ -1,18 +1,46 @@
 <template>
   <div id="select-student" class="fill-height">
-    <v-form @submit.prevent="select_student" class="fill-height d-flex flex-column">
-      <v-card-title class="d-flex justify-center">{{ $t("login.select_student_header") }}</v-card-title>
+    <v-form
+      @submit.prevent="select_student"
+      class="fill-height d-flex flex-column"
+    >
+      <v-card-title class="d-flex justify-center">{{
+        $t("login.select_student_header")
+      }}</v-card-title>
       <div id="login-students-list" class="overflow-y-auto">
         <v-list>
-          <v-list-item-group color="primary" v-model="$store.state.selected_student" mandatory>
-            <div class="symbol" v-for="(symbol, symbol_index) in $store.state.loginData.symbols" :key="symbol_index">
-              <div class="school" v-for="(school, school_index) in symbol.schools" :key="school_index">
-                <v-list-item v-for="(student, student_index) in school.students" :key="student_index" :value="{symbol: symbol_index, school: school_index, student: student_index}">
+          <v-list-item-group
+            color="primary"
+            v-model="$store.state.selected_student"
+            mandatory
+          >
+            <div
+              class="symbol"
+              v-for="(symbol, symbol_index) in $store.state.loginData.symbols"
+              :key="symbol_index"
+            >
+              <div
+                class="school"
+                v-for="(school, school_index) in symbol.schools"
+                :key="school_index"
+              >
+                <v-list-item
+                  v-for="(student, student_index) in school.students"
+                  :key="student_index"
+                  :value="{
+                    symbol: symbol_index,
+                    school: school_index,
+                    student: student_index,
+                    register: 0,
+                  }"
+                >
                   <template #default="{ active }">
                     <v-list-item-action>
                       <v-icon
                         :color="active ? 'primary' : ''"
-                        v-text="active ? 'mdi-radiobox-marked' : 'mdi-radiobox-blank'"
+                        v-text="
+                          active ? 'mdi-radiobox-marked' : 'mdi-radiobox-blank'
+                        "
                       />
                     </v-list-item-action>
                     <v-list-item-content>
@@ -20,9 +48,10 @@
                         {{ student.student_name }}
                         {{ student.student_second_name }}
                         {{ student.student_surname }}
-                        {{ student.level }}{{ student.symbol }}
                       </v-list-item-title>
-                      <v-list-item-subtitle>{{ school.name }}</v-list-item-subtitle>
+                      <v-list-item-subtitle>{{
+                        school.name
+                      }}</v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
                 </v-list-item>

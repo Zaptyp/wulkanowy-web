@@ -1,58 +1,19 @@
 {
-  "app_name": "Wulkanowy",
-  "app_description": "Unofficial VULCAN UONET+ browser client for students and their parents",
-  "log_out": "Log out",
-  "close": "Close",
-  "details": "Details",
-  "login": {
-    "header": "Sign in with student or parent account",
-    "email_label": "E-mail adress",
-    "password_label": "Password",
-    "symbol_label": "Symbol",
-    "host_label": "UONET+ register variant",
-    "sign_in": "Sign in",
-    "privacy_policy": "Privacy policy",
-    "select_student_header": "Select student"
-  },
-  "nav_items": {
-    "dashboard": "Dashboard",
-    "grades": "Grades",
-    "attedance": "Attedance",
-    "timetable": "Timetable",
-    "exams": "Exams",
-    "homework": "Homework",
-    "notes": "Notes and achievements",
-    "lucky_number": "Lucky number",
-    "conferences": "Conferences",
-    "school_annocuments": "School annocuments",
-    "school_info": "School and teachers",
-    "student_data": "Student data",
-    "mobile_devices": "Mobile access",
-    "messages": "Messages",
-    "settings": "Settings"
-  },
-  "grades": {
-    "semester": "Semester",
-    "switch_semester": "Switch semester",
-    "no_items": "No grades",
-    "average": "Average",
-    "no_average": "No average",
-    "details": {
-      "grades": "No grades | {n} grade | {n} grades",
-      "grade": "Grade",
-      "points": "Points",
-      "date": "Date",
-      "teacher": "Teacher",
-      "color": "Color",
-      "comment": "Comment",
-      "weight": "Weight",
-      "colors": {
-        "black": "Black",
-        "green": "Green",
-        "purple": "Purple",
-        "red": "Red",
-        "blue": "Blue"
-      }
+    "app_name": "Wulkanowy",
+    "app_description": "Unofficial VULCAN UONET+ browser client for students and their parents",
+    "log_out": "Log out",
+    "close": "Close",
+    "details": "Details",
+    "login": {
+      "header": "Sign in with student or parent account",
+      "email_label": "E-mail adress",
+      "password_label": "Password",
+      "symbol_label": "Symbol",
+      "host_label": "UONET+ register variant",
+      "sign_in": "Sign in",
+      "privacy_policy": "Privacy policy",
+      "select_student_header": "Select student",
+      "select_register_header": "Change register"
     },
     "summary": {
       "total_points": "Total points",
@@ -65,21 +26,47 @@
       "final_average_help_dialog_message": "The Final Average is the arithmetic average calculated from all currently available final grades in the given semester.\n\nThe calculation scheme consists of the following steps:\n1. Summing up the final grades given by teachers\n2. Divide by the number of subjects that have already been graded",
       "final_average": "Final average"
     },
-    "stats": {
-      "partail": "Partial",
-      "semester": "Semester",
-      "points": "Points",
-      "legend": "Legends",
-      "class_average": "Class average",
-      "student_average": "Student average",
-      "student_grade": "Student grades",
-      "class": "Class",
-      "student": "Student"
+    "conferences": {
+      "date": "Date",
+      "place": "Place",
+      "subject": "Subject",
+      "agenda": "Agenda",
+      "no_conferences": "No conferences",
+      "present_at_conference": "Present at conference",
+      "no_date": "No date",
+      "no_place": "No place",
+      "no_subject": "No subject",
+      "join_to_online_conference": "Join to online conference",
+      "conference_link": "Link for online conference"
     },
-    "tabs": {
-      "details": "Details",
-      "summary": "Summary",
-      "class": "Class"
+    "school_info": {
+      "school": "School",
+      "teachers": "Teachers",
+      "school_name": "School name",
+      "school_address": "School address",
+      "telephone": "Telephone",
+      "name_of_headmaster": "Name of headmaster",
+      "name_of_pedagogue": "Name of pedagogue",
+      "no_subject": "No subject",
+      "subject": "Subject",
+      "teacher": "Teacher"
+    },
+    "settings": {
+      "apperance_title": "Apperance & Behaviour",
+      "app_language": "Language",
+      "theme_header": "Theme",
+      "theme_light": "Light",
+      "theme_dark": "Dark"
+    },
+    "errors": {
+      "incorrect_or_username_password": "Username/E-mail address or password is incorrect",
+      "unknown_error": "An unexpected error has occurred",
+      "field_required": "This field are required",
+      "empty_fields": "This fields are required",
+      "no_symbols_account": "This account hasn't students",
+      "network_error": "No internet connection",
+      "invalid_host_or_ssl": "Register url is invalid. Contact us.",
+      "authentication_required": "Session has expired, please log in again."
     }
   },
   "settings": {

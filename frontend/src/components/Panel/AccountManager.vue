@@ -37,6 +37,7 @@
                         symbol: symbol_index,
                         school: school_index,
                         student: student_index,
+                        register: 0,
                       }"
                     >
                       <template #default="{ active }">
@@ -55,7 +56,6 @@
                             {{ student.student_name }}
                             {{ student.student_second_name }}
                             {{ student.student_surname }}
-                            {{ student.level }}{{ student.symbol }}
                           </v-list-item-title>
                           <v-list-item-subtitle>{{
                             school.name

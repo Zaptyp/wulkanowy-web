@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "@/store/index";
 
+const baseURL = process.env.VUE_APP_BASE_URL;
 export default {
   login: async (
     username: string,
@@ -10,7 +11,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/v1/auth/signin",
+      url: `${baseURL}/api/v1/auth/signin`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -45,19 +46,20 @@ export default {
       return response;
     }
   },
-  get_grades: async (
+  uonetplusUczenReqeust: async (
     host: string,
     symbol: string,
     school_id: string,
     ssl: boolean,
+    request: string,
     headers: Record<string, unknown>,
-    student: Record<string, unknown>,
+    register_cookies: Record<string, unknown>,
     session_data: string,
     payload: Record<string, unknown>
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/v1/uonetplus-uczen/grades",
+      url: `${baseURL}/api/v1/uonetplus-uczen/${request}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -67,7 +69,7 @@ export default {
         school_id,
         ssl,
         headers,
-        student,
+        register_cookies,
         session_data,
         payload,
       },
@@ -91,7 +93,7 @@ export default {
   get_repo_info: async () => {
     const response: any = await axios({
       method: "GET",
-      url: "http://localhost:8000/api/v1/github",
+      url: `${baseURL}/api/v1/github`,
       headers: {
         "Content-Type": "application/json",
       },

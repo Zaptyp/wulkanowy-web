@@ -21,8 +21,11 @@ interface State {
     symbol?: string;
     school?: string;
     student?: string;
+    register?: number;
   };
+  tableView: boolean;
   small_ui: boolean;
+  schoolInfoTabs: number;
   view: string;
   drawer: {
     show: boolean;
@@ -53,8 +56,11 @@ export default new Vuex.Store({
       symbol: undefined,
       school: undefined,
       student: undefined,
+      register: undefined
     },
+    tableView: false,
     small_ui: false,
+    schoolInfoTabs: 0,
     view: "dashboard",
     drawer: {
       show: true,
@@ -74,6 +80,7 @@ export default new Vuex.Store({
       state.selected_student.symbol = undefined;
       state.selected_student.school = undefined;
       state.selected_student.student = undefined;
+      state.selected_student.register = undefined;
       state.logged_in = false;
       router.push("/");
     },
@@ -83,6 +90,9 @@ export default new Vuex.Store({
     drawer_mini(state) {
       state.drawer.mini = !state.drawer.mini;
     },
+    tableView(state) {
+      state.tableView = !state.tableView;
+    }
   },
   actions: {},
   modules: {},
