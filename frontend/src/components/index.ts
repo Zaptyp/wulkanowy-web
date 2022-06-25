@@ -14,3 +14,6 @@ export { default as Settings } from "./Panel/Settings.vue";
 
 // Conferences
 export { default as Conferences } from "./Conferences/Main.vue";
+
+// School info
+export { default as SchoolInfo } from "./SchoolInfo/Main.vue";

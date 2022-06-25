@@ -23,9 +23,7 @@
           <v-window-item transition="false" value="student_data"
             >this is student data</v-window-item
           >
-          <v-window-item transition="false" value="school_info"
-            >this is school and teachers</v-window-item
-          >
+          <v-window-item transition="false" value="school_info"><SchoolInfo /></v-window-item>
           <v-window-item transition="false" value="mobile_devices"
             >this is mobile devices</v-window-item
           >
@@ -39,7 +37,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer, Settings, Conferences, Snackbar } from "@/components";
+import { AppBar, Drawer, Settings, Conferences, SchoolInfo, Snackbar } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -49,7 +47,8 @@ export default Vue.extend({
     Drawer,
     Snackbar,
     Settings,
-    Conferences
+    Conferences,
+    SchoolInfo
   },
 
   beforeMount() {

@@ -15,13 +15,13 @@
         </v-col>
         <v-col cols="12" v-if="$store.state.tableView">
           <v-card :flat="$store.state.small_ui">
-            <v-simple-table class="table">
+            <v-simple-table>
               <thead>
                   <tr>
                   <th>{{$t('conferences.subject')}}</th>
                   <th>{{$t('conferences.date')}}</th>
                   <th>{{ $t('conferences.place') }}</th>
-                  <th>{{$t('conferences.present_on_conference')}}</th>
+                  <th>{{$t('conferences.present_at_conference')}}</th>
                   <th>{{$t('conferences.agenda')}}</th>
                   <th>{{$t('conferences.conference_link')}}</th>
                   </tr>
@@ -31,7 +31,7 @@
                   <td>{{ conference.subject || '-' }}</td>
                   <td>{{ conference.date || '-' }}</td>
                   <td>{{ conference.place || '-' }}</td>
-                  <td>{{ conference.present_on_conference || '-' }}</td>
+                  <td>{{ conference.present_at_conference || '-' }}</td>
                   <td style="white-space: pre-wrap !important">{{ conference.agenda || '-' }}</td>
                   <td>{{ conference.conference_link || '-' }}</td>
                 </tr>
@@ -62,13 +62,14 @@ export default Vue.extend({
     async getConferences() {
       this.$store.state.loading = true;
       const selectedStudent = this.$store.state.selected_student;
-      const response = await Api.getConferences(
+      const response = await Api.uonetplusUczenReqeust(
         this.$store.state.loginData.host,
         this.$store.state.loginData.symbols[selectedStudent.symbol].name,
         this.$store.state.loginData.symbols[selectedStudent.symbol].schools[
           selectedStudent.school
         ].id,
         this.$store.state.loginData.ssl,
+        "conferences",
         this.$store.state.loginData.symbols[selectedStudent.symbol].schools[
           selectedStudent.school
         ].headers,

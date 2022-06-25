@@ -21,6 +21,7 @@ interface State {
   };
   tableView: boolean;
   small_ui: boolean;
+  schoolInfoTabs: number;
   view: string;
   drawer: {
     show: boolean;
@@ -51,6 +52,7 @@ export default new Vuex.Store({
     },
     tableView: false,
     small_ui: false,
+    schoolInfoTabs: 0,
     view: "dashboard",
     drawer: {
       show: true,

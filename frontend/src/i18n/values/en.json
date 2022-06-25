@@ -38,12 +38,24 @@
       "subject": "Subject",
       "agenda": "Agenda",
       "no_conferences": "No conferences",
-      "present_on_conference": "Present on conference",
+      "present_at_conference": "Present at conference",
       "no_date": "No date",
       "no_place": "No place",
       "no_subject": "No subject",
       "join_to_online_conference": "Join to online conference",
       "conference_link": "Link for online conference"
+    },
+    "school_info": {
+      "school": "School",
+      "teachers": "Teachers",
+      "school_name": "School name",
+      "school_address": "School address",
+      "telephone": "Telephone",
+      "name_of_headmaster": "Name of headmaster",
+      "name_of_pedagogue": "Name of pedagogue",
+      "no_subject": "No subject",
+      "subject": "Subject",
+      "teacher": "Teacher"
     },
     "settings": {
       "apperance_title": "Apperance & Behaviour",

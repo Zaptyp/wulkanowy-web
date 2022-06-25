@@ -38,12 +38,24 @@
       "subject": "Temat",
       "agenda": "Agenda",
       "no_conferences": "Brak zebrań",
-      "present_on_conference": "Obecni na zebraniu",
+      "present_at_conference": "Obecni na zebraniu",
       "no_date": "Brak daty",
       "no_place": "Brak miejsca",
       "no_subject": "Brak tematu",
       "join_to_online_conference": "Dołącz do zebrania online",
       "conference_link": "Link do spotkania online"
+    },
+    "school_info": {
+      "school": "Szkoła",
+      "teachers": "Nauczyciele",
+      "school_name": "Nazwa szkoły",
+      "school_address": "Adres szkoły",
+      "telephone": "Telefon",
+      "name_of_headmaster": "Imię i nazwisko dyrektora",
+      "name_of_pedagogue": "Imię i nazwisko pedagoga",
+      "no_subject": "Brak przedmiotu",
+      "subject": "Przedmiot",
+      "teacher": "Nauczyciel"
     },
     "settings": {
       "apperance_title": "Wygląd i zachowanie",

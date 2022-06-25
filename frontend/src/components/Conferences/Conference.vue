@@ -63,14 +63,14 @@
               </v-list-item>
               <v-list-item
                 style="padding: 0 !important"
-                v-if="conference.present_on_conference"
+                v-if="conference.present_at_conference"
               >
                 <v-list-item-content>
                   <v-list-item-subtitle>{{
-                    $t("conferences.present_on_conference")
+                    $t("conferences.present_at_conference")
                   }}</v-list-item-subtitle>
                   <v-list-item-title style="white-space: normal !important">{{
-                    conference.present_on_conference
+                    conference.present_at_conference
                   }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
