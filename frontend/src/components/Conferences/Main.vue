@@ -15,7 +15,7 @@
         </v-col>
         <v-col cols="12" v-if="$store.state.tableView">
           <v-card :flat="$store.state.small_ui">
-            <v-simple-table class="table">
+            <v-simple-table>
               <thead>
                   <tr>
                   <th>{{$t('conferences.subject')}}</th>

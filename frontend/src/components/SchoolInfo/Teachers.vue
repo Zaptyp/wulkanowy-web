@@ -1,5 +1,5 @@
 <template>
-  <div id="school">
+  <div id="teachers">
     <v-card :flat="$store.state.small_ui">
       <v-list>
         <v-list-item v-for="(teacher, index) in teachers" :key="index">
@@ -17,7 +17,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "School",
+  name: "Teachers",
   props: ["teachers"]
 })
 </script>

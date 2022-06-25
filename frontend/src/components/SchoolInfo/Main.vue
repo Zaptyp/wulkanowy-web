@@ -8,13 +8,14 @@
         </v-col>
         <v-col cols="12">
           <v-subheader>{{ $t('school_info.teachers') }}</v-subheader>
-          <Teachers :teachers="schoolInfo.teachers"/>
+          <Teachers :teachers="schoolInfo.teachers" v-if="schoolInfo.teachers.length"/>
         </v-col>
       </v-row>
-      <v-tabs-items v-model="$store.state.schoolInfoTabs" v-if="$store.state.small_ui" style="width: 100%;">
+      <v-tabs-items v-model="$store.state.schoolInfoTabs" v-if="$store.state.small_ui && !$store.state.tableView" style="width: 100%;">
         <v-tab-item :value="0"><School :school="schoolInfo.school"/></v-tab-item>
-        <v-tab-item :value="1"><Teachers :teachers="schoolInfo.teachers"/></v-tab-item>
+        <v-tab-item :value="1"><Teachers :teachers="schoolInfo.teachers" v-if="schoolInfo.teachers.length"/></v-tab-item>
       </v-tabs-items>
+      <TableView :schoolInfo="schoolInfo" v-if="$store.state.tableView"/>
     </v-container>
   </div>
 </template>
@@ -23,11 +24,12 @@
 import Vue from "vue";
 import School from "./School.vue";
 import Teachers from "./Teachers.vue";
+import TableView from "./TableView.vue";
 import Api from "@/api";
 
 export default Vue.extend({
   name: "SchoolInfo",
-  components: { School, Teachers },
+  components: { School, Teachers, TableView },
   data: () => ({
     schoolInfo: {},
   }),

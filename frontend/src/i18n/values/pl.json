@@ -52,8 +52,10 @@
       "school_address": "Adres szkoły",
       "telephone": "Telefon",
       "name_of_headmaster": "Imię i nazwisko dyrektora",
-      "name_of_pedagouge": "Imię i nazwisko pedagoga",
-      "no_subject": "Brak przedmiotu"
+      "name_of_pedagogue": "Imię i nazwisko pedagoga",
+      "no_subject": "Brak przedmiotu",
+      "subject": "Przedmiot",
+      "teacher": "Nauczyciel"
     },
     "settings": {
       "apperance_title": "Wygląd i zachowanie",

@@ -28,7 +28,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-subtitle>{{ $t('school_info.name_of_pedagouge') }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ $t('school_info.name_of_pedagogue') }}</v-list-item-subtitle>
             <v-list-item-title style="white-space: normal !important">{{ school.pedagogue }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
