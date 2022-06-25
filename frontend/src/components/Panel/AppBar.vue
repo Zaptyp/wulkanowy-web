@@ -16,7 +16,7 @@
         $t("nav_items." + this.$store.state.view)
       }}</v-toolbar-title>
       <v-spacer />
-      <v-btn v-if="$store.state.view == 'conferences'" @click="$store.commit('tableView')" icon>
+      <v-btn v-if="$store.state.view == 'conferences' || $store.state.view == 'school_info'" @click="$store.commit('tableView')" icon>
         <v-icon v-if="!$store.state.tableView">mdi-table-eye</v-icon>
         <v-icon v-if="$store.state.tableView">mdi-table-eye-off</v-icon>
       </v-btn>
@@ -36,6 +36,12 @@
         bottom
         color="primary"
       />
+      <template #extension v-if="$store.state.small_ui && $store.state.view == 'school_info' && !$store.state.tableView && !$store.state.loading">
+        <v-tabs grow v-model="$store.state.schoolInfoTabs">
+          <v-tab>{{ $t('school_info.school') }}</v-tab>
+          <v-tab>{{ $t('school_info.teachers') }}</v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
   </div>
 </template>

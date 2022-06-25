@@ -45,11 +45,12 @@ export default {
       return response;
     }
   },
-  getConferences: async (
+  uonetplusUczenReqeust: async (
     host: string,
     symbol: string,
     school_id: string,
     ssl: boolean,
+    request: string,
     headers: Record<string, unknown>,
     register_cookies: Record<string, unknown>,
     session_data: string,
@@ -57,7 +58,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/v1/uonetplus-uczen/conferences",
+      url: `http://localhost:8000/api/v1/uonetplus-uczen/${request}`,
       headers: {
         "Content-Type": "application/json",
       },
