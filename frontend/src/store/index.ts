@@ -19,6 +19,7 @@ interface State {
     student?: string;
     register?: number;
   };
+  tableView: boolean;
   small_ui: boolean;
   view: string;
   drawer: {
@@ -48,6 +49,7 @@ export default new Vuex.Store({
       student: undefined,
       register: undefined
     },
+    tableView: false,
     small_ui: false,
     view: "dashboard",
     drawer: {
@@ -78,6 +80,9 @@ export default new Vuex.Store({
     drawer_mini(state) {
       state.drawer.mini = !state.drawer.mini;
     },
+    tableView(state) {
+      state.tableView = !state.tableView;
+    }
   },
   actions: {},
   modules: {},

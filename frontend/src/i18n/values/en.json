@@ -32,6 +32,19 @@
       "messages": "Messages",
       "settings": "Settings"
     },
+    "conferences": {
+      "date": "Date",
+      "place": "Place",
+      "subject": "Subject",
+      "agenda": "Agenda",
+      "no_conferences": "No conferences",
+      "present_at_conference": "Present at conference",
+      "no_date": "No date",
+      "no_place": "No place",
+      "no_subject": "No subject",
+      "join_to_online_conference": "Join to online conference",
+      "conference_link": "Link for online conference"
+    },
     "settings": {
       "apperance_title": "Apperance & Behaviour",
       "app_language": "Language",
@@ -41,11 +54,12 @@
     },
     "errors": {
       "incorrect_or_username_password": "Username/E-mail address or password is incorrect",
-      "uonet_error": "An unexpected error has occurred",
+      "unknown_error": "An unexpected error has occurred",
       "field_required": "This field are required",
       "empty_fields": "This fields are required",
       "no_symbols_account": "This account hasn't students",
       "network_error": "No internet connection",
-      "invalid_host_or_ssl": "Register url is invalid. Contact us."
+      "invalid_host_or_ssl": "Register url is invalid. Contact us.",
+      "authentication_required": "Session has expired, please log in again."
     }
 }
