@@ -36,6 +36,12 @@
         bottom
         color="primary"
       />
+      <template #extension v-if="$store.state.small_ui && $store.state.view == 'school_info'">
+        <v-tabs grow v-model="$store.state.schoolInfoTabs">
+          <v-tab>{{ $t('school_info.school') }}</v-tab>
+          <v-tab>{{ $t('school_info.teachers') }}</v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
   </div>
 </template>

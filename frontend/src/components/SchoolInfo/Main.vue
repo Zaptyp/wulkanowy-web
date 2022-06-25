@@ -1,14 +1,33 @@
 <template>
   <div id="schoolInfo">
-    {{ schoolInfo }}
+    <v-container fluid :style="$store.state.small_ui ? 'padding: 0;' : ''" class="fill-height">
+      <v-row :no-gutters="$store.state.small_ui" class="fill-height" v-if="!$store.state.tableView && !$store.state.small_ui">
+        <v-col cols="12">
+          <v-subheader>{{ $t('school_info.school') }}</v-subheader>
+          <School :school="schoolInfo.school"/>
+        </v-col>
+        <v-col cols="12">
+          <v-subheader>{{ $t('school_info.teachers') }}</v-subheader>
+          <Teachers :teachers="schoolInfo.teachers"/>
+        </v-col>
+      </v-row>
+      <v-tabs-items v-model="$store.state.schoolInfoTabs" v-if="$store.state.small_ui" style="width: 100%;">
+        <v-tab-item :value="0"><School :school="schoolInfo.school"/></v-tab-item>
+        <v-tab-item :value="1"><Teachers :teachers="schoolInfo.teachers"/></v-tab-item>
+      </v-tabs-items>
+    </v-container>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import School from "./School.vue";
+import Teachers from "./Teachers.vue";
 import Api from "@/api";
 
 export default Vue.extend({
+  name: "SchoolInfo",
+  components: { School, Teachers },
   data: () => ({
     schoolInfo: {},
   }),
