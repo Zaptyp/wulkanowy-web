@@ -38,7 +38,7 @@
       "subject": "Temat",
       "agenda": "Agenda",
       "no_conferences": "Brak zebrań",
-      "present_on_conference": "Obecni na zebraniu",
+      "present_at_conference": "Obecni na zebraniu",
       "no_date": "Brak daty",
       "no_place": "Brak miejsca",
       "no_subject": "Brak tematu",

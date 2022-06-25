@@ -21,7 +21,7 @@
                   <th>{{$t('conferences.subject')}}</th>
                   <th>{{$t('conferences.date')}}</th>
                   <th>{{ $t('conferences.place') }}</th>
-                  <th>{{$t('conferences.present_on_conference')}}</th>
+                  <th>{{$t('conferences.present_at_conference')}}</th>
                   <th>{{$t('conferences.agenda')}}</th>
                   <th>{{$t('conferences.conference_link')}}</th>
                   </tr>
@@ -31,7 +31,7 @@
                   <td>{{ conference.subject || '-' }}</td>
                   <td>{{ conference.date || '-' }}</td>
                   <td>{{ conference.place || '-' }}</td>
-                  <td>{{ conference.present_on_conference || '-' }}</td>
+                  <td>{{ conference.present_at_conference || '-' }}</td>
                   <td style="white-space: pre-wrap !important">{{ conference.agenda || '-' }}</td>
                   <td>{{ conference.conference_link || '-' }}</td>
                 </tr>
