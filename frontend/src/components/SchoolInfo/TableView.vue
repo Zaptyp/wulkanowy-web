@@ -30,7 +30,7 @@
           </v-simple-table>
           </v-card>
         </v-col>
-        <v-col cols="12" v-if="schoolInfo.teachers.length">
+        <v-col cols="12">
           <v-subheader>{{ $t('school_info.teachers') }}</v-subheader>
           <v-card :flat="$store.state.small_ui">
           <v-simple-table>
