@@ -1,6 +1,7 @@
 import axios from "axios";
 import store from "@/store/index";
 
+const baseURL = process.env.VUE_APP_BASE_URL;
 export default {
   login: async (
     username: string,
@@ -10,7 +11,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/v1/auth/signin",
+      url: `${baseURL}/api/v1/auth/signin`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,7 +59,7 @@ export default {
   ) => {
     const response: any = await axios({
       method: "POST",
-      url: `http://localhost:8000/api/v1/uonetplus-uczen/${request}`,
+      url: `${baseURL}/api/v1/uonetplus-uczen/${request}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -92,7 +93,7 @@ export default {
   get_repo_info: async () => {
     const response: any = await axios({
       method: "GET",
-      url: "http://localhost:8000/api/v1/github",
+      url: `${baseURL}/api/v1/github`,
       headers: {
         "Content-Type": "application/json",
       },
