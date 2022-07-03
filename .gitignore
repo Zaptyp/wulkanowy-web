@@ -165,10 +165,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 vetur.config.js
-<<<<<<< HEAD
 .dccache
 .github/*
 backend/.github/*
-=======
-.dccache
->>>>>>> develop
