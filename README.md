@@ -35,6 +35,8 @@ npm run serve
 # Features
 * logging in using the email, password
 * light and dark theme
+* school and teachers informations
+* conferences
 
 # Api
 This project uses the project [Marioneq4958/uonetplus_api](https://github.com/Marioneq4958/uonetplus_api). Check [documentation](https://github.com/Zaptyp/wulkanowy-web/wiki)
