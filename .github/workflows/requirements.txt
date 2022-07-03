@@ -4,7 +4,7 @@ requests
 cryptography
 pytest
 pydantic~=1.9.1
-uvicorn~=0.18.1
+uvicorn~=0.18.2
 fastapi~=0.78.0
 starlette
 lxml
