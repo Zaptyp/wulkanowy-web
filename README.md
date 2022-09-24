@@ -8,23 +8,25 @@
 # Development
 
 ## 1. Install dependencies
-
+Backend:
 ```sh
 cd backend
+git submodule init
+git submodule update
 pip install -r requirements.txt
 ```
-And in frontend:
+Frontend:
 ```sh
 cd frontend
 npm install
 ```
 ## 2. Start the server
-
+Backend:
 ```sh
 cd backend
 py -m main
 ```
-And in frontend:
+Frontend:
 ```sh
 cd frontend
 npm run serve
@@ -33,9 +35,11 @@ npm run serve
 # Features
 * logging in using the email, password
 * light and dark theme
+* school and teachers informations
+* conferences
 
 # Api
-This project uses the project [Marioneq4958/uonetplus_api](https://github.com/Marioneq4958/uonetplus_api). Check [documentation](https://github.com/Marioneq4958/uonetplus_api/wiki)
+This project uses the project [Marioneq4958/uonetplus_api](https://github.com/Marioneq4958/uonetplus_api). Check [documentation](https://github.com/Zaptyp/wulkanowy-web/wiki)
 
 # License
 
