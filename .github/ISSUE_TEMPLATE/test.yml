@@ -40,7 +40,7 @@ body:
   attributes:
     label: Odmiana dziennika
     description: Wybierz na jakiej odmianie dziennika występuje błąd. (Jeżeli nie wiesz o co chodzi to zaznacz opcję "Nie wiem" i w poniższym okienku wklej link do strony dziennika na której się logujesz.
-    multiple: false
+    multiple: true
     options:
     - VULCAN
     - Resman
