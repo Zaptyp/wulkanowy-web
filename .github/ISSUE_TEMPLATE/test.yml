@@ -1,65 +1,65 @@
-name: Bug Report
+name: 
 description: File a bug report
 labels: [bug]
 body:
-- type: markdown
-  attributes:
-    value: |
-      If you need help with running Minecraft, please visit us on our Discord before making a bug report.
-
-      Before submitting a bug report, please make sure you have read this *entire* form, and that:
-      * You have read the [Prism Launcher wiki](https://prismlauncher.org/wiki/) and it has not answered your question.
-      * Your bug is not caused by Minecraft or any mods you have installed.
-      * Your issue has not been reported before, [make sure to use the search function!](https://github.com/PrismLauncher/PrismLauncher/issues)
-
-      **Do not forget to give your issue a descriptive title.** "Bug in the instance screen" makes it hard to distinguish issues at a glance.
 - type: dropdown
   attributes:
-    label: Operating System
-    description: If you know this bug occurs on multiple operating systems, select all you have tested.
-    multiple: true
+    label: Wersja Androida
+    description: Wybierz wersję androida na której masz zainstalowaną aplikację.
+    multiple: false
     options:
-    - Windows
-    - macOS
-    - Linux
-    - Other
+    - Android 13 (SDK 33)
+    - Android 12L (SDK 32)
+    - Android 12 (SDK 31)
+    - Android 11 (SDK 30)
+    - Android 10 (SDK 29)
+    - Android 9 (SDK 28)
+    - Android 8.1 (SDK 27)
+    - Android 8.0 (SDK 26)
+    - Android 7.1 (SDK 25)
+    - Android 7.0 (SDK 24)
+    - Android 6 (SDK 23)
+    - Android 5.1 (SDK 22)
+    - Android 5.0 (SDK 21)
+    - Inna wersja Androida (Jeżeli nie wymieniona tutaj)
 - type: textarea
   attributes:
-    label: Version of Prism Launcher
-    description: The version of Prism Launcher used in the bug report.
-    placeholder: Prism Launcher 5.0
+    label: Wersja aplikacji Wulkanowy
+    description: Wersja aplikacji Wulkanowy na której wykryto błąd.
+    placeholder: Wulkanowy 1.0.0
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Version of Qt
-    description: The version of Qt used in the bug report. You can find it in Help -> About Prism Launcher -> About Qt.
-    placeholder: Qt 6.3.0
+    label: Na jakim urządzeniu została uruchomiona aplikacja?
+    description: Wpisz tutaj markę i model urządzenia.
+    placeholder: Samsung SM-G531F
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Description of bug
-    description: What did you expect to happen, what happened, and why is it incorrect?
-    placeholder: The cat button should show a cat, but it showed a dog instead!
+    label: Co powinno się dziać?
+    description: Tu opisz co powinno się dziać.
+    placeholder: np. Apikacja wyświetla błąd a nie powinna.
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Steps to reproduce
-    description: A bulleted list, or an exported instance if relevant.
-    placeholder: "* Press the cat button"
+    label: Co powinno się dzieje?
+    description: Tu opisz co się dzieje
+    placeholder: np. Apikacja wyświetla błąd o tytule "Wystąpił nieoczekiwany błąd"
+  validations:
+    required: true   
+- type: textarea
+  attributes:
+    label: Jak to zrobić kolejny raz?
+    description: Opisz tutaj dokładnie jakie kroki uczyniłeś aby odtworzyć ten błąd.
+    placeholder: "1. Uruchomiłem aplikacje Wulkanowy"
   validations:
     required: true
 - type: textarea
   attributes:
-    label: Suspected cause
-    description: If you know what could be causing this bug, describe it here.
+    label: Podejrzenie co powoduje błąd.
+    description: Jeżeli wiesz co może powodować że ten błąd się pojawia opisz swoje podejrzenia tutaj
   validations:
     required: false
-- type: checkboxes
-  attributes:
-    label: This issue is unique
-    options:
-    - label: I have searched the issue tracker and did not find an issue describing my bug.
-      required: true
