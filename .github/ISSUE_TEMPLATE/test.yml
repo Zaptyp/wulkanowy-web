@@ -36,6 +36,23 @@ body:
     placeholder: Samsung SM-G531F
   validations:
     required: true
+- type: dropdown
+  attributes:
+    label: Odmiana dziennika
+    description: Wybierz na jakiej odmianie dziennika występuje błąd. (Jeżeli nie wiesz o co chodzi to zaznacz opcję "Nie wiem" i w poniższym okienku wklej link do strony dziennika na której się logujesz.
+    multiple: false
+    options:
+    - VULCAN
+    - Resman
+    - edu.gdansk.pl
+    - Nie Wiem
+- type: textarea
+  attributes:
+    label: Adres Dziennika (JEŻELI NIE WIESZ JAKĄ MASZ ODMIANĘ DZIENNIKA)
+    description: Tu wpisz adres dziennika na który się normalnie logujesz
+    placeholder: np. https://uonetplus.vulcan.net.pl/warszawa
+  validations:
+    required: false
 - type: textarea
   attributes:
     label: Co powinno się dziać?
@@ -46,7 +63,7 @@ body:
 - type: textarea
   attributes:
     label: Co powinno się dzieje?
-    description: Tu opisz co się dzieje
+    description: Tu opisz co się dzieje a nie powinno się dziać.
     placeholder: np. Apikacja wyświetla błąd o tytule "Wystąpił nieoczekiwany błąd"
   validations:
     required: true   
@@ -54,12 +71,15 @@ body:
   attributes:
     label: Jak to zrobić kolejny raz?
     description: Opisz tutaj dokładnie jakie kroki uczyniłeś aby odtworzyć ten błąd.
-    placeholder: "1. Uruchomiłem aplikacje Wulkanowy"
+    placeholder: |
+      1.
+      2.
+      3.
   validations:
     required: true
 - type: textarea
   attributes:
     label: Podejrzenie co powoduje błąd.
-    description: Jeżeli wiesz co może powodować że ten błąd się pojawia opisz swoje podejrzenia tutaj
+    description: Jeżeli wiesz co może powodować że ten błąd się pojawia opisz swoje podejrzenia tutaj.
   validations:
     required: false
