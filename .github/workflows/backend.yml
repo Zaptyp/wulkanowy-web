@@ -11,10 +11,10 @@
           with:
             path: ./wulkanowy-web/
             submodules: true
-        - name: Set up Python 3.10.4
+        - name: Set up Python 3.11.1
           uses: actions/setup-python@v4
           with:
-            python-version: 3.10.4
+            python-version: 3.11.1
         - name: psycopg2 prerequisites
           run: sudo apt-get install python-dev libpq-dev
         - name: Install dependencies
