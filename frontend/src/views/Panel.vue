@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { AppBar, Drawer, Settings, Conferences, SchoolInfo, Snackbar } from "@/components";
+import { AppBar, Drawer, Settings, Conferences, SchoolInfo, Snackbar, Grades } from "@/components";
 
 export default Vue.extend({
   name: "Panel",
@@ -47,6 +47,7 @@ export default Vue.extend({
     Drawer,
     Snackbar,
     Settings,
+    Grades,
     Conferences,
     SchoolInfo
   },

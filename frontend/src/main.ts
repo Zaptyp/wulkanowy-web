@@ -13,7 +13,24 @@ const messages = Object.assign(languages)
 const i18n = new VueI18n({
   locale: defaultLocale,
   fallbackLocale: 'pl',
-  messages
+  messages,
+  pluralizationRules: {
+    'pl': function(choice: number) {
+      if (choice === 0) {
+        return 0;
+      }
+      if (choice === 1) {
+        return 1;
+      }
+      if (choice > 1 && choice < 5) {
+        return 2;
+      }
+      if (choice > 4) {
+        return 3;
+      }
+      return 3;
+    }
+  }
 })
 
 new Vue({

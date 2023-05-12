@@ -15,22 +15,16 @@
       "select_student_header": "Select student",
       "select_register_header": "Change register"
     },
-    "nav_items": {
-      "dashboard": "Dashboard",
-      "grades": "Grades",
-      "attedance": "Attedance",
-      "timetable": "Timetable",
-      "exams": "Exams",
-      "homework": "Homework",
-      "notes": "Notes and achievements",
-      "lucky_number": "Lucky number",
-      "conferences": "Conferences",
-      "school_annocuments": "School annocuments",
-      "school_info": "School and teachers",
-      "student_data": "Student data",
-      "mobile_devices": "Mobile access",
-      "messages": "Messages",
-      "settings": "Settings"
+    "summary": {
+      "total_points": "Total points",
+      "final_grade": "Final grade",
+      "predicted_grade": "Predicted grade",
+      "calculated_average": "Calculated average",
+      "calculated_average_help_dialog_title": "How does Calculated Average work?",
+      "grade_summary_calculated_average_help_dialog_message": "The Calculated Average is the arithmetic average calculated from the subjects averages. It allows you to know the approximate final average. It is calculated in a way selected by the user in the application settings. It is recommended that you choose the appropriate option. This is because the calculation of school averages differs. Additionally, if your school reports the average of the subjects on the Vulcan page, the application downloads them and does not calculate these averages. This can be changed by forcing the calculation of the average in the application settings.\n\n<b>Average of grades only from selected semester</b>:\n1. Calculating the weighted average for each subject in a given semester\n2.Adding calculated averages\n3. Calculation of the arithmetic average of the summed averages\n\n<b>Average of averages from both semesters</b>:\n1.Calculating the weighted average for each subject in semester 1 and 2\n2. Calculating the arithmetic average of the calculated averages for semesters 1 and 2 for each subject.\n3. Adding calculated averages\n4. Calculation of the arithmetic average of the summed averages\n\n<b>Average of grades from the whole year:</b>\n1. Calculating weighted average over the year for each subject. The final average in the 1st semester is irrelevant.\n3. Adding calculated averages\n4. Calculating the arithmetic average of summed averages.",
+      "final_average_help_dialog_title": "How does the Final Average work?",
+      "final_average_help_dialog_message": "The Final Average is the arithmetic average calculated from all currently available final grades in the given semester.\n\nThe calculation scheme consists of the following steps:\n1. Summing up the final grades given by teachers\n2. Divide by the number of subjects that have already been graded",
+      "final_average": "Final average"
     },
     "conferences": {
       "date": "Date",
@@ -74,4 +68,21 @@
       "invalid_host_or_ssl": "Register url is invalid. Contact us.",
       "authentication_required": "Session has expired, please log in again."
     }
+  },
+  "settings": {
+    "apperance_title": "Apperance & Behaviour",
+    "app_language": "Language",
+    "theme_header": "Theme",
+    "theme_light": "Light",
+    "theme_dark": "Dark"
+  },
+  "errors": {
+    "incorrect_or_username_password": "Username/E-mail address or password is incorrect",
+    "uonet_error": "An unexpected error has occurred",
+    "field_required": "This field are required",
+    "empty_fields": "This fields are required",
+    "no_symbols_account": "This account hasn't students",
+    "network_error": "No internet connection",
+    "invalid_host_or_ssl": "Register url is invalid. Contact us."
+  }
 }

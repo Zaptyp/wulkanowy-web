@@ -15,22 +15,16 @@
       "select_student_header": "Wybierz ucznia",
       "select_register_header": "Zmień dziennik"
     },
-    "nav_items": {
-      "dashboard": "Start",
-      "grades": "Oceny",
-      "attedance": "Frekwencja",
-      "timetable": "Plan lekcji",
-      "exams": "Sprawdziany",
-      "homework": "Zadania domowe",
-      "notes": "Uwagi i osiągnięcia",
-      "lucky_number": "Szczęśliwy numerek",
-      "conferences": "Zebrania",
-      "school_annocuments": "Ogłoszenia szkolne",
-      "school_info": "Szkoła i nauczyciele",
-      "student_data": "Informacje o uczniu",
-      "mobile_devices": "Dostęp mobilny",
-      "messages": "Wiadomości",
-      "settings": "Ustawienia"
+    "summary": {
+      "total_points": "Suma punktów",
+      "final_grade": "Ocena końcowa",
+      "predicted_grade": "Przewidywana ocena",
+      "calculated_average": "Obliczona średnia",
+      "calculated_average_help_dialog_title": "Jak działa obliczona średnia?",
+      "grade_summary_calculated_average_help_dialog_message": "Obliczona średnia jest średnią arytmetyczną obliczoną ze średnich przedmiotów. Pozwala ona na poznanie przybliżonej średniej końcowej. Jest obliczana w sposób wybrany przez użytkownika w ustawieniach aplikacji. Zaleca się wybranie odpowiedniej opcji. Dzieje się tak dlatego, że obliczanie średnich w szkołach różni się. Dodatkowo, jeśli twoja szkoła ma włączone średnie przedmiotów na stronie dziennika Vulcan, aplikacja pobiera je i ich nie oblicza. Można to zmienić, wymuszając obliczanie średniej w ustawieniach aplikacji.\n\n<b>Średnia ocen tylko z wybranego semestru</b>:\n1. Obliczanie średniej arytmetycznej każdego przedmiotu w danym semestrze\n2. Zsumowanie obliczonych średnich\n3. Obliczanie średniej arytmetycznej zsumowanych średnich\n\n<b>Średnia ze średnich z obu semestrów</b>:\n1.Obliczanie średniej arytmetycznej każdego przedmiotu w semestrze 1 i 2\n2. Obliczanie średniej arytmetycznej obliczonych średnich w semetrze 1 i 2 każdego przedmiotu.\n3. Zsumowanie obliczonych średnich\n4. Obliczanie średniej arytmetycznej zsumowanych średnich\n\n<b>Średnia wszystkich ocen z całego roku:</b>\n1. Obliczanie średniej arytmetycznej z każdego przedmiotu w ciągu całego roku. Końcowa ocena w 1 semestrze jest bez znaczenia.\n3. Zsumowanie obliczonych średnich\n4. Obliczanie średniej arytmetycznej z zsumowanych średnich",
+      "final_average_help_dialog_title": "Jak działa końcowa średnia?",
+      "final_average_help_dialog_message": "Średnią końcową jest średnia arytmetyczna obliczona na podstawie wszystkich obecnie dostępnych ocen końcowych w danym semestrze.\n\nSchemat obliczeń składa się z następujących kroków:\n1. Sumowanie końcowych ocen wpisanych przez nauczycieli\n2. Dzielenie przez liczbę przedmiotów, z których oceny zostały już wystawione",
+      "final_average": "Średnia końcowa"
     },
     "conferences": {
       "date": "Data",
@@ -74,4 +68,21 @@
       "invalid_host_or_ssl": "Adres URL dziennika jest nieprawidłowy. Skontaktuj się z nami.",
       "authentication_required": "Sesja wygasła, zaloguj się ponownie."
     }
+  },
+  "settings": {
+    "apperance_title": "Wygląd i zachowanie",
+    "app_language": "Język",
+    "theme_header": "Motyw",
+    "theme_light": "Jasny",
+    "theme_dark": "Ciemny"
+  },
+  "errors": {
+    "incorrect_username_or_password": "Nazwa użytkownika/Adres e-mail lub hasło jest niepoprawne",
+    "uonet_error": "Wystąpił nieoczekiwany błąd",
+    "field_required": "To pole jest wymagane",
+    "empty_fields": "Te pola są wymagane",
+    "no_symbols_account": "To konto nie ma uczniów",
+    "network_error": "Brak połączenia z internetem",
+    "invalid_host_or_ssl": "Adres URL dziennika jest nieprawidłowy. Skontaktuj się z nami."
+  }
 }
