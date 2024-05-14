@@ -76,6 +76,10 @@ export default Vue.extend({
         name: "school_annocuments",
       },
       {
+        icon: "mdi-book-multiple-outline",
+        name: "textbooks"
+      },
+      {
         icon: "mdi-domain",
         name: "school_info",
       },

@@ -23,6 +23,9 @@
           <v-window-item transition="false" value="student_data"
             >this is student data</v-window-item
           >
+          <v-window-item transition="false" value="textbooks"
+            >this is textbooks</v-window-item
+          >
           <v-window-item transition="false" value="school_info"><SchoolInfo /></v-window-item>
           <v-window-item transition="false" value="mobile_devices"
             >this is mobile devices</v-window-item
